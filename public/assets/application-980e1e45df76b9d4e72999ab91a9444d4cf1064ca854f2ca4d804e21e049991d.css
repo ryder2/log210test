@@ -1,0 +1,97 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+
+ */
+
+
+.buttonEnfant{
+	display:none;
+}
+ 
+.headerGreen{
+    background-color:rgb(47,158,109);
+    height:75px;
+    margin-bottom:0px;
+}
+
+.paddingTop{
+    padding-top:25px;
+}
+
+.backgroundBlue{
+    background-color:rgb(0,87,132);
+    width:100%;
+}
+
+.bodyWhite{
+    background-color:#ffffff;
+    width:960px;
+    display: block;
+    margin:auto;
+}
+
+.menuService{
+    background-color:#ffffff;
+    width:300px;
+    padding:25px;
+    float:right;
+    border:3px solid #000000;
+    margin-right:50px;
+    margin-top:20px;
+}
+
+.titleRQRSDA{
+    padding:25px;
+}
+
+.descriptionRQRSDA{
+    padding:25px;
+    float:left;
+}
+
+.description2RQRSDA{
+    width:500px;
+    text-align:justify;
+    padding-top:25px;
+}
+
+.littleGreenLine{
+    background-color:rgb(47,158,109);
+    height:2px;
+    margin-left:25px;
+    margin-right:25px;
+}
+
+.endPage{
+    height:500px;
+    margin-bottom:0px;
+}
+
+.menuService a:visited{
+    color:rgb(0,0,0);
+    font-weight:bold;
+    text-decoration:none;
+}
+
+.menuService a:link{
+    color:rgb(0,0,0);
+    font-weight:bold;
+    text-decoration:none;
+}
+
+.menuService a:hover{
+    color:rgba(0,0,0,0.8);
+    font-weight:bold;
+    text-decoration:none;
+}
