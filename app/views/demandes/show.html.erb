@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <strong>Demandeid:</strong>
+  <%= @demande.demande_id %>
+</p>
+
+<p>
+  <strong>Service:</strong>
+  <%= @demande.service %>
+</p>
+
+<p>
+  <strong>Date_demande:</strong>
+  <%= @demande.created_at %>
+</p>
+
+<p>
+  <strong>Frequence:</strong>
+  <%= @demande.frequence %>
+</p>
+
+<p>
+  <% if @demande.statut.nil? %>
+   <strong>Statut:</strong> Non complété
+  <% else %>
+    <strong>Statut:</strong> Complété
+  <% end %>
+</p>
+
+<p>
+  <strong>Demandeur:</strong>
+  <%= @demande.demandeur %>
+</p>
+
+<p>
+  <strong>Payee par:</strong>
+  <%= @demande.payee_par %>
+</p>
+
+<p>
+  <% @gardiens.each do |gardien| %>
+    <strong>gardien: </strong> <%= gardien.nom %> <br>
+  <% end %>
+</p>
+
+<p>
+  <% if !@visiteurs.empty? %>
+    <% @visiteurs.each do |visiteur| %>
+      <strong>visiteur: </strong> <%= visiteur.nom %> <br>
+    <% end %>
+  <% end %>
+</p>
+
+<% if (@gardiens.size + @visiteurs.size) < 2 %>
+  <%= button_to "Ajouter un parent", {:controller => "demandes", :action => "addParent", :id => @demande.id}%>
+<% end %>
+
+<p>
+  <strong>Enfants:</strong>
+  <br>
+<% Enfant.find_each do |e| %>
+  <% if e.demande_id == @demande.id %>
+	<%= e.nom %>
+	<br>
+  <% end %>
+<% end %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_demande_path(@demande) %> |
+<%= link_to 'Back', demandes_path %>

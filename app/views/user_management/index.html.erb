@@ -1,0 +1,35 @@
+<h1 class="titleRQRSDA">Gestion des comptes</h1>
+<div class="descriptionRQRSDA">
+    <table>
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Addresse Courriel</th>
+		  <th>Rôle</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @users.each do |user| %>
+            <tr>
+                <td><%= user.name %></td>
+                <td><%= user.email %></td>
+				<% if user.role_id == 0 %>
+					<td>Directeur</td>
+				<% end %>
+				<% if user.role_id == 1 %>
+					<td>Coordonnateur</td>
+				<% end %>
+				<% if user.role_id == 2 %>
+					<td>Intervenant</td>
+				<% end %>
+				<% if ((current_user.role_id <= user.role_id) && (user != current_user)) %>
+					<td><%= button_to 'Modifier', edit_user_management_path(user), method: :edit %></td>
+					<td><%= button_to 'Effacer', user_management_url(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+				<% end %>
+			</tr>
+        <% end %>
+      </tbody>
+    </table>
+	<%= link_to 'Créer', new_user_management_path %>
+</div>

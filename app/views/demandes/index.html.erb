@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class="titleRQRSDA">Demandes</h1>
+<div class="descriptionRQRSDA">
+	<table>
+	  <thead>
+		<tr>
+		  <th>Demande id</th>
+		  <th>Service</th>
+		  <th>Date demande</th>
+		  <th>Frequence</th>
+		  <th>Statut</th>
+		  <th>Demandeur</th>
+		  <th>Payee par</th>
+		  <th colspan="3"></th>
+		</tr>
+	  </thead>
+
+	  <tbody>
+		<% @demandes.each do |demande| %>
+		  <tr>
+			<td><%= demande.demande_id %></td>
+			<td><%= demande.service %></td>
+			<td><%= demande.created_at %></td>
+			<td><%= demande.frequence %></td>
+			<% if demande.statut.nil? %>
+				<td>Non complété</td>
+			<% else %>
+				<td>Complété</td>
+  			<% end %>
+			<td><%= demande.demandeur %></td>
+			<td><%= demande.payee_par %></td>
+			<td><%= link_to 'Show', demande %></td>
+			<td><%= link_to 'Edit', edit_demande_path(demande) %></td>
+			<td><%= button_to 'Destroy', demande, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		  </tr>
+		<% end %>
+	  </tbody>
+	</table>
+</div>
+<div style="clear:both;">
+
+<br>
+
+<%= link_to 'New Demande', new_demande_path %>

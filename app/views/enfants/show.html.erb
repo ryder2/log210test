@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <strong>Nom:</strong>
+  <%= @enfant.nom %>
+</p>
+
+<p>
+  <strong>Age:</strong>
+  <%= @enfant.age %>
+</p>
+
+<p>
+  <strong>Residence:</strong>
+  <%= @enfant.residence %>
+</p>
+
+<%= link_to 'Edit', edit_enfant_path(@enfant) %> |
+<%= link_to "Ajouter un enfant", {:controller => "enfants", :action => "new", :demande_id => @enfant.demande_id}%>|
+<%= link_to 'Retour à la demande', demande_path(@enfant.demande_id) %>
+<!--<%= link_to 'Back', enfants_path %>-->

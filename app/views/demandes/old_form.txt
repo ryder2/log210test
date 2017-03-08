@@ -1,0 +1,64 @@
+	<% if !@demande.nil? %>
+	<% @demande.errors.each do |attr, msg| %>
+		<% puts 'errors ared' + msg.to_s %>
+		<li><%= msg %></li>
+	<% end %><br />
+	<% end %>
+
+    <%= form_for :demande, :url => {:controller => "demandes"} do |f| %>
+
+      <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+  <div class="field">
+    <%= f.label :demande_id %>
+    <%= f.text_field :demande_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :date_demande %>
+    <%= f.date_select :date_demande %>
+  </div>
+
+  <div class="field">
+    <%= f.label :frequence %>
+    <%= f.text_field :frequence %>
+  </div>
+
+  <div class="field">
+    <%= f.label :service %>
+    <%= f.text_field :service %>
+  </div>
+
+  <div class="field">
+    <%= f.label :demandeur %>
+    <%= f.text_field :demandeur %>
+  </div>
+
+  <div class="field">
+    <%= f.label :payee_par %>
+    <%= f.text_field :payee_par %>
+  </div>
+
+      <div class="actions">
+        <%= f.submit "Enregistrer" %>
+      </div>
+    <% end %>
+	
+	id
+[PK] integeremail
+character varyingencrypted_password
+character varyingreset_password_token
+character varyingreset_password_sent_at
+timestamp without time zoneremember_created_at
+timestamp without time zonesign_in_count
+integercurrent_sign_in_at
+timestamp without time zonelast_sign_in_at
+timestamp without time zonecurrent_sign_in_ip
+inetlast_sign_in_ip
+inetcreated_at
+timestamp without time zoneupdated_at
+timestamp without time zonerole_id
+integername
+character varyingfailed_attempts
+integerunlock_token
+character varyinglocked_at
+timestamp without time zone

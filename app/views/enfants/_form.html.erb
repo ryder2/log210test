@@ -1,0 +1,35 @@
+<%= form_for(enfant) do |f| %>
+  <% if enfant.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(enfant.errors.count, "error") %> prohibited this enfant from being saved:</h2>
+
+      <ul>
+      <% enfant.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+  </div>
+  <div class="field">
+    <%= f.label :age %>
+    <%= f.text_field :age %>
+  </div>
+
+  <div class="field">
+    <%= f.label :residence %>
+    <%= f.text_field :residence %>
+  </div>
+
+  <div class="field">
+    <%= f.label :nom %>
+    <%= f.text_field :nom %>
+  </div>
+  
+  <%= f.hidden_field :demande_id, :value => params[:demande_id] %>  
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

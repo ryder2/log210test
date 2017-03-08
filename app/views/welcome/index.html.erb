@@ -1,0 +1,22 @@
+<h1 class="titleRQRSDA">Bienvenue sur l'application web du RQRSDA</h1>
+<div class="littleGreenLine"></div>
+<div class="descriptionRQRSDA">
+
+    <div class="description2RQRSDA">Vous retrouverez dans ces pages, divers services présents afin de faciliter la gestion des dossiers.</div>
+
+    <div class="paddingTop">Nous vous souhaitons une bonne navigation !</div>
+
+    <div class="paddingTop">Team #7</div>
+	<% if user_signed_in? %>
+		<%= button_to "LogOut", destroy_user_session_path(), :method => :delete %>
+	<% end %>
+</div>
+
+<div class="menuService">
+    <div class="littleGreenLine"></div>
+    <div><h2>Menu de services</h2></div>
+    <div class="littleGreenLine"></div>
+    <div class="paddingTop"><%= link_to "Gestion des comptes", "user_management/" %></div>
+	<div class="paddingTop"><%= link_to "Créer une demande de service", "demandes/" %></div>
+    <div class="paddingTop"><%= link_to "Accéder au bottin famille", "familles/" %></div>
+</div>

@@ -1,0 +1,40 @@
+<h1 class="titleRQRSDA">Enregistrer un nouvel utilisateur</h1>
+
+<div class="descriptionRQRSDA">
+	<% if !@user.nil? %>
+	<% @user.errors.each do |attr, msg| %>
+		<% puts 'errors ared' + msg.to_s %>
+		<li><%= msg %></li>
+	<% end %><br />
+	<% end %>
+
+    <%= form_for :user, :url => {:controller => "user_management", :action => "new"} do |f| %>
+
+      <div class="field">
+        <%= f.label :'Nom' %><br />
+        <%= f.text_field :name, autofocus: true %>
+      </div>
+      <div class="field">
+        <%= f.label :'Role' %><br />
+		<%= f.select :role_id, options_from_collection_for_select(@roles, "id", "name") %>
+      </div>
+      <div class="field">
+        <%= f.label :'Addresse courriel' %><br />
+        <%= f.email_field :email %>
+      </div>
+
+      <div class="field">
+        <%= f.label :'Mot De Passe' %><br />
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :'Confirmation Mot De Passe' %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Enregistrer" %>
+      </div>
+    <% end %>
+</div>

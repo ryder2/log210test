@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Familles</h1>
+<form id="rechercheFamille" action="familles/recherche">
+  <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+  <select id="typeDeRecherche">
+    <option value="1">Numéro de dossier</option>
+    <option value="2">Parent</option>
+    <option value="3">Référent</option>
+    <option value="4">Enfant</option>
+  </select>
+  <input type="text" id="valeurDeRecherche"> </input>
+  <input type="submit" id="submitRecherche" value="Rechercher"> </input>
+</form>
+
+<table id="familleTable">
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody id="familleBody">
+    <% @familles.each do |famille| %>
+      <tr id="famille_<%= famille.id %>">
+        <td><%= famille.nom %></td>
+        <td><%= link_to 'Show', famille %></td>
+        <td><%= link_to 'Edit', edit_famille_path(famille) %></td>
+        <td><%= button_to 'Destroy', famille, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Famille', new_famille_path %>
+<script type="text/javascript">
+  function ajaxRecherche() {
+      $("#familleBody tr").remove();
+      var valuesToSubmit = {
+        typeDeRecherche: $("#typeDeRecherche").val(),
+        valeurDeRecherche: $("#valeurDeRecherche").val(),
+        authenticity_token: $("[name ='authenticity_token']")[0].value
+      };
+      console.log(valuesToSubmit);
+      var requete = $.ajax({
+          type: "POST",
+          url: $(this).attr('action'),
+          data: valuesToSubmit,
+          dataType: "JSON"
+      });
+      requete.done(function(json){
+          
+          $.each(json, function(index) {
+            $("#familleBody").append(
+              $("<tr>").append(
+                $("<td>").text(this.nom)
+              ).append(
+                $("<td>").append(
+                  $("<a>").text("edit").attr("href", "/familles/" + this.id + "/edit")
+                )
+              )
+            );
+            console.log(this);
+          })
+      });
+      return false;
+  }
+
+  $("#rechercheFamille").submit(ajaxRecherche);
+  </script>

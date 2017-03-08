@@ -1,0 +1,1 @@
+json.array! @parentinfos, partial: 'parentinfos/parentinfo', as: :parentinfo

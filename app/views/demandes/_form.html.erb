@@ -1,0 +1,338 @@
+<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBE1pI65C_sCNOqcSRhIRM9DzqzzJYbIKQ">
+	
+</script>
+
+<div class="descriptionRQRSDA">
+
+	<%= simple_form_for(demande, remote: true, format: :json) do |f| %>
+	  <% if demande.errors.any? %>
+		<div id="error_explanation">
+		  <h2><%= pluralize(demande.errors.count, "error") %> prohibited this demande from being saved:</h2>
+
+		  <ul>
+		  <% demande.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+		  <% end %>
+		  </ul>
+		</div>
+	  <% end %>
+
+	  <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+	  <div class="field">
+		<%= f.label :demande_id %>
+		<%= f.text_field :demande_id %>
+	  </div>
+
+	  <div class="field">
+		<%= f.label :created_at %>
+		<%= f.date_select :created_at %>
+	  </div>
+
+	  <div class="field">
+		<%= f.label :frequence %>
+		<%= f.text_field :frequence %>
+	  </div>
+
+	  <div class="field">
+		<%= f.input :service %>
+	  </div>
+
+	  <div class="field">
+		<%= f.label :demandeur %>
+		<%= f.text_field :demandeur %>
+	  </div>
+
+	  <div class="field">
+		<%= f.label :payee_par %>
+		<%= f.text_field :payee_par %>
+	  </div>
+
+	  <div class="actions">
+		<%= f.submit %>
+	  </div>
+	<% end %>
+
+	<%= tag(:input, :type => "hidden", :name => 'demande_id', :value => demande.id) %>
+
+	<% @compteur = "0" %>
+
+	<% if (@gardiens.nil?) || (@visiteurs.nil? && @gardiens.size < 2) || (@gardiens.size + @visiteurs.size < 2) %>
+		<% @compteur = (@compteur.to_i + 1).to_s %>
+
+		<%= simple_form_for Parent.new, :namespace => @compteur do |g| %>
+
+		  <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+
+		  <%= g.hidden_field :demande_id, :value => demande.id %>
+
+		  <div class="field">
+			<%= g.label :nom %>
+			<%= g.text_field :nom %>
+		  </div>
+
+		  <%= g.input :statut %>
+
+		  <div class="field">
+			<%= g.label :date_naissance %>
+			<%= g.date_select :date_naissance %>
+		  </div>
+    				<%= g.simple_fields_for :parentinfos, Parentinfo.new do |f| %>
+					  <div class="field">
+						<%= f.label :courriel %>
+						<%= f.text_field :courriel %>
+					  </div>
+
+					  <div class="field">
+						<%= f.label :numero_tel %>
+						<%= f.text_field :numero_tel %>
+					  </div>
+
+					  <div class="field">
+						<%= f.label :nocivique %>
+						<%= f.text_field :nocivique %>
+					  </div>
+
+					  <div class="field">
+						<%= f.label :rue %>
+						<%= f.text_field :rue %>
+					  </div>
+
+					  <div class="field">
+						<%= f.label :appartement %>
+						<%= f.text_field :appartement %>
+					  </div>
+
+					  <div class="field">
+						<%= f.label :ville %>
+						<%= f.text_field :ville %>
+					  </div>
+
+					  <div class="field">
+						<%= f.label :code_postal %>
+						<%= f.text_field :code_postal %>
+					  </div>
+
+					  <div class="field">
+					  	<input type="button" name="show" value="Recherche Addresse" id=<%= @compteur %> />
+					  </div>
+
+					  <div class="field">
+						<%= f.label :province %>
+						<%= f.text_field :province %>
+					  </div>
+
+					  <div class="field">
+						<%= f.label :nom_urgence %>
+						<%= f.text_field :nom_urgence %>
+					  </div>
+
+					  <div class="field">
+						<%= f.label :numero_urgence %>
+						<%= f.text_field :numero_urgence %>
+					  </div>
+
+					  <div class="field">
+						<%= f.label :note %>
+						<%= f.text_field :note %>
+					  </div>
+		  			<% end %>
+
+		  <div class="actions">
+			<%= g.submit %>
+		  </div>
+		<% end %>
+	<% end %>
+
+	<% if (!@gardiens.nil?) || (!@visiteurs.nil?) %>
+		<% @parents.each do |parent| %>
+			<% @compteur = (@compteur.to_i + 1).to_s %>
+			<%= simple_form_for parent, :namespace => @compteur do |g| %>
+			  <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+			  <%= g.hidden_field :demande_id, :value => @demande.id %>
+			  <div class="field">
+				<%= g.label :nom %>
+				<%= g.text_field :nom %>
+			  </div>
+
+
+			  <%= g.input :statut %>
+
+			  <div class="field">
+				<%= g.label :date_naissance %>
+				<%= g.date_select :date_naissance %>
+			  </div>
+
+			     <%= g.simple_fields_for :parentinfos, parent.parentinfos.where("created_at = (SELECT MAX(created_at) FROM parentinfos WHERE parent_id = ?)", parent.id) do |f| %>
+					  <div class="field">
+						<%= f.label :courriel %>
+						<%= f.text_field :courriel %>
+					  </div>
+
+					  <div class="field">
+						<%= f.label :numero_tel %>
+						<%= f.text_field :numero_tel %>
+					  </div>
+
+					  <div class="field">
+						<%= f.label :nocivique %>
+						<%= f.text_field :nocivique %>
+					  </div>
+
+					  <div class="field">
+						<%= f.label :rue %>
+						<%= f.text_field :rue %>
+					  </div>
+
+					  <div class="field">
+						<%= f.label :appartement %>
+						<%= f.text_field :appartement %>
+					  </div>
+
+					  <div class="field">
+						<%= f.label :ville %>
+						<%= f.text_field :ville %>
+					  </div>
+ 
+					  <div class="field">
+						<%= f.label :code_postal %>
+						<%= f.text_field :code_postal %>
+					  </div>
+
+					   <div class="field">
+					  	<input type="button" name="show" value="Recherche Addresse" id=<%= @compteur %>  />
+					  </div>
+
+					  <div class="field">
+						<%= f.label :province %>
+						<%= f.text_field :province %>
+					  </div>
+
+					  <div class="field">
+						<%= f.label :nom_urgence %>
+						<%= f.text_field :nom_urgence %>
+					  </div>
+
+					  <div class="field">
+						<%= f.label :numero_urgence %>
+						<%= f.text_field :numero_urgence %>
+					  </div>
+
+					  <div class="field">
+						<%= f.label :note %>
+						<%= f.text_field :note %>
+					  </div>
+		  			<% end %>
+
+
+			  <div class="actions">
+				<%= g.submit %>
+			  </div>
+			<% end %>
+		<% end %>
+	<% end %>
+
+	<div class='buttonEnfant'>
+		<% if !@enfants.nil? %>
+			<% @enfants.each do |enfant| %>
+				<b>Nom de l'enfant : </b> <%= enfant.nom %> <br>
+			<% end %>
+		<% end %>
+	</div>
+	<%= button_to 'Ajouter enfants', new_enfant_path, {class: 'buttonEnfant', method: :get, params: {demande_id: :demande_id} } %>
+	
+</div>
+<div style="clear:both;"></div>
+
+<script type="text/javascript"> 
+  $('.new_parent').hide();
+  $('.edit_parent').hide();
+  function ajaxDemande() {  
+      var valuesToSubmit = $(this).serialize();
+      var requete = $.ajax({
+          type: "POST",
+          url: $(this).attr('action'),
+          data: valuesToSubmit,
+          dataType: "JSON"
+      });
+      requete.done(function(json){
+          $("#messageH2").text('Réussite');
+          $('.new_parent').show();
+          $('.edit_parent').show();
+          $('.new_demande').hide();
+          $('.edit_demande').hide();
+          $("[name=demande_id]").val(json.id);
+          $("#1_parent_demande_id").val(json.id);
+      });
+      requete.fail(function(json){
+          $("#messageH2").text('Une Erreure est survenue');
+      });
+      return false;
+  }
+
+  function ajaxParent() {  
+      var valuesToSubmit = $(this).serialize();
+      var requete = $.ajax({
+          type: "POST",
+          url: $(this).attr('action'),
+          data: valuesToSubmit,
+          dataType: "JSON"
+      });
+      requete.done(function(json){
+          var requete = $.ajax({
+            type: "POST",
+            url: '/demandes/addParent/' + $("[name=demande_id]").val(),
+            data: {
+              parent_id: json.id,
+              parent_statut: json.statut,
+              demande_id: $("[name=demande_id]").val(),
+              authenticity_token: $("[name=authenticity_token]").val(),
+            },
+            dataType: "JSON"
+          });
+          requete.done(function(json){
+            $("#messageH2").text('Réussite ajout parent');
+            $('.buttonEnfant').show();
+            $('.new_parent').hide();
+            $('.edit_parent').hide();
+			
+			
+          });
+          requete.fail(function(json){
+            $("#messageH2").text('Une Erreure est survenue');
+          });
+      });
+      requete.fail(function(json){
+          $("#messageH2").text('Une Erreure est survenue');
+      });
+      return false;
+  }
+  $(".new_demande").submit(ajaxDemande);
+  $(".edit_demande").submit(ajaxDemande);
+  $(".new_parent").submit(ajaxParent);
+  $(".edit_parent").submit(ajaxParent);
+  </script>
+
+  <script>
+	$("[name='show']").click(function(){
+		var location = $('#' + this.id +'_parent_parentinfos_attributes_0_code_postal').val();
+		getAddress(location, this.id);
+		});
+
+		function getAddress(location, id){
+		geocoder = new google.maps.Geocoder();
+		geocoder.geocode( { 'address': location }, function(results, status) {
+		if (status == 'OK') {
+			var resultat = results[0].formatted_address.split(',');
+			var resultat2 = resultat[1].split(' ');
+
+			$('#' + id +'_parent_parentinfos_attributes_0_ville').val(resultat[0]);
+
+			$('#' + id +'_parent_parentinfos_attributes_0_province').val(resultat2[1]);
+
+		} else {
+
+			alert("Le code postal n'existe pas.");
+		}
+		});
+	}
+    </script>

@@ -1,0 +1,39 @@
+<h1 class="titleRQRSDA">Gestion des comptes</h1>
+<div class="descriptionRQRSDA">
+	<% @user.errors.each do |attr, msg| %>
+		<% puts 'errors ared' + msg.to_s %>
+		<li><%= msg %></li>
+	<% end %><br />
+	
+    <%= form_for :user, html: { method: :put } do |f| %>
+      <div class="field">
+        <%= f.label :'Nom' %><br />
+        <%= f.text_field :name %>
+      </div>
+
+      <div class="field">
+        <%= f.label :'Role' %><br />
+		<%= f.select :role_id, options_from_collection_for_select(@roles, "id", "name") %>
+      </div>
+
+      <div class="field">
+        <%= f.label :'Addresse Courriel' %><br />
+        <%= f.email_field :email, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :'Nouveau mot de passe' %> <br />
+        <%= f.password_field :password, autocomplete: "off" %>
+          <em>Laissez vide pour ne pas le remplacer. (6 characters minimum)</em>
+      </div>
+
+      <div class="field">
+        <%= f.label :'Confirmer nouveau mot de passe' %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Mettre à jour" %>
+      </div>
+    <% end %>
+</div>

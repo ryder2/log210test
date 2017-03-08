@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Nom:</strong>
+  <%= @famille.nom %>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Note</th>
+      <th>Intervenant</th>
+      <th>Date de création</th>
+   </tr>
+  </thead>
+
+  <tbody>
+    <% @famille.notes.each do |note| %>
+      <tr>
+        <td><%= note.texte %></td>
+        <% if (!note.users_id.nil?) %>
+          <td><%= User.find(note.users_id).name %></td>
+        <% else %>
+          <td></td>
+        <% end %>
+        <td><%= note.dateCreation %></td>
+        <td><%= link_to 'Edit', edit_note_path(note) %></td>
+        <td><%= button_to 'Destroy', note, method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= simple_form_for(Note.new) do |f| %>
+  <%= f.error_notification %>
+  
+  <div class="form-inputs">
+    <%= f.hidden_field :famille_id, :value => @famille.id %>
+    <%= f.hidden_field :users_id, :value => @user.id %>
+    <%= f.input :texte %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Edit', edit_famille_path(@famille) %> |
+<%= link_to 'Back', familles_path %>
