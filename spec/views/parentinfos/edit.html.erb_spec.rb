@@ -4,7 +4,7 @@ RSpec.describe "parentinfos/edit", type: :view do
   before(:each) do
     @parentinfo = assign(:parentinfo, Parentinfo.create!(
       :courriel => "MyString",
-      :numero_tel => "MyString",
+      :telephone_res => "MyString",
       :nocivique => "MyString",
       :rue => "MyString",
       :appartement => "MyString",
@@ -25,7 +25,7 @@ RSpec.describe "parentinfos/edit", type: :view do
 
       assert_select "input#parentinfo_courriel[name=?]", "parentinfo[courriel]"
 
-      assert_select "input#parentinfo_numero_tel[name=?]", "parentinfo[numero_tel]"
+      assert_select "input#parentinfo_telephone_res[name=?]", "parentinfo[telephone_res]"
 
       assert_select "input#parentinfo_nocivique[name=?]", "parentinfo[nocivique]"
 

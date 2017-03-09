@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Demande Egs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Motif</th>
+      <th>Conditions</th>
+      <th>Date separation</th>
+      <th>Echange garde</th>
+      <th>Reactions eg</th>
+      <th>Date dernier contact</th>
+      <th>Description enfant</th>
+      <th>Contact pg</th>
+      <th>Forme contact pg</th>
+      <th>Attitude parent</th>
+      <th>Attitude enfant</th>
+      <th>A suivre</th>
+      <th>Demande</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @demande_egs.each do |demande_eg| %>
+      <tr>
+        <td><%= demande_eg.motif %></td>
+        <td><%= demande_eg.conditions %></td>
+        <td><%= demande_eg.date_separation %></td>
+        <td><%= demande_eg.echange_garde %></td>
+        <td><%= demande_eg.reactions_eg %></td>
+        <td><%= demande_eg.date_dernier_contact %></td>
+        <td><%= demande_eg.description_enfant %></td>
+        <td><%= demande_eg.contact_pg %></td>
+        <td><%= demande_eg.forme_contact_pg %></td>
+        <td><%= demande_eg.attitude_parent %></td>
+        <td><%= demande_eg.attitude_enfant %></td>
+        <td><%= demande_eg.a_suivre %></td>
+        <td><%= demande_eg.demande_id %></td>
+        <td><%= link_to 'Show', demande_eg %></td>
+        <td><%= link_to 'Edit', edit_demande_eg_path(demande_eg) %></td>
+        <td><%= button_to 'Destroy', demande_eg, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Demande eg', new_demande_eg_path %>

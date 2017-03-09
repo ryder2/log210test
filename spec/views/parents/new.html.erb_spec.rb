@@ -4,7 +4,6 @@ RSpec.describe "parents/new", type: :view do
   before(:each) do
     assign(:parent, Parent.new(
       :statut => 1,
-      :telephone => "MyString",
       :nom => "MyString"
     ))
   end
@@ -15,8 +14,6 @@ RSpec.describe "parents/new", type: :view do
     assert_select "form[action=?][method=?]", parents_path, "post" do
 
       assert_select "input#parent_statut[name=?]", "parent[statut]"
-
-      assert_select "input#parent_telephone[name=?]", "parent[telephone]"
 
       assert_select "input#parent_nom[name=?]", "parent[nom]"
     end

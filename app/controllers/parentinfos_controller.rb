@@ -71,7 +71,7 @@ class ParentinfosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def parentinfo_params
-      params.require(:parentinfo).permit(:courriel, :numero_tel, :nocivique, :rue, :appartement, 
+      params.require(:parentinfo).permit(:courriel, :telephone_res, :nocivique, :rue, :appartement, 
                                           :ville, :code_postal, :province, :nom_urgence, 
                                           :numero_urgence, :note, :parent_id)
     end

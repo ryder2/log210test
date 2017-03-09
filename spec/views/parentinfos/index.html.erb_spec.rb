@@ -5,7 +5,7 @@ RSpec.describe "parentinfos/index", type: :view do
     assign(:parentinfos, [
       Parentinfo.create!(
         :courriel => "Courriel",
-        :numero_tel => "Numero Tel",
+        :telephone_res => "Numero Tel",
         :nocivique => "Nocivique",
         :rue => "Rue",
         :appartement => "Appartement",
@@ -19,7 +19,7 @@ RSpec.describe "parentinfos/index", type: :view do
       ),
       Parentinfo.create!(
         :courriel => "Courriel",
-        :numero_tel => "Numero Tel",
+        :telephone_res => "Numero Tel",
         :nocivique => "Nocivique",
         :rue => "Rue",
         :appartement => "Appartement",

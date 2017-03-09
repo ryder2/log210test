@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :demande_vs
+  resources :vs_demandes
   resources :demande_egs
   resources :motifs
   resources :parentinfos

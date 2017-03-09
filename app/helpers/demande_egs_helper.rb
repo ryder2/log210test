@@ -1,0 +1,2 @@
+module DemandeEgsHelper
+end

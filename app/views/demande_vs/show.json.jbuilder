@@ -1,1 +1,0 @@
-json.partial! "demande_vs/demande_v", demande_v: @demande_v

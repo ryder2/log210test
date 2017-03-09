@@ -4,7 +4,7 @@ RSpec.describe "parentinfos/show", type: :view do
   before(:each) do
     @parentinfo = assign(:parentinfo, Parentinfo.create!(
       :courriel => "Courriel",
-      :numero_tel => "Numero Tel",
+      :telephone_res => "Numero Tel",
       :nocivique => "Nocivique",
       :rue => "Rue",
       :appartement => "Appartement",

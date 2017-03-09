@@ -87,7 +87,7 @@ class ParentsController < ApplicationController
 
       if @lastParentInfos.nil? ||
         @lastParentInfos[0].courriel != params[:parent][:parentinfos_attributes]["0"][:courriel] ||
-        @lastParentInfos[0].numero_tel != params[:parent][:parentinfos_attributes]["0"][:numero_tel] ||
+        @lastParentInfos[0].telephone_res != params[:parent][:parentinfos_attributes]["0"][:telephone_res] ||
         @lastParentInfos[0].nocivique != params[:parent][:parentinfos_attributes]["0"][:nocivique] ||
         @lastParentInfos[0].rue != params[:parent][:parentinfos_attributes]["0"][:rue] ||
         @lastParentInfos[0].appartement != params[:parent][:parentinfos_attributes]["0"][:appartement] ||
@@ -99,7 +99,7 @@ class ParentsController < ApplicationController
         @lastParentInfos[0].note != params[:parent][:parentinfos_attributes]["0"][:note]
 
         params.require(:parent).permit(:statut, :date_naissance, :nom, :demande_id, :parentinfos_attributes => 
-                                      [:courriel, :numero_tel, :nocivique, :rue, :appartement, 
+                                      [:courriel, :telephone_res, :nocivique, :rue, :appartement, 
                                         :ville, :code_postal, :province, :nom_urgence, 
                                         :numero_urgence, :note, :parent_id])
       else

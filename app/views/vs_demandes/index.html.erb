@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Vs Demandes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Motif pv</th>
+      <th>Motivations pv</th>
+      <th>Interdit contact pv</th>
+      <th>Date separation pv</th>
+      <th>Contact enfant pv</th>
+      <th>Contact telephone enfant pv</th>
+      <th>Attitude parent pv</th>
+      <th>Demande</th>
+      <th>Motif pg</th>
+      <th>Date separation pg</th>
+      <th>Date dernier contact pg</th>
+      <th>Dernier contact deroulement pg</th>
+      <th>Contact telephone enfant pg</th>
+      <th>Autorisation accompagnement pg</th>
+      <th>Personnes autorisees pg</th>
+      <th>Attitude parent pg</th>
+      <th>Jeux favoris pg</th>
+      <th>Gout alimentaire pg</th>
+      <th>Enfant sait visite pg</th>
+      <th>Reaction visite pg</th>
+      <th>Attitude enfant pg</th>
+      <th>Autre pg</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @vs_demandes.each do |vs_demande| %>
+      <tr>
+        <td><%= vs_demande.motif_pv %></td>
+        <td><%= vs_demande.motivations_pv %></td>
+        <td><%= vs_demande.interdit_contact_pv %></td>
+        <td><%= vs_demande.date_separation_pv %></td>
+        <td><%= vs_demande.contact_enfant_pv %></td>
+        <td><%= vs_demande.contact_telephone_enfant_pv %></td>
+        <td><%= vs_demande.attitude_parent_pv %></td>
+        <td><%= vs_demande.demande_id %></td>
+        <td><%= vs_demande.motif_pg %></td>
+        <td><%= vs_demande.date_separation_pg %></td>
+        <td><%= vs_demande.date_dernier_contact_pg %></td>
+        <td><%= vs_demande.dernier_contact_deroulement_pg %></td>
+        <td><%= vs_demande.contact_telephone_enfant_pg %></td>
+        <td><%= vs_demande.autorisation_accompagnement_pg %></td>
+        <td><%= vs_demande.personnes_autorisees_pg %></td>
+        <td><%= vs_demande.attitude_parent_pg %></td>
+        <td><%= vs_demande.jeux_favoris_pg %></td>
+        <td><%= vs_demande.gout_alimentaire_pg %></td>
+        <td><%= vs_demande.enfant_sait_visite_pg %></td>
+        <td><%= vs_demande.reaction_visite_pg %></td>
+        <td><%= vs_demande.attitude_enfant_pg %></td>
+        <td><%= vs_demande.autre_pg %></td>
+        <td><%= link_to 'Show', vs_demande %></td>
+        <td><%= link_to 'Edit', edit_vs_demande_path(vs_demande) %></td>
+        <td><%= button_to 'Destroy', vs_demande, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Vs demande', new_vs_demande_path %>

@@ -1,0 +1,1 @@
+json.partial! "vs_demandes/vs_demande", vs_demande: @vs_demande

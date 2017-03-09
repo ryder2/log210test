@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170309045043) do
+ActiveRecord::Schema.define(version: 20170309214456) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -175,5 +175,32 @@ ActiveRecord::Schema.define(version: 20170309045043) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
+
+  create_table "vs_demandes", force: :cascade do |t|
+    t.string   "motif_pv"
+    t.string   "motivations_pv"
+    t.boolean  "interdit_contact_pv"
+    t.date     "date_separation_pv"
+    t.boolean  "contact_enfant_pv"
+    t.boolean  "contact_telephone_enfant_pv"
+    t.string   "attitude_parent_pv"
+    t.integer  "demande_id"
+    t.string   "motif_pg"
+    t.date     "date_separation_pg"
+    t.date     "date_dernier_contact_pg"
+    t.string   "dernier_contact_deroulement_pg"
+    t.boolean  "contact_telephone_enfant_pg"
+    t.boolean  "autorisation_accompagnement_pg"
+    t.string   "personnes_autorisees_pg"
+    t.string   "attitude_parent_pg"
+    t.string   "jeux_favoris_pg"
+    t.string   "gout_alimentaire_pg"
+    t.boolean  "enfant_sait_visite_pg"
+    t.string   "reaction_visite_pg"
+    t.string   "attitude_enfant_pg"
+    t.string   "autre_pg"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
 
 end

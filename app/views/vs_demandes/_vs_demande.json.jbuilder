@@ -1,0 +1,2 @@
+json.extract! vs_demande, :id, :motif_pv, :motivations_pv, :interdit_contact_pv, :date_separation_pv, :contact_enfant_pv, :contact_telephone_enfant_pv, :attitude_parent_pv, :demande_id, :motif_pg, :date_separation_pg, :date_dernier_contact_pg, :dernier_contact_deroulement_pg, :contact_telephone_enfant_pg, :autorisation_accompagnement_pg, :personnes_autorisees_pg, :attitude_parent_pg, :jeux_favoris_pg, :gout_alimentaire_pg, :enfant_sait_visite_pg, :reaction_visite_pg, :attitude_enfant_pg, :autre_pg, :created_at, :updated_at
+json.url vs_demande_url(vs_demande, format: :json)

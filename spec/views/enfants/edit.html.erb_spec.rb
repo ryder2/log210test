@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "enfants/edit", type: :view do
   before(:each) do
     @enfant = assign(:enfant, Enfant.create!(
-      :age => 1,
+      :date_naissance => "2001-01-01",
       :residence => "MyString",
       :nom => "MyString",
       :demande_id => 1
@@ -15,7 +15,7 @@ RSpec.describe "enfants/edit", type: :view do
 
     assert_select "form[action=?][method=?]", enfant_path(@enfant), "post" do
 
-      assert_select "input#enfant_age[name=?]", "enfant[age]"
+      assert_select "input#enfant_date_naissance[name=?]", "enfant[date_naissance]"
 
       assert_select "input#enfant_residence[name=?]", "enfant[residence]"
 

@@ -5,8 +5,7 @@ RSpec.describe "parents/show", type: :view do
     @parent = assign(:parent, Parent.create!(
       :nom => "Nom",
       :statut => 2,
-      :date_naissance => "2000-01-01",
-      :telephone => "Telephone"
+      :date_naissance => "2000-01-01"
     ))
   end
 
@@ -15,7 +14,6 @@ RSpec.describe "parents/show", type: :view do
     expect(rendered).to match(/Nom/)
     expect(rendered).to match(/2/)
     expect(rendered).to match(/2000-01-01/)
-    expect(rendered).to match(/Telephone/)
     
   end
 end

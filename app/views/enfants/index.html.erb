@@ -16,7 +16,7 @@
     <% @enfants.each do |enfant| %>
       <tr>
         <td><%= enfant.nom %></td>
-        <td><%= enfant.age %></td>
+        <td><%= enfant.date_naissance %></td>
         <td><%= enfant.residence %></td>
         <td><%= link_to 'Show', enfant %></td>
         <td><%= link_to 'Edit', edit_enfant_path(enfant) %></td>

@@ -1,1 +1,0 @@
-json.array! @demande_vs, partial: 'demande_vs/demande_v', as: :demande_v
