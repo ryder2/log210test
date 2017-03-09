@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
+  resources :demande_vs
+  resources :demande_egs
+  resources :motifs
   resources :parentinfos
   resources :notes
   resources :user_management
   resources :roles
+  
   
   #match '/familles/recherche', to: 'familles#rechercher', defaults: {format: 'json'}, via: [:post, :patchs]
   #get '/demandes/ouverture/:id', to: 'demandes#ouverture', defaults: { format: 'html' }

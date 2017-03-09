@@ -32,6 +32,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 gem 'devise'
+gem 'simplecov', :require => false, :group => :test
 gem 'enum_help'
 gem 'simple_form'
 

@@ -1,5 +1,6 @@
 <h1>Editing Note</h1>
 
 <%= render 'form' %>
-
-<%= link_to 'Back', famille_path(@note.famille_id) %>
+<% if !@note.famille_id.nil? %>
+	<%= link_to 'Back', famille_path(@note.famille_id) %>
+<% end %>

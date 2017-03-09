@@ -6,14 +6,12 @@ RSpec.describe "enfants/index", type: :view do
       Enfant.create!(
         :age => 2,
         :residence => "Residence",
-        :nom => "Nom",
-        :demande_id => 3
+        :nom => "Nom"
       ),
       Enfant.create!(
         :age => 2,
         :residence => "Residence",
-        :nom => "Nom",
-        :demande_id => 3
+        :nom => "Nom"
       )
     ])
   end
@@ -23,6 +21,5 @@ RSpec.describe "enfants/index", type: :view do
     assert_select "tr>td", :text => 2.to_s, :count => 2
     assert_select "tr>td", :text => "Residence".to_s, :count => 2
     assert_select "tr>td", :text => "Nom".to_s, :count => 2
-    assert_select "tr>td", :text => 3.to_s, :count => 2
   end
 end

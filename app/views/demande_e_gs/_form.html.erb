@@ -1,0 +1,37 @@
+<%= simple_form_for(@demande_eg) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+
+    <%= f.input :motif %>
+
+    <%= f.input :conditions %>
+
+    <%= f.input :date_separation %>
+
+    <%= f.input :echange_garde %>
+
+    <%= f.input :reactions_eg %>
+
+    <%= f.input :date_dernier_contact %>
+
+    <%= f.input :description_enfant %>
+
+    <%= f.input :contact_pg %>
+
+    <%= f.input :forme_contact_pg %>
+
+    <%= f.input :attitude_parent %>
+
+    <%= f.input :attitude_enfant %>
+
+    <%= f.input :a_suivre %>
+
+    <%= f.input :demande_id %>
+
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

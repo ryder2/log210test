@@ -8,7 +8,7 @@
 
     <div class="paddingTop">Team #7</div>
 	<% if user_signed_in? %>
-		<%= button_to "LogOut", destroy_user_session_path(), :method => :delete %>
+		<%= button_to "LogOut", demande_path(1), :method => :post %>
 	<% end %>
 </div>
 
@@ -18,5 +18,6 @@
     <div class="littleGreenLine"></div>
     <div class="paddingTop"><%= link_to "Gestion des comptes", "user_management/" %></div>
 	<div class="paddingTop"><%= link_to "Créer une demande de service", "demandes/" %></div>
+	<div class="paddingTop"><%= link_to "Gérer l'ouverture d'un dossier", demande_egs_path %></div>
     <div class="paddingTop"><%= link_to "Accéder au bottin famille", "familles/" %></div>
 </div>

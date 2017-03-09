@@ -3,4 +3,5 @@ class Demande < ActiveRecord::Base
 
     has_many :demande_enfants
     belongs_to :famille
+	belongs_to :motif 
 end

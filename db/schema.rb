@@ -11,10 +11,55 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170308205835) do
+ActiveRecord::Schema.define(version: 20170309045043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "demande_egs", force: :cascade do |t|
+    t.string   "motif"
+    t.string   "conditions"
+    t.date     "date_separation"
+    t.boolean  "echange_garde"
+    t.string   "reactions_eg"
+    t.date     "date_dernier_contact"
+    t.string   "description_enfant"
+    t.boolean  "contact_pg"
+    t.string   "forme_contact_pg"
+    t.string   "attitude_parent"
+    t.string   "attitude_enfant"
+    t.string   "a_suivre"
+    t.integer  "demande_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "demande_vs", force: :cascade do |t|
+    t.string   "motif_pv"
+    t.string   "motivations_pv"
+    t.boolean  "interdit_contact_pv"
+    t.date     "date_separation_pv"
+    t.boolean  "contact_enfant_pv"
+    t.boolean  "contact_telephone_enfant_pv"
+    t.string   "attitude_parent_pv"
+    t.integer  "demande_id"
+    t.string   "motif_pg"
+    t.date     "date_separation_pg"
+    t.date     "date_dernier_contact_pg"
+    t.string   "dernier_contact_deroulement_pg"
+    t.boolean  "contact_telephone_enfant_pg"
+    t.boolean  "autorisation_accompagnement_pg"
+    t.string   "personnes_autorisees_pg"
+    t.string   "attitude_parent_pg"
+    t.string   "jeux_favoris_pg"
+    t.string   "gout_alimentaire_pg"
+    t.boolean  "enfant_sais_visite_pg"
+    t.string   "reaction_visite_pg"
+    t.string   "attitude_enfant_pg"
+    t.string   "autres_pg"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
 
   create_table "demandes", force: :cascade do |t|
     t.string   "demande_id"
@@ -26,18 +71,34 @@ ActiveRecord::Schema.define(version: 20170308205835) do
     t.integer  "famille_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "motif_id"
+    t.string   "transport"
+    t.string   "refere_par"
+    t.integer  "user_id"
   end
 
   create_table "enfants", force: :cascade do |t|
-    t.integer  "age"
     t.string   "residence"
     t.string   "nom"
     t.integer  "demande_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.date     "date_naissance"
+    t.string   "no_RAMQ"
+    t.string   "allergies"
+    t.string   "personnes_auth"
+    t.string   "renseignements"
   end
 
   create_table "familles", force: :cascade do |t|
+    t.string   "nom"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "dossier_id"
+    t.string   "statut"
+  end
+
+  create_table "motifs", force: :cascade do |t|
     t.string   "nom"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -54,7 +115,7 @@ ActiveRecord::Schema.define(version: 20170308205835) do
 
   create_table "parentinfos", force: :cascade do |t|
     t.string   "courriel"
-    t.string   "numero_tel"
+    t.string   "telephone_res"
     t.string   "nocivique"
     t.string   "rue"
     t.string   "appartement"
@@ -65,18 +126,24 @@ ActiveRecord::Schema.define(version: 20170308205835) do
     t.string   "numero_urgence"
     t.string   "note"
     t.integer  "parent_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "telephone_travail"
+    t.string   "telephone_cell"
   end
 
   create_table "parents", force: :cascade do |t|
     t.integer  "statut"
     t.date     "date_naissance"
-    t.string   "telephone"
     t.string   "nom"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "demande_id"
+    t.string   "no_permis_conduire"
+    t.string   "no_RAMQ"
+    t.string   "avocat"
+    t.string   "avocatTelephone"
+    t.float    "tarification"
   end
 
   create_table "roles", force: :cascade do |t|
