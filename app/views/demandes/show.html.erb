@@ -40,21 +40,28 @@
 </p>
 
 <p>
-  <% @gardiens.each do |gardien| %>
-    <strong>gardien: </strong> <%= gardien.nom %> <br>
-  <% end %>
-</p>
-
-<p>
-  <% if !@visiteurs.empty? %>
-    <% @visiteurs.each do |visiteur| %>
-      <strong>visiteur: </strong> <%= visiteur.nom %> <br>
+  <% if !@gardiens.nil? %>
+    <% if !@gardiens.empty? %>
+      <% @gardiens.each do |gardien| %>
+        <strong>gardien: </strong> <%= gardien.nom %> <br>
+      <% end %>
     <% end %>
   <% end %>
 </p>
 
-<% if (@gardiens.size + @visiteurs.size) < 2 %>
-  <%= button_to "Ajouter un parent", {:controller => "demandes", :action => "addParent", :id => @demande.id}%>
+<p>
+  <% if !@visiteurs.nil? %>
+    <% if !@visiteurs.empty? %>
+      <% @visiteurs.each do |visiteur| %>
+        <strong>visiteur: </strong> <%= visiteur.nom %> <br>
+      <% end %>
+    <% end %>
+  <% end %>
+</p>
+<% if !@visiteurs.nil? %>
+  <% if (@gardiens.size + @visiteurs.size) < 2 %>
+    <%= button_to "Ajouter un parent", {:controller => "demandes", :action => "addParent", :id => @demande.id}%>
+  <% end %>
 <% end %>
 
 <p>

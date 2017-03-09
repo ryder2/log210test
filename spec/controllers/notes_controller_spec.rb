@@ -54,7 +54,7 @@ RSpec.describe NotesController, type: :controller do
 
   describe "GET #new" do
     it "assigns a new note as @note" do
-      get :new, params: {}, session: valid_session
+      get :new, params: {note: valid_attributes}, session: valid_session
       expect(assigns(:note)).to be_a_new(Note)
     end
   end

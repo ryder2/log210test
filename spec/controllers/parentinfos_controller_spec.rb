@@ -54,7 +54,7 @@ RSpec.describe ParentinfosController, type: :controller do
 
   describe "GET #new" do
     it "assigns a new parentinfo as @parentinfo" do
-      get :new, params: {}, session: valid_session
+      get :new, params: {parentinfo: valid_attributes}, session: valid_session
       expect(assigns(:parentinfo)).to be_a_new(Parentinfo)
     end
   end

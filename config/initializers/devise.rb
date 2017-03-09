@@ -1,6 +1,7 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
+  config.secret_key = '4564d50cc8eed615a365f9db5befce7d3bc20ad2a836bc65d6949c5e5bf189d57ab0b61b9b717a1e9fa7027abb92a4320890b4b7420e62cd9b5fd640f9ecdf6f'
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.

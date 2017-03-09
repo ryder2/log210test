@@ -4,8 +4,8 @@ RSpec.describe "demandes/index", type: :view do
   before(:each) do
     assign(:demandes, [
       Demande.create!(
-        :demande_id => "Demande",
-        :service => "Service",
+        :demande_id => 1,
+        :service => "VS",
         :frequence => "Frequence",
         :statut => 2,
         :demandeur => "Demandeur",
@@ -13,8 +13,8 @@ RSpec.describe "demandes/index", type: :view do
         :famille_id => 3
       ),
       Demande.create!(
-        :demande_id => "Demande",
-        :service => "Service",
+        :demande_id => 1,
+        :service => "VS",
         :frequence => "Frequence",
         :statut => 2,
         :demandeur => "Demandeur",
@@ -26,8 +26,8 @@ RSpec.describe "demandes/index", type: :view do
 
   it "renders a list of demandes" do
     render
-    assert_select "tr>td", :text => "Demande".to_s, :count => 2
-    assert_select "tr>td", :text => "Service".to_s, :count => 2
+    assert_select "tr>td", :text => 1.to_s, :count => 2
+    assert_select "tr>td", :text => "VS".to_s, :count => 2
     assert_select "tr>td", :text => "Frequence".to_s, :count => 2
     assert_select "tr>td", :text => 2.to_s, :count => 2
     assert_select "tr>td", :text => "Demandeur".to_s, :count => 2

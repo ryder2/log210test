@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe "demandes/new", type: :view do
   before(:each) do
     assign(:demande, Demande.new(
-      :demande_id => "MyString",
-      :service => "MyString",
+      :demande_id => 1,
+      :service => "VS",
       :frequence => "MyString",
       :statut => 1,
       :demandeur => "MyString",

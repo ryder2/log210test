@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe "demandes/show", type: :view do
   before(:each) do
     @demande = assign(:demande, Demande.create!(
-      :demande_id => "Demande",
-      :service => "Service",
+      :demande_id => 1,
+      :service => "VS",
       :frequence => "Frequence",
       :statut => 2,
       :demandeur => "Demandeur",
@@ -15,8 +15,8 @@ RSpec.describe "demandes/show", type: :view do
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to match(/Demande/)
-    expect(rendered).to match(/Service/)
+    expect(rendered).to match(/1/)
+    expect(rendered).to match(/VS/)
     expect(rendered).to match(/Frequence/)
     expect(rendered).to match(/2/)
     expect(rendered).to match(/Demandeur/)

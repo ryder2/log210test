@@ -54,7 +54,7 @@ RSpec.describe DemandesController, type: :controller do
 
   describe "GET #new" do
     it "assigns a new demande as @demande" do
-      get :new, params: {}, session: valid_session
+      get :new, params: {demande: valid_attributes}, session: valid_session
       expect(assigns(:demande)).to be_a_new(Demande)
     end
   end
