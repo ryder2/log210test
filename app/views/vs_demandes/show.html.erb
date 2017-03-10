@@ -111,5 +111,7 @@
   <%= @vs_demande.autre_pg %>
 </p>
 
-<%= link_to 'Modifier', edit_vs_demande_path(@vs_demande) %> |
+<% if current_user.role_id == 0 || current_user.role_id == 1 %>
+	<%= link_to 'Modifier', edit_vs_demande_path(@vs_demande) %>
+<% end %>
 <%= link_to 'Retour à la demande', demande_path(@vs_demande.demande_id) %>

@@ -69,5 +69,7 @@
   <%= @demande_eg.a_suivre %>
 </p>
 
-<%= link_to 'Modifier', edit_demande_eg_path(@demande_eg) %> |
+<% if current_user.role_id == 0 || current_user.role_id == 1 %>
+	<%= link_to 'Modifier', edit_demande_eg_path(@demande_eg) %>
+<% end %>
 <%= link_to 'Retour à la demande', demande_path(@demande_eg.demande_id) %>

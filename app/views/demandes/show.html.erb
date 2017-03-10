@@ -106,7 +106,9 @@
 	<p>
 	  <strong>Demandes EG:</strong>
 	  <br>
-	  <%= button_to 'Ajouter un formulaire', new_demande_eg_path, {class: '', method: :get, params: {demande_id: @demande.id} } %>
+	  <% if current_user.role_id == 0 || current_user.role_id == 1 %>
+		<%= button_to 'Ajouter un formulaire', new_demande_eg_path, {class: '', method: :get, params: {demande_id: @demande.id} } %>
+	  <% end %>
 	  <% @demande.demande_egs.each do |eg| %>
 		<%= eg.id %>
 		<%= link_to 'Détails', eg %>
@@ -117,7 +119,9 @@
 	<p>
 	  <strong>Demandes VS:</strong>
 	  <br>
-	  <%= button_to 'Ajouter un formulaire', new_vs_demande_path, {class: '', method: :get, params: {demande_id: @demande.id} } %>
+	  <% if current_user.role_id == 0 || current_user.role_id == 1 %>
+		<%= button_to 'Ajouter un formulaire', new_vs_demande_path, {class: '', method: :get, params: {demande_id: @demande.id} } %>
+	  <% end %>
 	  <% @demande.vs_demandes.each do |vs| %>
 		<%= vs.id %>
 		<%= link_to 'Détails', vs %>
