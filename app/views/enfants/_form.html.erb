@@ -14,7 +14,7 @@
   </div>
   <div class="field">
     <%= f.label :date_naissance %>
-    <%= f.text_field :date_naissance %>
+    <%= f.date_field :date_naissance %>
   </div>
 
   <div class="field">
@@ -25,6 +25,26 @@
   <div class="field">
     <%= f.label :nom %>
     <%= f.text_field :nom %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :allergies %>
+    <%= f.text_field :allergies %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :personnes_auth %>
+    <%= f.text_field :personnes_auth %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :renseignements %>
+    <%= f.text_field :renseignements %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :no_RAMQ %>
+    <%= f.text_field :no_RAMQ %>
   </div>
   
   <%= f.hidden_field :demande_id, :value => params[:demande_id] %>  

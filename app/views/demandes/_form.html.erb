@@ -16,11 +16,19 @@
 		  </ul>
 		</div>
 	  <% end %>
+	  
+	  <%= f.hidden_field :user_id, :value => !current_user.nil?? current_user.id : -1 %>
+	  <%= f.hidden_field :statut, :value => "Non complété" %>
 
 	  <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
 	  <div class="field">
 		<%= f.label :demande_id %>
 		<%= f.text_field :demande_id %>
+	  </div>
+	  
+	  <div class="field">
+		<%= f.label :famille_id %>
+		<%= f.text_field :famille_id %>
 	  </div>
 
 	  <div class="field">
@@ -45,6 +53,26 @@
 	  <div class="field">
 		<%= f.label :payee_par %>
 		<%= f.text_field :payee_par %>
+	  </div>
+	  
+	  <div class="field">
+		<%= f.label :transport %>
+		<%= f.text_field :transport %>
+	  </div>
+	  
+	  <div class="field">
+		<%= f.label :refere_par %>
+		<%= f.text_field :refere_par %>
+	  </div>
+	  
+	  <div class="field">
+		<%= f.label :motif_id %>
+		<select id="demande[motif_id]" name="demande[motif_id]">
+			<option value=""></option>
+			<% Motif.find_each do |m| %>
+				<option value="<%= m.id %>" <%= m.id == @demande.motif_id ? "selected" : "" %>><%= m.nom %></option> <!-- Fuck Rails. -->
+			<% end %>
+		</select>
 	  </div>
 
 	  <div class="actions">
@@ -76,6 +104,32 @@
 			<%= g.label :date_naissance %>
 			<%= g.date_select :date_naissance %>
 		  </div>
+		  
+		    <div class="field">
+			<%= g.label :tarification %>
+			<%= g.number_field :tarification, step: :any %>
+		  </div>
+		  
+		  <div class="field">
+			<%= g.label :no_permis_conduire %>
+			<%= g.text_field :no_permis_conduire %>
+		  </div>
+		  
+		  <div class="field">
+			<%= g.label :no_RAMQ %>
+			<%= g.text_field :no_RAMQ %>
+		  </div>
+		  
+		  <div class="field">
+			<%= g.label :avocat %>
+			<%= g.text_field :avocat %>
+		  </div>
+		  
+		  <div class="field">
+			<%= g.label :avocatTelephone %>
+			<%= g.text_field :avocatTelephone %>
+		  </div>
+		  
     				<%= g.simple_fields_for :parentinfos, Parentinfo.new do |f| %>
 					  <div class="field">
 						<%= f.label :courriel %>
@@ -85,6 +139,16 @@
 					  <div class="field">
 						<%= f.label :telephone_res %>
 						<%= f.text_field :telephone_res %>
+					  </div>
+					  
+					  <div class="field">
+						<%= f.label :telephone_travail %>
+						<%= f.text_field :telephone_travail %>
+					  </div>
+					  
+					  <div class="field">
+						<%= f.label :telephone_cell %>
+						<%= f.text_field :telephone_cell %>
 					  </div>
 
 					  <div class="field">
@@ -161,6 +225,31 @@
 				<%= g.label :date_naissance %>
 				<%= g.date_select :date_naissance %>
 			  </div>
+			  
+			  		    <div class="field">
+			<%= g.label :tarification %>
+			<%= g.number_field :tarification, step: :any %>
+		  </div>
+		  
+		  <div class="field">
+			<%= g.label :no_permis_conduire %>
+			<%= g.text_field :no_permis_conduire %>
+		  </div>
+		  
+		  <div class="field">
+			<%= g.label :no_RAMQ %>
+			<%= g.text_field :no_RAMQ %>
+		  </div>
+		  
+		  <div class="field">
+			<%= g.label :avocat %>
+			<%= g.text_field :avocat %>
+		  </div>
+		  
+		  <div class="field">
+			<%= g.label :avocatTelephone %>
+			<%= g.text_field :avocatTelephone %>
+		  </div>
 
 			     <%= g.simple_fields_for :parentinfos, parent.parentinfos.where("created_at = (SELECT MAX(created_at) FROM parentinfos WHERE parent_id = ?)", parent.id) do |f| %>
 					  <div class="field">
@@ -171,6 +260,16 @@
 					  <div class="field">
 						<%= f.label :telephone_res %>
 						<%= f.text_field :telephone_res %>
+					  </div>
+					  
+					  <div class="field">
+						<%= f.label :telephone_travail %>
+						<%= f.text_field :telephone_travail %>
+					  </div>
+					  
+					  <div class="field">
+						<%= f.label :telephone_cell %>
+						<%= f.text_field :telephone_cell %>
 					  </div>
 
 					  <div class="field">

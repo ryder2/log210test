@@ -6,12 +6,17 @@
 	  <thead>
 		<tr>
 		  <th>Demande id</th>
+		  <th>Nom de l'utilisateur</th>
+		  <th>Famille id</th>
 		  <th>Service</th>
 		  <th>Date demande</th>
 		  <th>Frequence</th>
 		  <th>Statut</th>
 		  <th>Demandeur</th>
 		  <th>Payee par</th>
+		  <th>Transport</th>
+		  <th>Référé par</th>
+		  <th>Motif</th>
 		  <th colspan="3"></th>
 		</tr>
 	  </thead>
@@ -20,16 +25,17 @@
 		<% @demandes.each do |demande| %>
 		  <tr>
 			<td><%= demande.demande_id %></td>
+			<td><%= !demande.user.nil?? demande.user.name : "" %></td>
+			<td><%= demande.famille_id %></td>
 			<td><%= demande.service %></td>
 			<td><%= demande.created_at %></td>
 			<td><%= demande.frequence %></td>
-			<% if demande.statut.nil? %>
-				<td>Non complété</td>
-			<% else %>
-				<td>Complété</td>
-  			<% end %>
+			<td><%= demande.statut %></td>
 			<td><%= demande.demandeur %></td>
 			<td><%= demande.payee_par %></td>
+			<td><%= demande.transport %></td>
+			<td><%= demande.refere_par %></td>
+			<td><%= !demande.motif.nil?? demande.motif.nom : "" %></td>
 			<td><%= link_to 'Show', demande %></td>
 			<td><%= link_to 'Edit', edit_demande_path(demande) %></td>
 			<td><%= button_to 'Destroy', demande, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -42,4 +48,5 @@
 
 <br>
 
-<%= link_to 'New Demande', new_demande_path %>
+<%= link_to 'New Demande', new_demande_path %> |
+<%= link_to 'Gestion des motifs', motifs_path %>

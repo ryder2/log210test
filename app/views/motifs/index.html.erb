@@ -14,9 +14,7 @@
     <% @motifs.each do |motif| %>
       <tr>
         <td><%= motif.nom %></td>
-        <td><%= link_to 'Show', motif %></td>
-        <td><%= link_to 'Edit', edit_motif_path(motif) %></td>
-        <td><%= link_to 'Destroy', motif, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= button_to 'Destroy', motif, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +22,5 @@
 
 <br>
 
-<%= link_to 'New Motif', new_motif_path %>
+<%= link_to 'New Motif', new_motif_path %> |
+<%= link_to 'Retour au menu des demandes', demandes_path %>

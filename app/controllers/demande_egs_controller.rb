@@ -15,6 +15,9 @@ class DemandeEgsController < ApplicationController
   # GET /demande_egs/new
   def new
     @demande_eg = DemandeEg.new
+	if params.has_key?(:demande_id)
+		@demande_eg.demande_id = params[:demande_id]
+	end
   end
 
   # GET /demande_egs/1/edit

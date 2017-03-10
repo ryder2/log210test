@@ -15,6 +15,9 @@ class VsDemandesController < ApplicationController
   # GET /vs_demandes/new
   def new
     @vs_demande = VsDemande.new
+	if params.has_key?(:demande_id)
+		@vs_demande.demande_id = params[:demande_id]
+	end
   end
 
   # GET /vs_demandes/1/edit

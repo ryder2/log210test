@@ -6,6 +6,16 @@ class DemandesController < ApplicationController
   # GET /demandes.json
   def index
     @demandes = Demande.all
+	
+	@demandes.each do |d|
+		if d.statut == "Non complété" # I'm lovin' it.
+			@gardiens = Parent.where(["demande_id = ? AND (statut = ? OR statut = ? OR statut = ?)", d.id, 0, 1, 3])
+			@visiteurs = Parent.where(["demande_id = ? AND statut = ?", d.id, 2])
+			if (@gardiens + @visiteurs).size >= 2
+				d.update_attributes(:statut => "Complété")
+			end
+		end
+	end
   end
 
   # GET /demandes/1
@@ -27,6 +37,7 @@ class DemandesController < ApplicationController
       format.json { render json: @demande, status: :ok }
     end
   end
+  
 #  def ouverture
 #    if Demande.exists?(params[:id])
 #      @demande = Demande.find(params[:id])
@@ -107,6 +118,6 @@ def ouverture
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def demande_params
-      params.require(:demande).permit(:demande_id, :service, :created_at, :frequence, :statut, :demandeur, :payee_par, :visiteur_id, :gardien_id)
+      params.require(:demande).permit(:demande_id, :service, :famille_id, :created_at, :frequence, :statut, :demandeur, :payee_par, :refere_par, :transport, :motif_id, :user_id)
     end
 end

@@ -15,6 +15,99 @@
   <%= @parent.date_naissance %>
 </p>
 
+<p>
+  <strong>tarification:</strong>
+  <%= @parent.tarification %>
+</p>
 
-<%= link_to 'Edit', edit_parent_path(@parent) %> |
-<%= link_to 'Back', parents_path %>
+<p>
+  <strong>no_permis_conduire:</strong>
+  <%= @parent.no_permis_conduire %>
+</p>
+
+<p>
+  <strong>no_RAMQ:</strong>
+  <%= @parent.no_RAMQ %>
+</p>
+
+<p>
+  <strong>avocat:</strong>
+  <%= @parent.avocat %>
+</p>
+
+<p>
+  <strong>avocatTelephone:</strong>
+  <%= @parent.avocatTelephone %>
+</p>
+
+<!-- Why not? -->
+<% @last_parentinfos = @parent.parentinfos.where("created_at = (SELECT MAX(created_at) FROM parentinfos WHERE parent_id = ?)", @parent.id)[0] %>
+
+<% if !@last_parentinfos.nil? %>
+	<p>
+	  <strong>courriel:</strong>
+	  <%= @last_parentinfos.courriel %>
+	</p>
+
+	<p>
+	  <strong>telephone_res:</strong>
+	  <%= @last_parentinfos.telephone_res %>
+	</p>
+
+	<p>
+	  <strong>telephone_travail:</strong>
+	  <%= @last_parentinfos.telephone_travail %>
+	</p>
+
+	<p>
+	  <strong>telephone_cell:</strong>
+	  <%= @last_parentinfos.telephone_cell %>
+	</p>
+
+	<p>
+	  <strong>nocivique:</strong>
+	  <%= @last_parentinfos.nocivique %>
+	</p>
+
+	<p>
+	  <strong>rue:</strong>
+	  <%= @last_parentinfos.rue %>
+	</p>
+
+	<p>
+	  <strong>appartement:</strong>
+	  <%= @last_parentinfos.appartement %>
+	</p>
+
+	<p>
+	  <strong>ville:</strong>
+	  <%= @last_parentinfos.ville %>
+	</p>
+
+	<p>
+	  <strong>code_postal:</strong>
+	  <%= @last_parentinfos.code_postal %>
+	</p>
+
+	<p>
+	  <strong>province:</strong>
+	  <%= @last_parentinfos.province %>
+	</p>
+
+	<p>
+	  <strong>nom_urgence:</strong>
+	  <%= @last_parentinfos.nom_urgence %>
+	</p>
+
+	<p>
+	  <strong>numero_urgence:</strong>
+	  <%= @last_parentinfos.numero_urgence %>
+	</p>
+
+	<p>
+	  <strong>note:</strong>
+	  <%= @last_parentinfos.note %>
+	</p>
+<% end %>
+
+<%= link_to 'Retour à la demande', @parent.demande_id?? demande_path(@parent.demande_id) : demandes_path %>

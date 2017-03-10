@@ -9,7 +9,11 @@
     <%= f.input :contact_enfant_pv %>
     <%= f.input :contact_telephone_enfant_pv %>
     <%= f.input :attitude_parent_pv %>
-    <%= f.input :demande_id %>
+	<% if !@vs_demande.demande_id.nil? %>
+	  <%= f.hidden_field :demande_id %>
+	<% else %>
+	  <%= f.input :demande_id %>
+	<% end %>
     <%= f.input :motif_pg %>
     <%= f.input :date_separation_pg %>
     <%= f.input :date_dernier_contact_pg %>

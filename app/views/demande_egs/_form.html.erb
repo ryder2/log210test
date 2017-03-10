@@ -27,7 +27,11 @@
 
     <%= f.input :a_suivre %>
 
-    <%= f.input :demande_id %>
+	<% if !@demande_eg.demande_id.nil? %>
+	  <%= f.hidden_field :demande_id %>
+	<% else %>
+	  <%= f.input :demande_id %>
+	<% end %>
 
   </div>
 

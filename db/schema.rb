@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170309214456) do
+ActiveRecord::Schema.define(version: 20170310040416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,41 +34,14 @@ ActiveRecord::Schema.define(version: 20170309214456) do
     t.datetime "updated_at",           null: false
   end
 
-  create_table "demande_vs", force: :cascade do |t|
-    t.string   "motif_pv"
-    t.string   "motivations_pv"
-    t.boolean  "interdit_contact_pv"
-    t.date     "date_separation_pv"
-    t.boolean  "contact_enfant_pv"
-    t.boolean  "contact_telephone_enfant_pv"
-    t.string   "attitude_parent_pv"
-    t.integer  "demande_id"
-    t.string   "motif_pg"
-    t.date     "date_separation_pg"
-    t.date     "date_dernier_contact_pg"
-    t.string   "dernier_contact_deroulement_pg"
-    t.boolean  "contact_telephone_enfant_pg"
-    t.boolean  "autorisation_accompagnement_pg"
-    t.string   "personnes_autorisees_pg"
-    t.string   "attitude_parent_pg"
-    t.string   "jeux_favoris_pg"
-    t.string   "gout_alimentaire_pg"
-    t.boolean  "enfant_sais_visite_pg"
-    t.string   "reaction_visite_pg"
-    t.string   "attitude_enfant_pg"
-    t.string   "autres_pg"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-  end
-
   create_table "demandes", force: :cascade do |t|
     t.string   "demande_id"
     t.string   "service"
     t.string   "frequence"
-    t.integer  "statut"
+    t.string   "statut"
     t.string   "demandeur"
     t.string   "payee_par"
-    t.integer  "famille_id"
+    t.string   "famille_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "motif_id"

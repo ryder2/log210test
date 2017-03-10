@@ -86,8 +86,11 @@ class ParentsController < ApplicationController
       end
 
       if @lastParentInfos.nil? ||
+		# Good luck.
         @lastParentInfos[0].courriel != params[:parent][:parentinfos_attributes]["0"][:courriel] ||
         @lastParentInfos[0].telephone_res != params[:parent][:parentinfos_attributes]["0"][:telephone_res] ||
+		@lastParentInfos[0].telephone_travail != params[:parent][:parentinfos_attributes]["0"][:telephone_travail] ||
+		@lastParentInfos[0].telephone_cell != params[:parent][:parentinfos_attributes]["0"][:telephone_cell] ||
         @lastParentInfos[0].nocivique != params[:parent][:parentinfos_attributes]["0"][:nocivique] ||
         @lastParentInfos[0].rue != params[:parent][:parentinfos_attributes]["0"][:rue] ||
         @lastParentInfos[0].appartement != params[:parent][:parentinfos_attributes]["0"][:appartement] ||
@@ -96,10 +99,11 @@ class ParentsController < ApplicationController
         @lastParentInfos[0].province != params[:parent][:parentinfos_attributes]["0"][:province] ||
         @lastParentInfos[0].nom_urgence != params[:parent][:parentinfos_attributes]["0"][:nom_urgence] ||
         @lastParentInfos[0].numero_urgence != params[:parent][:parentinfos_attributes]["0"][:numero_urgence] ||
-        @lastParentInfos[0].note != params[:parent][:parentinfos_attributes]["0"][:note]
+		@lastParentInfos[0].note != params[:parent][:parentinfos_attributes]["0"][:note]
 
-        params.require(:parent).permit(:statut, :date_naissance, :nom, :demande_id, :parentinfos_attributes => 
-                                      [:courriel, :telephone_res, :nocivique, :rue, :appartement, 
+        params.require(:parent).permit(:statut, :date_naissance, :nom, :demande_id, :tarification, :no_permis_conduire,
+									   :no_RAMQ, :avocat, :avocatTelephone, :parentinfos_attributes => 
+                                       [:courriel, :telephone_res, :telephone_travail, :telephone_cell, :nocivique, :rue, :appartement, 
                                         :ville, :code_postal, :province, :nom_urgence, 
                                         :numero_urgence, :note, :parent_id])
       else

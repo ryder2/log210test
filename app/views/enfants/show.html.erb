@@ -16,7 +16,26 @@
   <%= @enfant.residence %>
 </p>
 
+<p>
+  <strong>allergies:</strong>
+  <%= @enfant.allergies %>
+</p>
+
+<p>
+  <strong>personnes_auth:</strong>
+  <%= @enfant.personnes_auth %>
+</p>
+
+<p>
+  <strong>renseignements:</strong>
+  <%= @enfant.renseignements %>
+</p>
+
+<p>
+  <strong>no_RAMQ:</strong>
+  <%= @enfant.no_RAMQ %>
+</p>
+
 <%= link_to 'Edit', edit_enfant_path(@enfant) %> |
-<%= link_to "Ajouter un enfant", {:controller => "enfants", :action => "new", :demande_id => @enfant.demande_id}%>|
 <%= link_to 'Retour à la demande', demande_path(@enfant.demande_id) %>
 <!--<%= link_to 'Back', enfants_path %>-->

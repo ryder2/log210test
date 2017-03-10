@@ -7,6 +7,16 @@
 </p>
 
 <p>
+  <strong>Nom de l'utilisateur:</strong>
+  <%= !@demande.user.nil?? @demande.user.name : "" %>
+</p>
+
+<p>
+  <strong>Familleid:</strong>
+  <%= @demande.famille_id %>
+</p>
+
+<p>
   <strong>Service:</strong>
   <%= @demande.service %>
 </p>
@@ -22,11 +32,8 @@
 </p>
 
 <p>
-  <% if @demande.statut.nil? %>
-   <strong>Statut:</strong> Non complété
-  <% else %>
-    <strong>Statut:</strong> Complété
-  <% end %>
+  <strong>Statut:</strong>
+  <%= @demande.statut %>
 </p>
 
 <p>
@@ -40,10 +47,26 @@
 </p>
 
 <p>
+  <strong>Référé par:</strong>
+  <%= @demande.refere_par %>
+</p>
+
+<p>
+  <strong>Transport:</strong>
+  <%= @demande.transport %>
+</p>
+
+<p>
+  <strong>Motif:</strong>
+  <%= !@demande.motif.nil?? @demande.motif.nom : "" %>
+</p>
+
+<p>
   <% if !@gardiens.nil? %>
     <% if !@gardiens.empty? %>
       <% @gardiens.each do |gardien| %>
-        <strong>gardien: </strong> <%= gardien.nom %> <br>
+        <strong>gardien: </strong> <%= gardien.nom %>
+		<%= link_to 'Show', gardien %><br>
       <% end %>
     <% end %>
   <% end %>
@@ -53,29 +76,54 @@
   <% if !@visiteurs.nil? %>
     <% if !@visiteurs.empty? %>
       <% @visiteurs.each do |visiteur| %>
-        <strong>visiteur: </strong> <%= visiteur.nom %> <br>
+        <strong>visiteur: </strong> <%= visiteur.nom %>
+		<%= link_to 'Show', visiteur %><br>
       <% end %>
     <% end %>
   <% end %>
 </p>
 <% if !@visiteurs.nil? %>
   <% if (@gardiens.size + @visiteurs.size) < 2 %>
-    <%= button_to "Ajouter un parent", {:controller => "demandes", :action => "addParent", :id => @demande.id}%>
+    <%= button_to "Ajouter un parent", {:controller => "demandes", :action => "addParent", :id => @demande.id} %>
   <% end %>
 <% end %>
 
 <p>
   <strong>Enfants:</strong>
   <br>
-<% Enfant.find_each do |e| %>
-  <% if e.demande_id == @demande.id %>
-	<%= e.nom %>
-	<br>
+  <% Enfant.find_each do |e| %>
+    <% if e.demande_id == @demande.id %>
+	  <%= e.nom %>
+	  <%= link_to 'Show', e %>
+	  <br>
+    <% end %>
   <% end %>
-<% end %>
+  <%= button_to "Ajouter un enfant", new_enfant_path, {class: '', method: :get, params: {demande_id: @demande.id} } %> <!-- Yep. -->
 </p>
 
-
+<% if @demande.service == "EG" %>
+	<p>
+	  <strong>Demandes EG:</strong>
+	  <br>
+	  <%= button_to 'Ajouter formulaire', new_demande_eg_path, {class: '', method: :get, params: {demande_id: @demande.id} } %>
+	  <% @demande.demande_egs.each do |eg| %>
+		<%= eg.id %>
+		<%= link_to 'Show', eg %>
+		<br>
+	  <% end %>
+	</p>
+<% elsif @demande.service == "VS" %>
+	<p>
+	  <strong>Demandes VS:</strong>
+	  <br>
+	  <%= button_to 'Ajouter formulaire', new_vs_demande_path, {class: '', method: :get, params: {demande_id: @demande.id} } %>
+	  <% @demande.vs_demandes.each do |vs| %>
+		<%= vs.id %>
+		<%= link_to 'Show', vs %>
+		<br>
+	  <% end %>
+	</p>
+<% end %>
 
 <%= link_to 'Edit', edit_demande_path(@demande) %> |
 <%= link_to 'Back', demandes_path %>

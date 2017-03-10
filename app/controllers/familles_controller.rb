@@ -111,6 +111,6 @@ class FamillesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def famille_params
-      params.require(:famille).permit(:nom, :id)
+      params.require(:famille).permit(:nom, :id, :dossier_id)
     end
 end
