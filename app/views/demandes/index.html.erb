@@ -5,15 +5,15 @@
 	<table>
 	  <thead>
 		<tr>
-		  <th>Demande id</th>
-		  <th>Nom de l'utilisateur</th>
-		  <th>Famille id</th>
+		  <th>Identifiant</th>
+		  <th>Nom de l'intervenant</th>
+		  <th>Identifiant de la famille</th>
 		  <th>Service</th>
-		  <th>Date demande</th>
-		  <th>Frequence</th>
+		  <th>Date de création</th>
+		  <th>Fréquence</th>
 		  <th>Statut</th>
 		  <th>Demandeur</th>
-		  <th>Payee par</th>
+		  <th>Payée par</th>
 		  <th>Transport</th>
 		  <th>Référé par</th>
 		  <th>Motif</th>
@@ -36,9 +36,9 @@
 			<td><%= demande.transport %></td>
 			<td><%= demande.refere_par %></td>
 			<td><%= !demande.motif.nil?? demande.motif.nom : "" %></td>
-			<td><%= link_to 'Show', demande %></td>
-			<td><%= link_to 'Edit', edit_demande_path(demande) %></td>
-			<td><%= button_to 'Destroy', demande, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			<td><%= link_to 'Détails', demande %></td>
+			<td><%= link_to 'Modifier', edit_demande_path(demande) %></td>
+			<td><%= button_to 'Supprimer', demande, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 		  </tr>
 		<% end %>
 	  </tbody>
@@ -48,5 +48,5 @@
 
 <br>
 
-<%= link_to 'New Demande', new_demande_path %> |
+<%= link_to 'Créer', new_demande_path %> |
 <%= link_to 'Gestion des motifs', motifs_path %>

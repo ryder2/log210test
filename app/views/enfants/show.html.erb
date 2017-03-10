@@ -1,5 +1,6 @@
-<p id="notice"><%= notice %></p>
+<h1>Détails d'enfant</h1>
 
+<p id="notice"><%= notice %></p>
 
 <p>
   <strong>Nom:</strong>
@@ -7,35 +8,34 @@
 </p>
 
 <p>
-  <strong>Age:</strong>
+  <strong>Date de naissance:</strong>
   <%= @enfant.date_naissance %>
 </p>
 
 <p>
-  <strong>Residence:</strong>
+  <strong>Résidence:</strong>
   <%= @enfant.residence %>
 </p>
 
 <p>
-  <strong>allergies:</strong>
+  <strong>Allergies:</strong>
   <%= @enfant.allergies %>
 </p>
 
 <p>
-  <strong>personnes_auth:</strong>
+  <strong>Personnes autorisées à reconduire l'enfant:</strong>
   <%= @enfant.personnes_auth %>
 </p>
 
 <p>
-  <strong>renseignements:</strong>
+  <strong>Renseignements:</strong>
   <%= @enfant.renseignements %>
 </p>
 
 <p>
-  <strong>no_RAMQ:</strong>
+  <strong>No RAMQ:</strong>
   <%= @enfant.no_RAMQ %>
 </p>
 
-<%= link_to 'Edit', edit_enfant_path(@enfant) %> |
+<%= link_to 'Modifier', edit_enfant_path(@enfant) %> |
 <%= link_to 'Retour à la demande', demande_path(@enfant.demande_id) %>
-<!--<%= link_to 'Back', enfants_path %>-->

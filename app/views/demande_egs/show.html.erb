@@ -1,3 +1,5 @@
+<h1>Détails de dossier : échange de garde</h1>
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -6,64 +8,66 @@
 </p>
 
 <p>
-  <strong>Conditions:</strong>
+  <strong>Conditions particulières:</strong>
   <%= @demande_eg.conditions %>
 </p>
 
+<p><strong>Historique familial</strong></p>
+
 <p>
-  <strong>Date separation:</strong>
+  <strong>Date de separation:</strong>
   <%= @demande_eg.date_separation %>
 </p>
 
 <p>
-  <strong>Echange garde:</strong>
+  <strong>Échange de garde:</strong>
   <%= @demande_eg.echange_garde %>
 </p>
 
 <p>
-  <strong>Reactions eg:</strong>
+  <strong>Réactions de l'enfant à l'échange de garde:</strong>
   <%= @demande_eg.reactions_eg %>
 </p>
 
 <p>
-  <strong>Date dernier contact:</strong>
+  <strong>Date du dernier contact:</strong>
   <%= @demande_eg.date_dernier_contact %>
 </p>
 
 <p>
-  <strong>Description enfant:</strong>
+  <strong>Déroulement du dernier contact:</strong>
+  <%= @demande_eg.deroulement_dernier_contact %>
+</p>
+
+<p>
+  <strong>Description de l'enfant:</strong>
   <%= @demande_eg.description_enfant %>
 </p>
 
 <p>
-  <strong>Contact pg:</strong>
+  <strong>Contact avec parent de l'enfant:</strong>
   <%= @demande_eg.contact_pg %>
 </p>
 
 <p>
-  <strong>Forme contact pg:</strong>
+  <strong>Forme du contact:</strong>
   <%= @demande_eg.forme_contact_pg %>
 </p>
 
 <p>
-  <strong>Attitude parent:</strong>
+  <strong>Attitude du parent:</strong>
   <%= @demande_eg.attitude_parent %>
 </p>
 
 <p>
-  <strong>Attitude enfant:</strong>
+  <strong>Attitude de l'enfant:</strong>
   <%= @demande_eg.attitude_enfant %>
 </p>
 
 <p>
-  <strong>A suivre:</strong>
+  <strong>À suivre (jugement, horaire, etc.):</strong>
   <%= @demande_eg.a_suivre %>
 </p>
 
-<p>
-  <strong>Demande:</strong>
-  <%= @demande_eg.demande_id %>
-</p>
-
-<%= link_to 'Edit', edit_demande_eg_path(@demande_eg) %> |
+<%= link_to 'Modifier', edit_demande_eg_path(@demande_eg) %> |
 <%= link_to 'Retour à la demande', demande_path(@demande_eg.demande_id) %>

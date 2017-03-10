@@ -1,5 +1,5 @@
-<h1>New Enfant</h1>
+<h1>Création d'enfant</h1>
 
 <%= render 'form', enfant: @enfant %>
 
-<%= link_to 'Back', enfants_path %>
+<%= link_to 'Retour à la demande', demande_path(@enfant.demande_id) %>

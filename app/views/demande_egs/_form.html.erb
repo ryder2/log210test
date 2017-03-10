@@ -3,29 +3,36 @@
 
   <div class="form-inputs">
 
-    <%= f.input :motif %>
+    <%= f.input :motif, :label => "Motif" %>
 
-    <%= f.input :conditions %>
+    <%= f.input :conditions, :label => "Conditions particulières" %>
+	
+	<p>Historique familial</p>
+	
+    <%= f.input :date_separation, :label => "Date de séparation" %>
 
-    <%= f.input :date_separation %>
+    <%= f.input :echange_garde, :label => "Échange de garde" %>
 
-    <%= f.input :echange_garde %>
+    <%= f.input :reactions_eg, :label => "Réactions de l'enfant à l'échange de garde" %>
 
-    <%= f.input :reactions_eg %>
+    <%= f.input :date_dernier_contact, :label => "Date du dernier contact" %>
+	
+	<%= f.input :deroulement_dernier_contact, :label => "Déroulement du dernier contact" %>
 
-    <%= f.input :date_dernier_contact %>
+    <%= f.input :description_enfant, :label => "Description de l'enfant" %>
 
-    <%= f.input :description_enfant %>
+    <%= f.input :contact_pg, :label => "Contact avec parent de l'enfant" %>
 
-    <%= f.input :contact_pg %>
+    <%= f.input :forme_contact_pg, :label => "Forme du contact" %>
+	
+	<p>Explication du service, règlements, signature de contrat, coordonnées, etc.</p>
+	<p>Planification de l'échange : carte ass. maladie, etc.</p>
 
-    <%= f.input :forme_contact_pg %>
+    <%= f.input :attitude_parent, :label => "Attitude du parent" %>
 
-    <%= f.input :attitude_parent %>
+    <%= f.input :attitude_enfant, :label => "Attitude de l'enfant" %>
 
-    <%= f.input :attitude_enfant %>
-
-    <%= f.input :a_suivre %>
+    <%= f.input :a_suivre, :label => "À suivre (jugement, horaire, etc.)" %>
 
 	<% if !@demande_eg.demande_id.nil? %>
 	  <%= f.hidden_field :demande_id %>
@@ -36,6 +43,6 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.submit "Sauvegarder" %>
   </div>
 <% end %>

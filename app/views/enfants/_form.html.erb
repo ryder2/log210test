@@ -13,12 +13,12 @@
   <div class="field">
   </div>
   <div class="field">
-    <%= f.label :date_naissance %>
+    <%= f.label :date_naissance, "Date de naissance" %>
     <%= f.date_field :date_naissance %>
   </div>
 
   <div class="field">
-    <%= f.label :residence %>
+    <%= f.label :residence, "Résidence" %>
     <%= f.text_field :residence %>
   </div>
 
@@ -33,7 +33,7 @@
   </div>
   
   <div class="field">
-    <%= f.label :personnes_auth %>
+    <%= f.label :personnes_auth, "Personnes autorisées à reconduire l'enfant" %>
     <%= f.text_field :personnes_auth %>
   </div>
   
@@ -43,13 +43,13 @@
   </div>
   
   <div class="field">
-    <%= f.label :no_RAMQ %>
+    <%= f.label :no_RAMQ, "No RAMQ" %>
     <%= f.text_field :no_RAMQ %>
   </div>
   
   <%= f.hidden_field :demande_id, :value => params[:demande_id] %>  
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Sauvegarder" %>
   </div>
 <% end %>

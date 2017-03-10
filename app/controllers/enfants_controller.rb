@@ -16,6 +16,9 @@ class EnfantsController < ApplicationController
   # GET /enfants/new
   def new
     @enfant = Enfant.new
+	if params.has_key?(:demande_id)
+		@enfant.demande_id = params[:demande_id]
+	end
   end
 
   # GET /enfants/1/edit

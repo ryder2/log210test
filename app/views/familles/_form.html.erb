@@ -6,10 +6,14 @@
   </div>
   
   <div class="form-inputs">
-    <%= f.input :dossier_id %>
+    <%= f.input :dossier_id, :label => "Numéro de dossier" %>
+  </div>
+  
+  <div class="form-inputs">
+    <%= f.input :statut %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.submit "Sauvegarder" %>
   </div>
 <% end %>

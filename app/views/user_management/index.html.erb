@@ -1,10 +1,10 @@
-<h1 class="titleRQRSDA">Gestion des comptes</h1>
+<h1 class="titleRQRSDA">Comptes</h1>
 <div class="descriptionRQRSDA">
     <table>
       <thead>
         <tr>
           <th>Nom</th>
-          <th>Addresse Courriel</th>
+          <th>Courriel</th>
 		  <th>Rôle</th>
         </tr>
       </thead>
@@ -25,7 +25,7 @@
 				<% end %>
 				<% if ((current_user.role_id <= user.role_id) && (user != current_user)) %>
 					<td><%= button_to 'Modifier', edit_user_management_path(user), method: :edit %></td>
-					<td><%= button_to 'Effacer', user_management_url(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+					<td><%= button_to 'Supprimer', user_management_url(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
 				<% end %>
 			</tr>
         <% end %>

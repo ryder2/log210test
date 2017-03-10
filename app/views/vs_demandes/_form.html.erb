@@ -2,35 +2,37 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :motif_pv %>
-    <%= f.input :motivations_pv %>
-    <%= f.input :interdit_contact_pv %>
-    <%= f.input :date_separation_pv %>
-    <%= f.input :contact_enfant_pv %>
-    <%= f.input :contact_telephone_enfant_pv %>
-    <%= f.input :attitude_parent_pv %>
+	<%= f.input :date_dernier_contact_pg, :label => "Date du dernier contact avec l'enfant" %>
+    <%= f.input :dernier_contact_deroulement_pg, :label => "Déroulement du dernier contact" %>
+	<p><strong>Parent visiteur</strong></p>
+    <%= f.input :motif_pv, :label => "Motif de la supervision" %>
+    <%= f.input :motivations_pv, :label => "Motivation de la visite" %>
+    <%= f.input :interdit_contact_pv, :label => "Interdit de contact" %>
+    <%= f.input :date_separation_pv, :label => "Date de séparation" %>
+    <%= f.input :contact_enfant_pv, :label => "Contact avec l'enfant" %>
+    <%= f.input :contact_telephone_enfant_pv, :label => "Contact téléphonique autorisé" %>
+    <%= f.input :attitude_parent_pv, :label => "Attitude du parent" %>
 	<% if !@vs_demande.demande_id.nil? %>
 	  <%= f.hidden_field :demande_id %>
 	<% else %>
 	  <%= f.input :demande_id %>
 	<% end %>
-    <%= f.input :motif_pg %>
-    <%= f.input :date_separation_pg %>
-    <%= f.input :date_dernier_contact_pg %>
-    <%= f.input :dernier_contact_deroulement_pg %>
-    <%= f.input :contact_telephone_enfant_pg %>
-    <%= f.input :autorisation_accompagnement_pg %>
-    <%= f.input :personnes_autorisees_pg %>
-    <%= f.input :attitude_parent_pg %>
-    <%= f.input :jeux_favoris_pg %>
-    <%= f.input :gout_alimentaire_pg %>
-    <%= f.input :enfant_sait_visite_pg %>
-    <%= f.input :reaction_visite_pg %>
-    <%= f.input :attitude_enfant_pg %>
-    <%= f.input :autre_pg %>
+	<p><strong>Parent gardien</strong></p>
+    <%= f.input :motif_pg, :label => "Motif de demande de service" %>
+    <%= f.input :date_separation_pg, :label => "Date de séparation" %>
+    <%= f.input :contact_telephone_enfant_pg, :label => "Autorisation du contact téléphonique" %>
+    <%= f.input :autorisation_accompagnement_pg, :label => "Autorisation d'un accompagnement" %>
+    <%= f.input :personnes_autorisees_pg, :label => "Personnes autorisées" %>
+    <%= f.input :attitude_parent_pg, :label => "Attitude du parent" %>
+    <%= f.input :jeux_favoris_pg, :label => "Jeux favoris de l'enfant" %>
+    <%= f.input :gout_alimentaire_pg, :label => "Goûts alimentaires de l'enfant" %>
+    <%= f.input :enfant_sait_visite_pg, :label => "L'enfait sait-il que le parent va venir en visite?" %>
+    <%= f.input :reaction_visite_pg, :label => "Réaction de l'enfant à la visite" %>
+    <%= f.input :attitude_enfant_pg, :label => "Attitude de l'enfant" %>
+    <%= f.input :autre_pg, :label => "Autre information" %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.submit "Sauvegarder" %>
   </div>
 <% end %>

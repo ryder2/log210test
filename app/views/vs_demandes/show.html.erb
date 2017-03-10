@@ -1,114 +1,115 @@
-<p id="notice"><%= notice %></p>
+<h1>Détails de dossier : visite supervisée</h1>
 
 <p>
-  <strong>Motif pv:</strong>
-  <%= @vs_demande.motif_pv %>
-</p>
-
-<p>
-  <strong>Motivations pv:</strong>
-  <%= @vs_demande.motivations_pv %>
-</p>
-
-<p>
-  <strong>Interdit contact pv:</strong>
-  <%= @vs_demande.interdit_contact_pv %>
-</p>
-
-<p>
-  <strong>Date separation pv:</strong>
-  <%= @vs_demande.date_separation_pv %>
-</p>
-
-<p>
-  <strong>Contact enfant pv:</strong>
-  <%= @vs_demande.contact_enfant_pv %>
-</p>
-
-<p>
-  <strong>Contact telephone enfant pv:</strong>
-  <%= @vs_demande.contact_telephone_enfant_pv %>
-</p>
-
-<p>
-  <strong>Attitude parent pv:</strong>
-  <%= @vs_demande.attitude_parent_pv %>
-</p>
-
-<p>
-  <strong>Demande:</strong>
-  <%= @vs_demande.demande_id %>
-</p>
-
-<p>
-  <strong>Motif pg:</strong>
-  <%= @vs_demande.motif_pg %>
-</p>
-
-<p>
-  <strong>Date separation pg:</strong>
-  <%= @vs_demande.date_separation_pg %>
-</p>
-
-<p>
-  <strong>Date dernier contact pg:</strong>
+  <strong>Date du dernier contact avec l'enfant:</strong>
   <%= @vs_demande.date_dernier_contact_pg %>
 </p>
 
 <p>
-  <strong>Dernier contact deroulement pg:</strong>
+  <strong>Déroulement du dernier contact:</strong>
   <%= @vs_demande.dernier_contact_deroulement_pg %>
 </p>
 
+<p id="notice"><%= notice %></p>
+
+<p><strong>Parent visiteur</strong></p>
+
 <p>
-  <strong>Contact telephone enfant pg:</strong>
+  <strong>Motif de la supervision:</strong>
+  <%= @vs_demande.motif_pv %>
+</p>
+
+<p>
+  <strong>Motivation de la visite:</strong>
+  <%= @vs_demande.motivations_pv %>
+</p>
+
+<p>
+  <strong>Interdit de contact:</strong>
+  <%= @vs_demande.interdit_contact_pv %>
+</p>
+
+<p>
+  <strong>Date de séparation:</strong>
+  <%= @vs_demande.date_separation_pv %>
+</p>
+
+<p>
+  <strong>Contact avec l'enfant:</strong>
+  <%= @vs_demande.contact_enfant_pv %>
+</p>
+
+<p>
+  <strong>Contact téléphonique autorisé:</strong>
+  <%= @vs_demande.contact_telephone_enfant_pv %>
+</p>
+
+<p>
+  <strong>Attitude du parent:</strong>
+  <%= @vs_demande.attitude_parent_pv %>
+</p>
+
+<p><strong>Parent gardien</strong></p>
+
+<p>
+  <strong>Motif de demande de service:</strong>
+  <%= @vs_demande.motif_pg %>
+</p>
+
+<p>
+  <strong>Date de séparation:</strong>
+  <%= @vs_demande.date_separation_pg %>
+</p>
+
+<p>
+  <strong>Autorisation du contact téléphonique:</strong>
   <%= @vs_demande.contact_telephone_enfant_pg %>
 </p>
 
 <p>
-  <strong>Autorisation accompagnement pg:</strong>
+  <strong>Autorisation d'un accompagnement:</strong>
   <%= @vs_demande.autorisation_accompagnement_pg %>
 </p>
 
 <p>
-  <strong>Personnes autorisees pg:</strong>
+  <strong>Personnes autorisées:</strong>
   <%= @vs_demande.personnes_autorisees_pg %>
 </p>
 
 <p>
-  <strong>Attitude parent pg:</strong>
+  <strong>Attitude du parent:</strong>
   <%= @vs_demande.attitude_parent_pg %>
 </p>
 
 <p>
-  <strong>Jeux favoris pg:</strong>
+  <strong>Jeux favoris de l'enfant:</strong>
   <%= @vs_demande.jeux_favoris_pg %>
 </p>
 
 <p>
-  <strong>Gout alimentaire pg:</strong>
+  <strong>Goûts alimentaires de l'enfant:</strong>
   <%= @vs_demande.gout_alimentaire_pg %>
 </p>
 
 <p>
-  <strong>Enfant sait visite pg:</strong>
+  <strong>L'enfait sait-il que le parent va venir en visite?:</strong>
   <%= @vs_demande.enfant_sait_visite_pg %>
 </p>
 
 <p>
-  <strong>Reaction visite pg:</strong>
+  <strong>Réaction de l'enfant à la visite:</strong>
   <%= @vs_demande.reaction_visite_pg %>
 </p>
 
 <p>
-  <strong>Attitude enfant pg:</strong>
+  <strong>Attitude de l'enfant:</strong>
   <%= @vs_demande.attitude_enfant_pg %>
 </p>
 
 <p>
-  <strong>Autre pg:</strong>
+  <strong>Autre information:</strong>
   <%= @vs_demande.autre_pg %>
 </p>
 
-<%= link_to 'Edit', edit_vs_demande_path(@vs_demande) %> |
+<%= link_to 'Modifier', edit_vs_demande_path(@vs_demande) %> |
 <%= link_to 'Retour à la demande', demande_path(@vs_demande.demande_id) %>

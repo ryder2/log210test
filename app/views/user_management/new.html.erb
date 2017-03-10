@@ -1,4 +1,4 @@
-<h1 class="titleRQRSDA">Enregistrer un nouvel utilisateur</h1>
+<h1 class="titleRQRSDA">Création de compte</h1>
 
 <div class="descriptionRQRSDA">
 	<% if !@user.nil? %>
@@ -15,26 +15,28 @@
         <%= f.text_field :name, autofocus: true %>
       </div>
       <div class="field">
-        <%= f.label :'Role' %><br />
+        <%= f.label :'Rôle' %><br />
 		<%= f.select :role_id, options_from_collection_for_select(@roles, "id", "name") %>
       </div>
       <div class="field">
-        <%= f.label :'Addresse courriel' %><br />
+        <%= f.label :'Courriel' %><br />
         <%= f.email_field :email %>
       </div>
 
       <div class="field">
-        <%= f.label :'Mot De Passe' %><br />
+        <%= f.label :'Mot de passe' %><br />
         <%= f.password_field :password, autocomplete: "off" %>
       </div>
 
       <div class="field">
-        <%= f.label :'Confirmation Mot De Passe' %><br />
+        <%= f.label :'Confirmation du mot de passe' %><br />
         <%= f.password_field :password_confirmation, autocomplete: "off" %>
       </div>
 
       <div class="actions">
-        <%= f.submit "Enregistrer" %>
+        <%= f.submit "Sauvegarder" %>
       </div>
     <% end %>
+	<%= link_to 'Retour à la liste des comptes', user_management_index_path %>
 </div>
+

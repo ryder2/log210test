@@ -22,22 +22,22 @@
 
 	  <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
 	  <div class="field">
-		<%= f.label :demande_id %>
+		<%= f.label :demande_id, "Identifiant" %>
 		<%= f.text_field :demande_id %>
 	  </div>
 	  
 	  <div class="field">
-		<%= f.label :famille_id %>
+		<%= f.label :famille_id, "Identifiant de la famille" %>
 		<%= f.text_field :famille_id %>
 	  </div>
 
 	  <div class="field">
-		<%= f.label :created_at %>
+		<%= f.label :created_at, "Date de création" %>
 		<%= f.date_select :created_at %>
 	  </div>
 
 	  <div class="field">
-		<%= f.label :frequence %>
+		<%= f.label :frequence, "Fréquence" %>
 		<%= f.text_field :frequence %>
 	  </div>
 
@@ -51,7 +51,7 @@
 	  </div>
 
 	  <div class="field">
-		<%= f.label :payee_par %>
+		<%= f.label :payee_par, "Payée par" %>
 		<%= f.text_field :payee_par %>
 	  </div>
 	  
@@ -61,7 +61,7 @@
 	  </div>
 	  
 	  <div class="field">
-		<%= f.label :refere_par %>
+		<%= f.label :refere_par, "Référé par" %>
 		<%= f.text_field :refere_par %>
 	  </div>
 	  
@@ -76,7 +76,7 @@
 	  </div>
 
 	  <div class="actions">
-		<%= f.submit %>
+		<%= f.submit "Sauvegarder" %>
 	  </div>
 	<% end %>
 
@@ -101,7 +101,7 @@
 		  <%= g.input :statut %>
 
 		  <div class="field">
-			<%= g.label :date_naissance %>
+			<%= g.label :date_naissance, "Date de naissance" %>
 			<%= g.date_select :date_naissance %>
 		  </div>
 		  
@@ -111,12 +111,12 @@
 		  </div>
 		  
 		  <div class="field">
-			<%= g.label :no_permis_conduire %>
+			<%= g.label :no_permis_conduire, "No permis de conduire" %>
 			<%= g.text_field :no_permis_conduire %>
 		  </div>
 		  
 		  <div class="field">
-			<%= g.label :no_RAMQ %>
+			<%= g.label :no_RAMQ, "No RAMQ" %>
 			<%= g.text_field :no_RAMQ %>
 		  </div>
 		  
@@ -126,7 +126,7 @@
 		  </div>
 		  
 		  <div class="field">
-			<%= g.label :avocatTelephone %>
+			<%= g.label :avocatTelephone, "No téléphone de l'avocat" %>
 			<%= g.text_field :avocatTelephone %>
 		  </div>
 		  
@@ -137,22 +137,22 @@
 					  </div>
 
 					  <div class="field">
-						<%= f.label :telephone_res %>
+						<%= f.label :telephone_res, "No téléphone résidentiel" %>
 						<%= f.text_field :telephone_res %>
 					  </div>
 					  
 					  <div class="field">
-						<%= f.label :telephone_travail %>
+						<%= f.label :telephone_travail, "No téléphone travail" %>
 						<%= f.text_field :telephone_travail %>
 					  </div>
 					  
 					  <div class="field">
-						<%= f.label :telephone_cell %>
+						<%= f.label :telephone_cell, "No téléphone cellulaire" %>
 						<%= f.text_field :telephone_cell %>
 					  </div>
 
 					  <div class="field">
-						<%= f.label :nocivique %>
+						<%= f.label :nocivique, "No civique" %>
 						<%= f.text_field :nocivique %>
 					  </div>
 
@@ -172,12 +172,12 @@
 					  </div>
 
 					  <div class="field">
-						<%= f.label :code_postal %>
+						<%= f.label :code_postal, "Code postal" %>
 						<%= f.text_field :code_postal %>
 					  </div>
 
 					  <div class="field">
-					  	<input type="button" name="show" value="Recherche Addresse" id=<%= @compteur %> />
+					  	<input type="button" name="show" value="Rechercher l'adresse" id=<%= @compteur %> />
 					  </div>
 
 					  <div class="field">
@@ -186,12 +186,12 @@
 					  </div>
 
 					  <div class="field">
-						<%= f.label :nom_urgence %>
+						<%= f.label :nom_urgence, "Nom de la personne en cas d'urgence" %>
 						<%= f.text_field :nom_urgence %>
 					  </div>
 
 					  <div class="field">
-						<%= f.label :numero_urgence %>
+						<%= f.label :numero_urgence, "No téléphone de la personne en cas d'urgence" %>
 						<%= f.text_field :numero_urgence %>
 					  </div>
 
@@ -202,7 +202,7 @@
 		  			<% end %>
 
 		  <div class="actions">
-			<%= g.submit %>
+			<%= g.submit "Créer" %>
 		  </div>
 		<% end %>
 	<% end %>
@@ -222,7 +222,7 @@
 			  <%= g.input :statut %>
 
 			  <div class="field">
-				<%= g.label :date_naissance %>
+				<%= g.label :date_naissance, "Date de naissance" %>
 				<%= g.date_select :date_naissance %>
 			  </div>
 			  
@@ -232,12 +232,12 @@
 		  </div>
 		  
 		  <div class="field">
-			<%= g.label :no_permis_conduire %>
+			<%= g.label :no_permis_conduire, "No permis de conduire" %>
 			<%= g.text_field :no_permis_conduire %>
 		  </div>
 		  
 		  <div class="field">
-			<%= g.label :no_RAMQ %>
+			<%= g.label :no_RAMQ, "No RAMQ" %>
 			<%= g.text_field :no_RAMQ %>
 		  </div>
 		  
@@ -247,7 +247,7 @@
 		  </div>
 		  
 		  <div class="field">
-			<%= g.label :avocatTelephone %>
+			<%= g.label :avocatTelephone, "No téléphone de l'avocat" %>
 			<%= g.text_field :avocatTelephone %>
 		  </div>
 
@@ -258,22 +258,22 @@
 					  </div>
 
 					  <div class="field">
-						<%= f.label :telephone_res %>
+						<%= f.label :telephone_res, "No téléphone résidentiel" %>
 						<%= f.text_field :telephone_res %>
 					  </div>
 					  
 					  <div class="field">
-						<%= f.label :telephone_travail %>
+						<%= f.label :telephone_travail, "No téléphone travail" %>
 						<%= f.text_field :telephone_travail %>
 					  </div>
 					  
 					  <div class="field">
-						<%= f.label :telephone_cell %>
+						<%= f.label :telephone_cell, "No téléphone cellulaire" %>
 						<%= f.text_field :telephone_cell %>
 					  </div>
 
 					  <div class="field">
-						<%= f.label :nocivique %>
+						<%= f.label :nocivique, "No civique" %>
 						<%= f.text_field :nocivique %>
 					  </div>
 
@@ -293,12 +293,12 @@
 					  </div>
  
 					  <div class="field">
-						<%= f.label :code_postal %>
+						<%= f.label :code_postal, "Code postal" %>
 						<%= f.text_field :code_postal %>
 					  </div>
 
 					   <div class="field">
-					  	<input type="button" name="show" value="Recherche Addresse" id=<%= @compteur %>  />
+					  	<input type="button" name="show" value="Rechercher l'adresse" id=<%= @compteur %>  />
 					  </div>
 
 					  <div class="field">
@@ -307,12 +307,12 @@
 					  </div>
 
 					  <div class="field">
-						<%= f.label :nom_urgence %>
+						<%= f.label :nom_urgence, "Nom de la personne en cas d'urgence" %>
 						<%= f.text_field :nom_urgence %>
 					  </div>
 
 					  <div class="field">
-						<%= f.label :numero_urgence %>
+						<%= f.label :numero_urgence, "No téléphone de la personne en cas d'urgence" %>
 						<%= f.text_field :numero_urgence %>
 					  </div>
 
@@ -324,7 +324,7 @@
 
 
 			  <div class="actions">
-				<%= g.submit %>
+				<%= g.submit "Créer" %>
 			  </div>
 			<% end %>
 		<% end %>

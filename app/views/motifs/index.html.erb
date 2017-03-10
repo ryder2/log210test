@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Motifs</h1>
+<h1>Motifs</h1>
 
 <table>
   <thead>
@@ -14,7 +14,7 @@
     <% @motifs.each do |motif| %>
       <tr>
         <td><%= motif.nom %></td>
-        <td><%= button_to 'Destroy', motif, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= button_to 'Supprimer', motif, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,5 +22,5 @@
 
 <br>
 
-<%= link_to 'New Motif', new_motif_path %> |
+<%= link_to 'Créer', new_motif_path %> |
 <%= link_to 'Retour au menu des demandes', demandes_path %>

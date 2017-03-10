@@ -1,7 +1,19 @@
+<h1>Détails de famille</h1>
+
 <p id="notice"><%= notice %></p>
 <p>
   <strong>Nom:</strong>
   <%= @famille.nom %>
+</p>
+
+<p>
+  <strong>Numéro de dossier:</strong>
+  <%= @famille.dossier_id %>
+</p>
+
+<p>
+  <strong>Statut:</strong>
+  <%= @famille.statut %>
 </p>
 
 <table>
@@ -14,6 +26,7 @@
   </thead>
 
   <tbody>
+	<h3>Liste de notes</h3>
     <% @famille.notes.each do |note| %>
       <tr>
         <td><%= note.texte %></td>
@@ -23,8 +36,8 @@
           <td></td>
         <% end %>
         <td><%= note.dateCreation %></td>
-        <td><%= link_to 'Edit', edit_note_path(note) %></td>
-        <td><%= button_to 'Destroy', note, method: :delete %></td>
+        <td><%= link_to 'Modifier', edit_note_path(note) %></td>
+        <td><%= button_to 'Supprimer', note, method: :delete %></td>
       </tr>
     <% end %>
   </tbody>
@@ -38,13 +51,13 @@
     <% if !@user.nil? %>
       <%= f.hidden_field :users_id, :value => @user.id %>
     <% end %>
-    <%= f.input :texte %>
+    <%= f.input :texte, :label => "Note" %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.submit "Ajouter une note" %>
   </div>
 <% end %>
 
-<%= link_to 'Edit', edit_famille_path(@famille) %> |
-<%= link_to 'Back', familles_path %>
+<%= link_to 'Modifier', edit_famille_path(@famille) %> |
+<%= link_to 'Retour à la liste des familles', familles_path %>

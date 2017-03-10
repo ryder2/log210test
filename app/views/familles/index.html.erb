@@ -30,9 +30,9 @@
         <td><%= famille.nom %></td>
 		<td><%= famille.dossier_id %></td>
 		<td><%= famille.statut %></td>
-        <td><%= link_to 'Show', famille %></td>
-        <td><%= link_to 'Edit', edit_famille_path(famille) %></td>
-        <td><%= button_to 'Destroy', famille, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Détails', famille %></td>
+        <td><%= link_to 'Modifier', edit_famille_path(famille) %></td>
+        <td><%= button_to 'Supprimer', famille, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -40,7 +40,7 @@
 
 <br>
 
-<%= link_to 'New Famille', new_famille_path %>
+<%= link_to 'Créer', new_famille_path %>
 <script type="text/javascript">
   function ajaxRecherche() {
       $("#familleBody tr").remove();
