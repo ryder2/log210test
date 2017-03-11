@@ -24,7 +24,8 @@ RSpec.describe MotifsController, type: :controller do
   # Motif. As you add validations to Motif, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+	{nom: "MyString"}
+    #skip("Add a hash of attributes valid for your model")
   }
 
   let(:invalid_attributes) {
@@ -44,11 +45,11 @@ RSpec.describe MotifsController, type: :controller do
     end
   end
 
-  describe "GET #show" do
-    it "assigns the requested motif as @motif" do
-      motif = Motif.create! valid_attributes
-      get :show, params: {id: motif.to_param}, session: valid_session
-      expect(assigns(:motif)).to eq(motif)
+  describe "GET 'show'" do
+    it "should be successful" do
+	  motif = Motif.create! valid_attributes
+      get 'show', :id => motif.id
+      response.should be_success
     end
   end
 
@@ -62,40 +63,29 @@ RSpec.describe MotifsController, type: :controller do
   describe "GET #edit" do
     it "assigns the requested motif as @motif" do
       motif = Motif.create! valid_attributes
-      get :edit, params: {id: motif.to_param}, session: valid_session
+      get 'edit', :id => motif.id
       expect(assigns(:motif)).to eq(motif)
     end
   end
 
   describe "POST #create" do
+  
     context "with valid params" do
       it "creates a new Motif" do
         expect {
-          post :create, params: {motif: valid_attributes}, session: valid_session
+          post 'create', :motif => valid_attributes
         }.to change(Motif, :count).by(1)
       end
 
       it "assigns a newly created motif as @motif" do
-        post :create, params: {motif: valid_attributes}, session: valid_session
+        post 'create', :motif => valid_attributes
         expect(assigns(:motif)).to be_a(Motif)
         expect(assigns(:motif)).to be_persisted
       end
 
       it "redirects to the created motif" do
-        post :create, params: {motif: valid_attributes}, session: valid_session
+        post 'create', :motif => valid_attributes
         expect(response).to redirect_to(Motif.last)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns a newly created but unsaved motif as @motif" do
-        post :create, params: {motif: invalid_attributes}, session: valid_session
-        expect(assigns(:motif)).to be_a_new(Motif)
-      end
-
-      it "re-renders the 'new' template" do
-        post :create, params: {motif: invalid_attributes}, session: valid_session
-        expect(response).to render_template("new")
       end
     end
   end
@@ -103,40 +93,26 @@ RSpec.describe MotifsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {nom: "MyString2"}
       }
 
       it "updates the requested motif" do
         motif = Motif.create! valid_attributes
-        put :update, params: {id: motif.to_param, motif: new_attributes}, session: valid_session
+        put 'update', {:id => motif.id, :motif => new_attributes}
         motif.reload
-        skip("Add assertions for updated state")
+        expect(motif.nom).not_to eq("MyString")
       end
 
       it "assigns the requested motif as @motif" do
         motif = Motif.create! valid_attributes
-        put :update, params: {id: motif.to_param, motif: valid_attributes}, session: valid_session
+        put 'update', {:id => motif.id, :motif => valid_attributes}
         expect(assigns(:motif)).to eq(motif)
       end
 
       it "redirects to the motif" do
         motif = Motif.create! valid_attributes
-        put :update, params: {id: motif.to_param, motif: valid_attributes}, session: valid_session
+        put 'update', {:id => motif.id, :motif => valid_attributes}
         expect(response).to redirect_to(motif)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns the motif as @motif" do
-        motif = Motif.create! valid_attributes
-        put :update, params: {id: motif.to_param, motif: invalid_attributes}, session: valid_session
-        expect(assigns(:motif)).to eq(motif)
-      end
-
-      it "re-renders the 'edit' template" do
-        motif = Motif.create! valid_attributes
-        put :update, params: {id: motif.to_param, motif: invalid_attributes}, session: valid_session
-        expect(response).to render_template("edit")
       end
     end
   end
@@ -145,13 +121,13 @@ RSpec.describe MotifsController, type: :controller do
     it "destroys the requested motif" do
       motif = Motif.create! valid_attributes
       expect {
-        delete :destroy, params: {id: motif.to_param}, session: valid_session
+        delete 'destroy', :id => motif.id
       }.to change(Motif, :count).by(-1)
     end
 
     it "redirects to the motifs list" do
       motif = Motif.create! valid_attributes
-      delete :destroy, params: {id: motif.to_param}, session: valid_session
+      delete 'destroy', :id => motif.id
       expect(response).to redirect_to(motifs_url)
     end
   end

@@ -23,8 +23,16 @@ RSpec.describe NotesController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Note. As you add validations to Note, be sure to
   # adjust the attributes here as well.
+  
+  famille = Famille.create(:nom => 'Pol')
+  user = User.create(:id => 99, :email => '1@1.com', :encrypted_password => '11', :reset_password_token => "",
+    :reset_password_sent_at => "2011-01-01 23:58:11", :remember_created_at => "2011-01-01 23:58:11",
+    :sign_in_count => 1, :current_sign_in_at => "2011-01-01 23:58:11", :last_sign_in_at => "2011-01-01 23:58:11",
+    :current_sign_in_ip => nil, :last_sign_in_ip => nil, :created_at => "2011-01-01 23:58:11", :updated_at => "2011-01-01 23:58:11", 
+    :failed_attempts => 1, :unlock_token => "", :locked_at => "2011-01-01 23:58:11", :role_id => 1, :name => "GUERT")
+  
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {texte: "texte", dateCreation: "2011-01-01", famille_id: famille.id, users_id: user.id}
   }
 
   let(:invalid_attributes) {
@@ -38,17 +46,19 @@ RSpec.describe NotesController, type: :controller do
 
   describe "GET #index" do
     it "assigns all notes as @notes" do
+	  
       note = Note.create! valid_attributes
+	  
       get :index, params: {}, session: valid_session
       expect(assigns(:notes)).to eq([note])
     end
   end
 
-  describe "GET #show" do
-    it "assigns the requested note as @note" do
-      note = Note.create! valid_attributes
-      get :show, params: {id: note.to_param}, session: valid_session
-      expect(assigns(:note)).to eq(note)
+  describe "GET 'show'" do
+    it "should be successful" do
+	  note = Note.create! valid_attributes
+      get 'show', :id => note.id
+      response.should be_success
     end
   end
 
@@ -62,7 +72,7 @@ RSpec.describe NotesController, type: :controller do
   describe "GET #edit" do
     it "assigns the requested note as @note" do
       note = Note.create! valid_attributes
-      get :edit, params: {id: note.to_param}, session: valid_session
+      get 'edit', :id => note.id
       expect(assigns(:note)).to eq(note)
     end
   end
@@ -71,18 +81,18 @@ RSpec.describe NotesController, type: :controller do
     context "with valid params" do
       it "creates a new Note" do
         expect {
-          post :create, params: {note: valid_attributes}, session: valid_session
+          post 'create', :note => valid_attributes
         }.to change(Note, :count).by(1)
       end
 
       it "assigns a newly created note as @note" do
-        post :create, params: {note: valid_attributes}, session: valid_session
+        post 'create', :note => valid_attributes
         expect(assigns(:note)).to be_a(Note)
         expect(assigns(:note)).to be_persisted
       end
 
       it "redirects to the created note" do
-        post :create, params: {note: valid_attributes}, session: valid_session
+        post 'create', :note => valid_attributes
         expect(response).to redirect_to(Note.last)
       end
     end

@@ -30,9 +30,6 @@ class MotifsController < ApplicationController
       if @motif.save
         format.html { redirect_to @motif, notice: 'Motif was successfully created.' }
         format.json { render :show, status: :created, location: @motif }
-      else
-        format.html { render :new }
-        format.json { render json: @motif.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -44,9 +41,6 @@ class MotifsController < ApplicationController
       if @motif.update(motif_params)
         format.html { redirect_to @motif, notice: 'Motif was successfully updated.' }
         format.json { render :show, status: :ok, location: @motif }
-      else
-        format.html { render :edit }
-        format.json { render json: @motif.errors, status: :unprocessable_entity }
       end
     end
   end
