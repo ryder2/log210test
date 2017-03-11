@@ -23,12 +23,10 @@ RSpec.describe EnfantsController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Enfant. As you add validations to Enfant, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  before { controller.stub(:authenticate_user!).and_return true }
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+  let(:valid_attributes) {
+    {nom: "nom"}
   }
 
   # This should return the minimal set of values that should be in the session
@@ -47,14 +45,14 @@ RSpec.describe EnfantsController, type: :controller do
   describe "GET #show" do
     it "assigns the requested enfant as @enfant" do
       enfant = Enfant.create! valid_attributes
-      get :show, params: {id: enfant.to_param}, session: valid_session
+      get :show, {id: enfant.to_param}, session: valid_session
       expect(assigns(:enfant)).to eq(enfant)
     end
   end
 
   describe "GET #new" do
     it "assigns a new enfant as @enfant" do
-      get :new, params: {enfant: valid_attributes}, session: valid_session
+      get :new, {enfant: valid_attributes}, session: valid_session
       expect(assigns(:enfant)).to be_a_new(Enfant)
     end
   end
@@ -62,7 +60,7 @@ RSpec.describe EnfantsController, type: :controller do
   describe "GET #edit" do
     it "assigns the requested enfant as @enfant" do
       enfant = Enfant.create! valid_attributes
-      get :edit, params: {id: enfant.to_param}, session: valid_session
+      get :edit, {id: enfant.to_param}, session: valid_session
       expect(assigns(:enfant)).to eq(enfant)
     end
   end
@@ -71,31 +69,19 @@ RSpec.describe EnfantsController, type: :controller do
     context "with valid params" do
       it "creates a new Enfant" do
         expect {
-          post :create, params: {enfant: valid_attributes}, session: valid_session
+          post :create, {enfant: valid_attributes}, session: valid_session
         }.to change(Enfant, :count).by(1)
       end
 
       it "assigns a newly created enfant as @enfant" do
-        post :create, params: {enfant: valid_attributes}, session: valid_session
+        post :create, {enfant: valid_attributes}, session: valid_session
         expect(assigns(:enfant)).to be_a(Enfant)
         expect(assigns(:enfant)).to be_persisted
       end
 
       it "redirects to the created enfant" do
-        post :create, params: {enfant: valid_attributes}, session: valid_session
+        post :create, {enfant: valid_attributes}, session: valid_session
         expect(response).to redirect_to(Enfant.last)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns a newly created but unsaved enfant as @enfant" do
-        post :create, params: {enfant: invalid_attributes}, session: valid_session
-        expect(assigns(:enfant)).to be_a_new(Enfant)
-      end
-
-      it "re-renders the 'new' template" do
-        post :create, params: {enfant: invalid_attributes}, session: valid_session
-        expect(response).to render_template("new")
       end
     end
   end
@@ -103,40 +89,26 @@ RSpec.describe EnfantsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {nom: "nom2"}
       }
 
       it "updates the requested enfant" do
         enfant = Enfant.create! valid_attributes
-        put :update, params: {id: enfant.to_param, enfant: new_attributes}, session: valid_session
+        put :update, {id: enfant.to_param, enfant: new_attributes}, session: valid_session
         enfant.reload
-        skip("Add assertions for updated state")
+        expect(enfant.nom).to eq("nom2")
       end
 
       it "assigns the requested enfant as @enfant" do
         enfant = Enfant.create! valid_attributes
-        put :update, params: {id: enfant.to_param, enfant: valid_attributes}, session: valid_session
+        put :update, {id: enfant.to_param, enfant: valid_attributes}, session: valid_session
         expect(assigns(:enfant)).to eq(enfant)
       end
 
       it "redirects to the enfant" do
         enfant = Enfant.create! valid_attributes
-        put :update, params: {id: enfant.to_param, enfant: valid_attributes}, session: valid_session
+        put :update, {id: enfant.to_param, enfant: valid_attributes}, session: valid_session
         expect(response).to redirect_to(enfant)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns the enfant as @enfant" do
-        enfant = Enfant.create! valid_attributes
-        put :update, params: {id: enfant.to_param, enfant: invalid_attributes}, session: valid_session
-        expect(assigns(:enfant)).to eq(enfant)
-      end
-
-      it "re-renders the 'edit' template" do
-        enfant = Enfant.create! valid_attributes
-        put :update, params: {id: enfant.to_param, enfant: invalid_attributes}, session: valid_session
-        expect(response).to render_template("edit")
       end
     end
   end
@@ -145,13 +117,13 @@ RSpec.describe EnfantsController, type: :controller do
     it "destroys the requested enfant" do
       enfant = Enfant.create! valid_attributes
       expect {
-        delete :destroy, params: {id: enfant.to_param}, session: valid_session
+        delete :destroy, {id: enfant.to_param}, session: valid_session
       }.to change(Enfant, :count).by(-1)
     end
 
     it "redirects to the enfants list" do
       enfant = Enfant.create! valid_attributes
-      delete :destroy, params: {id: enfant.to_param}, session: valid_session
+      delete :destroy, {id: enfant.to_param}, session: valid_session
       expect(response).to redirect_to(enfants_url)
     end
   end

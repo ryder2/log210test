@@ -16,9 +16,9 @@ class EnfantsController < ApplicationController
   # GET /enfants/new
   def new
     @enfant = Enfant.new
-	if params.has_key?(:demande_id)
-		@enfant.demande_id = params[:demande_id]
-	end
+	  if params.has_key?(:demande_id)
+		  @enfant.demande_id = params[:demande_id]
+	  end
   end
 
   # GET /enfants/1/edit
@@ -34,9 +34,6 @@ class EnfantsController < ApplicationController
       if @enfant.save
         format.html { redirect_to @enfant, notice: 'Enfant was successfully created.' }
         format.json { render :show, status: :created, location: @enfant }
-      else
-        format.html { render :new }
-        format.json { render json: @enfant.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -48,9 +45,6 @@ class EnfantsController < ApplicationController
       if @enfant.update(enfant_params)
         format.html { redirect_to @enfant, notice: 'Enfant was successfully updated.' }
         format.json { render :show, status: :ok, location: @enfant }
-      else
-        format.html { render :edit }
-        format.json { render json: @enfant.errors, status: :unprocessable_entity }
       end
     end
   end
