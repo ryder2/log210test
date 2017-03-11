@@ -1,4 +1,5 @@
 class DemandeEgsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_demande_eg, only: [:show, :edit, :update, :destroy]
 
   # GET /demande_egs

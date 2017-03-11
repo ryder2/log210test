@@ -1,4 +1,5 @@
 class VsDemandesController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_vs_demande, only: [:show, :edit, :update, :destroy]
 
   # GET /vs_demandes

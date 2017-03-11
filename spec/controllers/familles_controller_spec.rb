@@ -23,12 +23,14 @@ RSpec.describe FamillesController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Famille. As you add validations to Famille, be sure to
   # adjust the attributes here as well.
+  before { controller.stub(:authenticate_user!).and_return true }
+  
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {nom: "MyNom", dossier_id: "MyDossier", statut: "MyStatut"}
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    skip("No invalid attributes.")
   }
 
   # This should return the minimal set of values that should be in the session
@@ -47,7 +49,7 @@ RSpec.describe FamillesController, type: :controller do
   describe "GET #show" do
     it "assigns the requested famille as @famille" do
       famille = Famille.create! valid_attributes
-      get :show, params: {id: famille.to_param}, session: valid_session
+      get 'show', :id => famille.id
       expect(assigns(:famille)).to eq(famille)
     end
   end
@@ -62,7 +64,7 @@ RSpec.describe FamillesController, type: :controller do
   describe "GET #edit" do
     it "assigns the requested famille as @famille" do
       famille = Famille.create! valid_attributes
-      get :edit, params: {id: famille.to_param}, session: valid_session
+      get 'edit', :id => famille.id
       expect(assigns(:famille)).to eq(famille)
     end
   end
@@ -71,31 +73,19 @@ RSpec.describe FamillesController, type: :controller do
     context "with valid params" do
       it "creates a new Famille" do
         expect {
-          post :create, params: {famille: valid_attributes}, session: valid_session
+          post 'create', :famille => valid_attributes
         }.to change(Famille, :count).by(1)
       end
 
       it "assigns a newly created famille as @famille" do
-        post :create, params: {famille: valid_attributes}, session: valid_session
+        post 'create', :famille => valid_attributes
         expect(assigns(:famille)).to be_a(Famille)
         expect(assigns(:famille)).to be_persisted
       end
 
       it "redirects to the created famille" do
-        post :create, params: {famille: valid_attributes}, session: valid_session
+        post 'create', :famille => valid_attributes
         expect(response).to redirect_to(Famille.last)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns a newly created but unsaved famille as @famille" do
-        post :create, params: {famille: invalid_attributes}, session: valid_session
-        expect(assigns(:famille)).to be_a_new(Famille)
-      end
-
-      it "re-renders the 'new' template" do
-        post :create, params: {famille: invalid_attributes}, session: valid_session
-        expect(response).to render_template("new")
       end
     end
   end
@@ -103,40 +93,26 @@ RSpec.describe FamillesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {nom: "MyNom2", dossier_id: "MyDossier2", statut: "MyStatut2"}
       }
 
       it "updates the requested famille" do
         famille = Famille.create! valid_attributes
-        put :update, params: {id: famille.to_param, famille: new_attributes}, session: valid_session
+        put 'update', {:id => famille.id, :famille => new_attributes}
         famille.reload
-        skip("Add assertions for updated state")
+		expect(famille.nom).not_to eq("MyNom")
       end
 
       it "assigns the requested famille as @famille" do
         famille = Famille.create! valid_attributes
-        put :update, params: {id: famille.to_param, famille: valid_attributes}, session: valid_session
+        put 'update', {:id => famille.id, :famille => valid_attributes}
         expect(assigns(:famille)).to eq(famille)
       end
 
       it "redirects to the famille" do
         famille = Famille.create! valid_attributes
-        put :update, params: {id: famille.to_param, famille: valid_attributes}, session: valid_session
+        put 'update', {:id => famille.id, :famille => valid_attributes}
         expect(response).to redirect_to(famille)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns the famille as @famille" do
-        famille = Famille.create! valid_attributes
-        put :update, params: {id: famille.to_param, famille: invalid_attributes}, session: valid_session
-        expect(assigns(:famille)).to eq(famille)
-      end
-
-      it "re-renders the 'edit' template" do
-        famille = Famille.create! valid_attributes
-        put :update, params: {id: famille.to_param, famille: invalid_attributes}, session: valid_session
-        expect(response).to render_template("edit")
       end
     end
   end
@@ -145,13 +121,13 @@ RSpec.describe FamillesController, type: :controller do
     it "destroys the requested famille" do
       famille = Famille.create! valid_attributes
       expect {
-        delete :destroy, params: {id: famille.to_param}, session: valid_session
+        delete 'destroy', :id => famille.id
       }.to change(Famille, :count).by(-1)
     end
 
     it "redirects to the familles list" do
       famille = Famille.create! valid_attributes
-      delete :destroy, params: {id: famille.to_param}, session: valid_session
+      delete 'destroy', :id => famille.id
       expect(response).to redirect_to(familles_url)
     end
   end

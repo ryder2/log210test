@@ -23,20 +23,14 @@ RSpec.describe NotesController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Note. As you add validations to Note, be sure to
   # adjust the attributes here as well.
-  
-  famille = Famille.create(:nom => 'Pol')
-  user = User.create(:id => 99, :email => '1@1.com', :encrypted_password => '11', :reset_password_token => "",
-    :reset_password_sent_at => "2011-01-01 23:58:11", :remember_created_at => "2011-01-01 23:58:11",
-    :sign_in_count => 1, :current_sign_in_at => "2011-01-01 23:58:11", :last_sign_in_at => "2011-01-01 23:58:11",
-    :current_sign_in_ip => nil, :last_sign_in_ip => nil, :created_at => "2011-01-01 23:58:11", :updated_at => "2011-01-01 23:58:11", 
-    :failed_attempts => 1, :unlock_token => "", :locked_at => "2011-01-01 23:58:11", :role_id => 1, :name => "GUERT")
+  before { controller.stub(:authenticate_user!).and_return true }
   
   let(:valid_attributes) {
-    {texte: "texte", dateCreation: "2011-01-01", famille_id: famille.id, users_id: user.id}
+    {texte: "texte", dateCreation: "2011-01-01", famille_id: 1, users_id: 1}
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    skip("No invalid attributes.")
   }
 
   # This should return the minimal set of values that should be in the session
@@ -46,9 +40,7 @@ RSpec.describe NotesController, type: :controller do
 
   describe "GET #index" do
     it "assigns all notes as @notes" do
-	  
       note = Note.create! valid_attributes
-	  
       get :index, params: {}, session: valid_session
       expect(assigns(:notes)).to eq([note])
     end
@@ -93,19 +85,7 @@ RSpec.describe NotesController, type: :controller do
 
       it "redirects to the created note" do
         post 'create', :note => valid_attributes
-        expect(response).to redirect_to(Note.last)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns a newly created but unsaved note as @note" do
-        post :create, params: {note: invalid_attributes}, session: valid_session
-        expect(assigns(:note)).to be_a_new(Note)
-      end
-
-      it "re-renders the 'new' template" do
-        post :create, params: {note: invalid_attributes}, session: valid_session
-        expect(response).to render_template("new")
+        expect(response).to redirect_to(famille_path(1))
       end
     end
   end
@@ -113,40 +93,26 @@ RSpec.describe NotesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {texte: "texte2", dateCreation: "2012-01-01", famille_id: 2, users_id: 2}
       }
 
       it "updates the requested note" do
         note = Note.create! valid_attributes
-        put :update, params: {id: note.to_param, note: new_attributes}, session: valid_session
+        put 'update', {:id => note.id, :note => new_attributes}
         note.reload
-        skip("Add assertions for updated state")
+		expect(note.texte).not_to eq("texte")
       end
 
       it "assigns the requested note as @note" do
         note = Note.create! valid_attributes
-        put :update, params: {id: note.to_param, note: valid_attributes}, session: valid_session
+        put 'update', {:id => note.id, :note => valid_attributes}
         expect(assigns(:note)).to eq(note)
       end
 
       it "redirects to the note" do
         note = Note.create! valid_attributes
-        put :update, params: {id: note.to_param, note: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(note)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns the note as @note" do
-        note = Note.create! valid_attributes
-        put :update, params: {id: note.to_param, note: invalid_attributes}, session: valid_session
-        expect(assigns(:note)).to eq(note)
-      end
-
-      it "re-renders the 'edit' template" do
-        note = Note.create! valid_attributes
-        put :update, params: {id: note.to_param, note: invalid_attributes}, session: valid_session
-        expect(response).to render_template("edit")
+        put 'update', {:id => note.id, :note => valid_attributes}
+        expect(response).to redirect_to(famille_path(1))
       end
     end
   end
@@ -155,14 +121,14 @@ RSpec.describe NotesController, type: :controller do
     it "destroys the requested note" do
       note = Note.create! valid_attributes
       expect {
-        delete :destroy, params: {id: note.to_param}, session: valid_session
+        delete 'destroy', :id => note.id
       }.to change(Note, :count).by(-1)
     end
 
     it "redirects to the notes list" do
       note = Note.create! valid_attributes
-      delete :destroy, params: {id: note.to_param}, session: valid_session
-      expect(response).to redirect_to(notes_url)
+      delete 'destroy', :id => note.id
+      expect(response).to redirect_to(famille_path(1))
     end
   end
 

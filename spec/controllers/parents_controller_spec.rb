@@ -23,12 +23,21 @@ RSpec.describe ParentsController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Parent. As you add validations to Parent, be sure to
   # adjust the attributes here as well.
+  before { controller.stub(:authenticate_user!).and_return true }
+  
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    skip("WIP - Decomment below.")
+    #{statut: "gardien", date_naissance: "2010-01-01", nom: "nom", demande_id: 1, no_permis_conduire: "100ABC",
+	# no_RAMQ: "89595", avocat: "avocat", avocatTelephone: "444000444", tarification: "10"
+	# , parentinfos_attributes: [courriel: 'sdfsdf',
+	# telephone_res: '234234', nocivique: '43534', rue: 'dsfdsf', appartement: '54', ville: 'sdfsdf',
+	# code_postal: '34534', province: 'sdfsdf', nom_urgence: 'fsdfs', numero_urgence: '525', note: 'dsfsdf',
+	# parent_id: 2, telephone_travail: '4535', telephone_cell: '23434']
+	#}
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    skip("No invalid attributes.")
   }
 
   # This should return the minimal set of values that should be in the session
@@ -45,10 +54,10 @@ RSpec.describe ParentsController, type: :controller do
   end
 
   describe "GET #show" do
-    it "assigns the requested parent as @parent" do
+    it "should be successful" do
       parent = Parent.create! valid_attributes
-      get :show, params: {id: parent.to_param}, session: valid_session
-      expect(assigns(:parent)).to eq(parent)
+      get 'show', :id => parent.id
+      response.should be_success
     end
   end
 
@@ -62,7 +71,7 @@ RSpec.describe ParentsController, type: :controller do
   describe "GET #edit" do
     it "assigns the requested parent as @parent" do
       parent = Parent.create! valid_attributes
-      get :edit, params: {id: parent.to_param}, session: valid_session
+      get 'edit', :id => parent.id
       expect(assigns(:parent)).to eq(parent)
     end
   end
@@ -71,31 +80,19 @@ RSpec.describe ParentsController, type: :controller do
     context "with valid params" do
       it "creates a new Parent" do
         expect {
-          post :create, params: {parent: valid_attributes}, session: valid_session
+          post 'create', :parent => valid_attributes
         }.to change(Parent, :count).by(1)
       end
 
       it "assigns a newly created parent as @parent" do
-        post :create, params: {parent: valid_attributes}, session: valid_session
+        post 'create', :parent => valid_attributes
         expect(assigns(:parent)).to be_a(Parent)
         expect(assigns(:parent)).to be_persisted
       end
 
       it "redirects to the created parent" do
-        post :create, params: {parent: valid_attributes}, session: valid_session
+        post 'create', :parent => valid_attributes
         expect(response).to redirect_to(Parent.last)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns a newly created but unsaved parent as @parent" do
-        post :create, params: {parent: invalid_attributes}, session: valid_session
-        expect(assigns(:parent)).to be_a_new(Parent)
-      end
-
-      it "re-renders the 'new' template" do
-        post :create, params: {parent: invalid_attributes}, session: valid_session
-        expect(response).to render_template("new")
       end
     end
   end
@@ -103,40 +100,27 @@ RSpec.describe ParentsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {statut: "visiteur", date_naissance: "2012-01-01", nom: "nom2", demande_id: 2, no_permis_conduire: "100ABC2",
+		 no_RAMQ: "8959522", avocat: "avocat2", avocatTelephone: "44400044422", tarification: "102"}
       }
 
       it "updates the requested parent" do
         parent = Parent.create! valid_attributes
-        put :update, params: {id: parent.to_param, parent: new_attributes}, session: valid_session
+        put 'update', {:id => parent.id, :parent => new_attributes}
         parent.reload
-        skip("Add assertions for updated state")
+		expect(parent.nom).not_to eq("nom")
       end
 
       it "assigns the requested parent as @parent" do
         parent = Parent.create! valid_attributes
-        put :update, params: {id: parent.to_param, parent: valid_attributes}, session: valid_session
+        put 'update', {:id => parent.id, :parent => valid_attributes}
         expect(assigns(:parent)).to eq(parent)
       end
 
       it "redirects to the parent" do
         parent = Parent.create! valid_attributes
-        put :update, params: {id: parent.to_param, parent: valid_attributes}, session: valid_session
+        put 'update', {:id => parent.id, :parent => valid_attributes}
         expect(response).to redirect_to(parent)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns the parent as @parent" do
-        parent = Parent.create! valid_attributes
-        put :update, params: {id: parent.to_param, parent: invalid_attributes}, session: valid_session
-        expect(assigns(:parent)).to eq(parent)
-      end
-
-      it "re-renders the 'edit' template" do
-        parent = Parent.create! valid_attributes
-        put :update, params: {id: parent.to_param, parent: invalid_attributes}, session: valid_session
-        expect(response).to render_template("edit")
       end
     end
   end
@@ -145,13 +129,13 @@ RSpec.describe ParentsController, type: :controller do
     it "destroys the requested parent" do
       parent = Parent.create! valid_attributes
       expect {
-        delete :destroy, params: {id: parent.to_param}, session: valid_session
+        delete 'destroy', :id => parent.id
       }.to change(Parent, :count).by(-1)
     end
 
     it "redirects to the parents list" do
       parent = Parent.create! valid_attributes
-      delete :destroy, params: {id: parent.to_param}, session: valid_session
+      delete 'destroy', :id => parent.id
       expect(response).to redirect_to(parents_url)
     end
   end
