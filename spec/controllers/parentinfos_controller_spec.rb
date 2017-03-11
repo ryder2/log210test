@@ -23,12 +23,17 @@ RSpec.describe ParentinfosController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Parentinfo. As you add validations to Parentinfo, be sure to
   # adjust the attributes here as well.
+
+  before { controller.stub(:authenticate_user!).and_return true }
+
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { 
+      "courriel"       => "courriel",
+      "parent_id"      => nil,
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
   }
 
   # This should return the minimal set of values that should be in the session
@@ -47,14 +52,14 @@ RSpec.describe ParentinfosController, type: :controller do
   describe "GET #show" do
     it "assigns the requested parentinfo as @parentinfo" do
       parentinfo = Parentinfo.create! valid_attributes
-      get :show, params: {id: parentinfo.to_param}, session: valid_session
+      get :show, id: parentinfo.to_param, session: valid_session
       expect(assigns(:parentinfo)).to eq(parentinfo)
     end
   end
 
   describe "GET #new" do
     it "assigns a new parentinfo as @parentinfo" do
-      get :new, params: {parentinfo: valid_attributes}, session: valid_session
+      get :new, parentinfo: valid_attributes, session: valid_session
       expect(assigns(:parentinfo)).to be_a_new(Parentinfo)
     end
   end
@@ -62,7 +67,7 @@ RSpec.describe ParentinfosController, type: :controller do
   describe "GET #edit" do
     it "assigns the requested parentinfo as @parentinfo" do
       parentinfo = Parentinfo.create! valid_attributes
-      get :edit, params: {id: parentinfo.to_param}, session: valid_session
+      get :edit, id: parentinfo.to_param, session: valid_session
       expect(assigns(:parentinfo)).to eq(parentinfo)
     end
   end
@@ -71,31 +76,19 @@ RSpec.describe ParentinfosController, type: :controller do
     context "with valid params" do
       it "creates a new Parentinfo" do
         expect {
-          post :create, params: {parentinfo: valid_attributes}, session: valid_session
+          post :create, parentinfo: valid_attributes, session: valid_session
         }.to change(Parentinfo, :count).by(1)
       end
 
       it "assigns a newly created parentinfo as @parentinfo" do
-        post :create, params: {parentinfo: valid_attributes}, session: valid_session
+        post :create, parentinfo: valid_attributes, session: valid_session
         expect(assigns(:parentinfo)).to be_a(Parentinfo)
         expect(assigns(:parentinfo)).to be_persisted
       end
 
       it "redirects to the created parentinfo" do
-        post :create, params: {parentinfo: valid_attributes}, session: valid_session
+        post :create, parentinfo: valid_attributes, session: valid_session
         expect(response).to redirect_to(Parentinfo.last)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns a newly created but unsaved parentinfo as @parentinfo" do
-        post :create, params: {parentinfo: invalid_attributes}, session: valid_session
-        expect(assigns(:parentinfo)).to be_a_new(Parentinfo)
-      end
-
-      it "re-renders the 'new' template" do
-        post :create, params: {parentinfo: invalid_attributes}, session: valid_session
-        expect(response).to render_template("new")
       end
     end
   end
@@ -103,40 +96,26 @@ RSpec.describe ParentinfosController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {"courriel"       => "courriel2",}
       }
 
       it "updates the requested parentinfo" do
         parentinfo = Parentinfo.create! valid_attributes
-        put :update, params: {id: parentinfo.to_param, parentinfo: new_attributes}, session: valid_session
+        put :update, {id: parentinfo.to_param, parentinfo: new_attributes}, session: valid_session
         parentinfo.reload
-        skip("Add assertions for updated state")
+        expect(parentinfo.courriel).to eq("courriel2")
       end
 
       it "assigns the requested parentinfo as @parentinfo" do
         parentinfo = Parentinfo.create! valid_attributes
-        put :update, params: {id: parentinfo.to_param, parentinfo: valid_attributes}, session: valid_session
+        put :update, {id: parentinfo.to_param, parentinfo: valid_attributes}, session: valid_session
         expect(assigns(:parentinfo)).to eq(parentinfo)
       end
 
       it "redirects to the parentinfo" do
         parentinfo = Parentinfo.create! valid_attributes
-        put :update, params: {id: parentinfo.to_param, parentinfo: valid_attributes}, session: valid_session
+        put :update, {id: parentinfo.to_param, parentinfo: valid_attributes}, session: valid_session
         expect(response).to redirect_to(parentinfo)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns the parentinfo as @parentinfo" do
-        parentinfo = Parentinfo.create! valid_attributes
-        put :update, params: {id: parentinfo.to_param, parentinfo: invalid_attributes}, session: valid_session
-        expect(assigns(:parentinfo)).to eq(parentinfo)
-      end
-
-      it "re-renders the 'edit' template" do
-        parentinfo = Parentinfo.create! valid_attributes
-        put :update, params: {id: parentinfo.to_param, parentinfo: invalid_attributes}, session: valid_session
-        expect(response).to render_template("edit")
       end
     end
   end
@@ -145,13 +124,13 @@ RSpec.describe ParentinfosController, type: :controller do
     it "destroys the requested parentinfo" do
       parentinfo = Parentinfo.create! valid_attributes
       expect {
-        delete :destroy, params: {id: parentinfo.to_param}, session: valid_session
+        delete :destroy, id: parentinfo.to_param, session: valid_session
       }.to change(Parentinfo, :count).by(-1)
     end
 
     it "redirects to the parentinfos list" do
       parentinfo = Parentinfo.create! valid_attributes
-      delete :destroy, params: {id: parentinfo.to_param}, session: valid_session
+      delete :destroy, id: parentinfo.to_param, session: valid_session
       expect(response).to redirect_to(parentinfos_url)
     end
   end
