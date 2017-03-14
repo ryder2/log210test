@@ -1,5 +1,5 @@
 class Demande < ActiveRecord::Base
-	enum service: {VS: 1, EG: 2, CTS: 3}
+	enum service: {VS: "VS", EG: "EG", CTS: "CTS"}
 	
 	has_many :vs_demandes
 	has_many :demande_egs
