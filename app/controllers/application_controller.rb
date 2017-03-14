@@ -30,7 +30,6 @@ class ApplicationController < ActionController::Base
   def ensure_directeur!
     unless current_user.role_id == 0
      sign_out current_user
-     redirect_to root_path
      return false
     end
   end
@@ -38,7 +37,6 @@ class ApplicationController < ActionController::Base
   def ensure_coordonnateur!
     unless current_user.role_id == 1
      sign_out current_user
-     redirect_to root_path
      return false
     end
   end
@@ -46,7 +44,6 @@ class ApplicationController < ActionController::Base
   def ensure_intervenant!
     unless current_user.role_id == 2
      sign_out current_user
-     redirect_to root_path
      return false
     end
   end

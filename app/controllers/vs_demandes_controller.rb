@@ -34,9 +34,6 @@ class VsDemandesController < ApplicationController
       if @vs_demande.save
         format.html { redirect_to @vs_demande, notice: 'Vs demande was successfully created.' }
         format.json { render :show, status: :created, location: @vs_demande }
-      else
-        format.html { render :new }
-        format.json { render json: @vs_demande.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -48,9 +45,6 @@ class VsDemandesController < ApplicationController
       if @vs_demande.update(vs_demande_params)
         format.html { redirect_to @vs_demande, notice: 'Vs demande was successfully updated.' }
         format.json { render :show, status: :ok, location: @vs_demande }
-      else
-        format.html { render :edit }
-        format.json { render json: @vs_demande.errors, status: :unprocessable_entity }
       end
     end
   end

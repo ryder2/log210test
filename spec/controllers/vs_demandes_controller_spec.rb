@@ -19,16 +19,19 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe VsDemandesController, type: :controller do
+  before { controller.stub(:authenticate_user!).and_return true }
 
   # This should return the minimal set of attributes required to create a valid
   # VsDemande. As you add validations to VsDemande, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
-
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {motif_pv: "visiteur", motivations_pv: "nom2", interdit_contact_pv: true, date_separation_pv: "2001-01-01", 
+      contact_enfant_pv: true, contact_telephone_enfant_pv: true, attitude_parent_pv: "avocat2", 
+      demande_id: 1, motif_pg: "102", date_separation_pg: "2012-01-01", dernier_contact_deroulement_pg: "100ABC2", 
+      date_dernier_contact_pg: "2012-01-01", contact_telephone_enfant_pg: true, autorisation_accompagnement_pg: true, 
+      personnes_autorisees_pg: "true", attitude_parent_pg: "true", jeux_favoris_pg: "avocat2", 
+      gout_alimentaire_pg: "1", enfant_sait_visite_pg: true, reaction_visite_pg: "2012-01-01", attitude_enfant_pg: "100ABC2", 
+      autre_pg: "2012-01-01"}
   }
 
   # This should return the minimal set of values that should be in the session
@@ -47,7 +50,7 @@ RSpec.describe VsDemandesController, type: :controller do
   describe "GET #show" do
     it "assigns the requested vs_demande as @vs_demande" do
       vs_demande = VsDemande.create! valid_attributes
-      get :show, params: {id: vs_demande.to_param}, session: valid_session
+      get 'show', :id => vs_demande.id
       expect(assigns(:vs_demande)).to eq(vs_demande)
     end
   end
@@ -57,12 +60,16 @@ RSpec.describe VsDemandesController, type: :controller do
       get :new, params: {}, session: valid_session
       expect(assigns(:vs_demande)).to be_a_new(VsDemande)
     end
+    it "assigns a new vs_demande with a param" do
+      get :new, :demande_id => 1
+      expect(assigns(:vs_demande)).to be_a_new(VsDemande)
+    end
   end
 
   describe "GET #edit" do
     it "assigns the requested vs_demande as @vs_demande" do
       vs_demande = VsDemande.create! valid_attributes
-      get :edit, params: {id: vs_demande.to_param}, session: valid_session
+      get 'edit', :id => vs_demande.id
       expect(assigns(:vs_demande)).to eq(vs_demande)
     end
   end
@@ -71,31 +78,19 @@ RSpec.describe VsDemandesController, type: :controller do
     context "with valid params" do
       it "creates a new VsDemande" do
         expect {
-          post :create, params: {vs_demande: valid_attributes}, session: valid_session
+          post 'create', :vs_demande => valid_attributes
         }.to change(VsDemande, :count).by(1)
       end
 
       it "assigns a newly created vs_demande as @vs_demande" do
-        post :create, params: {vs_demande: valid_attributes}, session: valid_session
+        post 'create', :vs_demande => valid_attributes
         expect(assigns(:vs_demande)).to be_a(VsDemande)
         expect(assigns(:vs_demande)).to be_persisted
       end
 
       it "redirects to the created vs_demande" do
-        post :create, params: {vs_demande: valid_attributes}, session: valid_session
+        post 'create', :vs_demande => valid_attributes
         expect(response).to redirect_to(VsDemande.last)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns a newly created but unsaved vs_demande as @vs_demande" do
-        post :create, params: {vs_demande: invalid_attributes}, session: valid_session
-        expect(assigns(:vs_demande)).to be_a_new(VsDemande)
-      end
-
-      it "re-renders the 'new' template" do
-        post :create, params: {vs_demande: invalid_attributes}, session: valid_session
-        expect(response).to render_template("new")
       end
     end
   end
@@ -103,40 +98,32 @@ RSpec.describe VsDemandesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {motif_pv: "visiteur", motivations_pv: "nom6", interdit_contact_pv: true, date_separation_pv: "2001-01-01", 
+      contact_enfant_pv: true, contact_telephone_enfant_pv: true, attitude_parent_pv: "avocat2", 
+      demande_id: 1, motif_pg: "102", date_separation_pg: "2012-01-01", dernier_contact_deroulement_pg: "100ABC2", 
+      date_dernier_contact_pg: "2012-01-01", contact_telephone_enfant_pg: true, autorisation_accompagnement_pg: true, 
+      personnes_autorisees_pg: "true", attitude_parent_pg: "true", jeux_favoris_pg: "avocat2", 
+      gout_alimentaire_pg: "1", enfant_sait_visite_pg: true, reaction_visite_pg: "2012-01-01", attitude_enfant_pg: "100ABC2", 
+      autre_pg: "2012-01-01"}
       }
 
       it "updates the requested vs_demande" do
         vs_demande = VsDemande.create! valid_attributes
-        put :update, params: {id: vs_demande.to_param, vs_demande: new_attributes}, session: valid_session
+        put 'update', {:id => vs_demande.id, :vs_demande => new_attributes}
         vs_demande.reload
-        skip("Add assertions for updated state")
+        expect(vs_demande.motivations_pv).not_to eq("nom2")
       end
 
       it "assigns the requested vs_demande as @vs_demande" do
         vs_demande = VsDemande.create! valid_attributes
-        put :update, params: {id: vs_demande.to_param, vs_demande: valid_attributes}, session: valid_session
+        put 'update', {:id => vs_demande.id, :vs_demande => valid_attributes}
         expect(assigns(:vs_demande)).to eq(vs_demande)
       end
 
       it "redirects to the vs_demande" do
         vs_demande = VsDemande.create! valid_attributes
-        put :update, params: {id: vs_demande.to_param, vs_demande: valid_attributes}, session: valid_session
+        put 'update', {:id => vs_demande.id, :vs_demande => valid_attributes}
         expect(response).to redirect_to(vs_demande)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns the vs_demande as @vs_demande" do
-        vs_demande = VsDemande.create! valid_attributes
-        put :update, params: {id: vs_demande.to_param, vs_demande: invalid_attributes}, session: valid_session
-        expect(assigns(:vs_demande)).to eq(vs_demande)
-      end
-
-      it "re-renders the 'edit' template" do
-        vs_demande = VsDemande.create! valid_attributes
-        put :update, params: {id: vs_demande.to_param, vs_demande: invalid_attributes}, session: valid_session
-        expect(response).to render_template("edit")
       end
     end
   end
@@ -145,13 +132,13 @@ RSpec.describe VsDemandesController, type: :controller do
     it "destroys the requested vs_demande" do
       vs_demande = VsDemande.create! valid_attributes
       expect {
-        delete :destroy, params: {id: vs_demande.to_param}, session: valid_session
+        delete 'destroy', :id => vs_demande.id
       }.to change(VsDemande, :count).by(-1)
     end
 
     it "redirects to the vs_demandes list" do
       vs_demande = VsDemande.create! valid_attributes
-      delete :destroy, params: {id: vs_demande.to_param}, session: valid_session
+      delete 'destroy', :id => vs_demande.id
       expect(response).to redirect_to(vs_demandes_url)
     end
   end

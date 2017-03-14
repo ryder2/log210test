@@ -29,9 +29,6 @@ RSpec.describe FamillesController, type: :controller do
     {nom: "MyNom", dossier_id: "MyDossier", statut: "MyStatut"}
   }
 
-  let(:invalid_attributes) {
-    skip("No invalid attributes.")
-  }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -58,6 +55,18 @@ RSpec.describe FamillesController, type: :controller do
     it "assigns a new famille as @famille" do
       get :new, params: {famille: valid_attributes}, session: valid_session
       expect(assigns(:famille)).to be_a_new(Famille)
+    end
+  end
+
+  describe "GET #rechercher" do
+    it "assigns a rechercher" do
+      post 'rechercher', :typeDeRecherche => "1", :valeurDeRecherche => "1", :format => :json
+    end
+    it "assigns a rechercher" do
+      post 'rechercher', :typeDeRecherche => "2", :valeurDeRecherche => "hello", :format => :json
+    end
+    it "assigns a rechercher" do
+      post 'rechercher', :typeDeRecherche => "4", :valeurDeRecherche => "hello", :format => :json
     end
   end
 

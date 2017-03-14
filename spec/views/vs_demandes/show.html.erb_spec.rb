@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "vs_demandes/show", type: :view do
+  let(:user) { FactoryGirl.create(:user) }
   before(:each) do
+    allow(view).to receive(:current_user) { user }
     @vs_demande = assign(:vs_demande, VsDemande.create!(
       :motif_pv => "Motif Pv",
       :motivations_pv => "Motivations Pv",

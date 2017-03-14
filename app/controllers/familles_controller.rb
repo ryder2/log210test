@@ -32,9 +32,6 @@ class FamillesController < ApplicationController
       if @famille.save
         format.html { redirect_to @famille, notice: 'Famille was successfully created.' }
         format.json { render :show, status: :created, location: @famille }
-      else
-        format.html { render :new }
-        format.json { render json: @famille.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -46,9 +43,6 @@ class FamillesController < ApplicationController
       if @famille.update(famille_params)
         format.html { redirect_to @famille, notice: 'Famille was successfully updated.' }
         format.json { render :show, status: :ok, location: @famille }
-      else
-        format.html { render :edit }
-        format.json { render json: @famille.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -61,13 +55,13 @@ class FamillesController < ApplicationController
     case typeDeRecherche 
       when "1"
          string = 'SELECT familles.id, familles.nom FROM familles 
-                  LEFT JOIN demandes ON demandes.famille_id = familles.id
+                  LEFT JOIN demandes ON demandes.famille_id = dossier_id
                   WHERE TRUE
                   AND demandes.id='+valeurDeRecherche
 
       when "2"
          string = "SELECT familles.id, familles.nom FROM familles 
-                  LEFT JOIN demandes ON demandes.famille_id = familles.id 
+                  LEFT JOIN demandes ON demandes.famille_id = dossier_id
                   LEFT JOIN parents AS parent on demandes.id = parent.demande_id 
                   WHERE TRUE 
                   AND parent.nom='"+valeurDeRecherche+"'"
@@ -76,7 +70,7 @@ class FamillesController < ApplicationController
          #À completer, table référent n'existe pas encore + requête
       when "4"
         string = "SELECT familles.id, familles.nom FROM familles 
-                  LEFT JOIN demandes ON demandes.famille_id = familles.id 
+                  LEFT JOIN demandes ON demandes.famille_id = dossier_id 
                   LEFT JOIN enfants AS enfant ON demandes.id = enfant.demande_id
                   WHERE TRUE
                   AND enfant.nom='"+ valeurDeRecherche +"'"

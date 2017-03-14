@@ -19,17 +19,18 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe DemandeEgsController, type: :controller do
+  before { controller.stub(:authenticate_user!).and_return true }
 
   # This should return the minimal set of attributes required to create a valid
   # DemandeEg. As you add validations to DemandeEg, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {motif: "visiteur", conditions: "nom2", date_separation: "2012-01-01", echange_garde: true, reactions_eg: "100ABC2",
+     date_dernier_contact: "2012-01-01", description_enfant: "avocat2", contact_pg: true, forme_contact_pg: "102",
+      attitude_parent: "true", attitude_enfant: "100ABC2", 
+      a_suivre: "2012-01-01", demande_id: 1, deroulement_dernier_contact: "true"}
   }
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -47,7 +48,7 @@ RSpec.describe DemandeEgsController, type: :controller do
   describe "GET #show" do
     it "assigns the requested demande_eg as @demande_eg" do
       demande_eg = DemandeEg.create! valid_attributes
-      get :show, params: {id: demande_eg.to_param}, session: valid_session
+      get 'show', :id => demande_eg.id
       expect(assigns(:demande_eg)).to eq(demande_eg)
     end
   end
@@ -57,12 +58,16 @@ RSpec.describe DemandeEgsController, type: :controller do
       get :new, params: {}, session: valid_session
       expect(assigns(:demande_eg)).to be_a_new(DemandeEg)
     end
+    it "assigns a new demande_eg with a param" do
+      get :new, :demande_id => 1
+      expect(assigns(:demande_eg)).to be_a_new(DemandeEg)
+    end
   end
 
   describe "GET #edit" do
     it "assigns the requested demande_eg as @demande_eg" do
       demande_eg = DemandeEg.create! valid_attributes
-      get :edit, params: {id: demande_eg.to_param}, session: valid_session
+      get 'edit', :id => demande_eg.id
       expect(assigns(:demande_eg)).to eq(demande_eg)
     end
   end
@@ -71,31 +76,19 @@ RSpec.describe DemandeEgsController, type: :controller do
     context "with valid params" do
       it "creates a new DemandeEg" do
         expect {
-          post :create, params: {demande_eg: valid_attributes}, session: valid_session
+          post 'create', :demande_eg => valid_attributes
         }.to change(DemandeEg, :count).by(1)
       end
 
       it "assigns a newly created demande_eg as @demande_eg" do
-        post :create, params: {demande_eg: valid_attributes}, session: valid_session
+        post 'create', :demande_eg => valid_attributes
         expect(assigns(:demande_eg)).to be_a(DemandeEg)
         expect(assigns(:demande_eg)).to be_persisted
       end
 
       it "redirects to the created demande_eg" do
-        post :create, params: {demande_eg: valid_attributes}, session: valid_session
+        post 'create', :demande_eg => valid_attributes
         expect(response).to redirect_to(DemandeEg.last)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns a newly created but unsaved demande_eg as @demande_eg" do
-        post :create, params: {demande_eg: invalid_attributes}, session: valid_session
-        expect(assigns(:demande_eg)).to be_a_new(DemandeEg)
-      end
-
-      it "re-renders the 'new' template" do
-        post :create, params: {demande_eg: invalid_attributes}, session: valid_session
-        expect(response).to render_template("new")
       end
     end
   end
@@ -103,40 +96,29 @@ RSpec.describe DemandeEgsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {motif: "visiteur", conditions: "nom3", date_separation: "2012-01-01", echange_garde: true, reactions_eg: "100ABC2",
+     date_dernier_contact: "2012-01-01", description_enfant: "avocat2", contact_pg: true, forme_contact_pg: "102",
+      attitude_parent: "true", attitude_enfant: "100ABC2", 
+      a_suivre: "2012-01-01", demande_id: 1, deroulement_dernier_contact: "true"}
       }
 
       it "updates the requested demande_eg" do
         demande_eg = DemandeEg.create! valid_attributes
-        put :update, params: {id: demande_eg.to_param, demande_eg: new_attributes}, session: valid_session
+        put 'update', {:id => demande_eg.id, :demande_eg => new_attributes}
         demande_eg.reload
-        skip("Add assertions for updated state")
+        expect(demande_eg.conditions).not_to eq("nom2")
       end
 
       it "assigns the requested demande_eg as @demande_eg" do
         demande_eg = DemandeEg.create! valid_attributes
-        put :update, params: {id: demande_eg.to_param, demande_eg: valid_attributes}, session: valid_session
+        put 'update', {:id => demande_eg.id, :demande_eg => valid_attributes}
         expect(assigns(:demande_eg)).to eq(demande_eg)
       end
 
       it "redirects to the demande_eg" do
         demande_eg = DemandeEg.create! valid_attributes
-        put :update, params: {id: demande_eg.to_param, demande_eg: valid_attributes}, session: valid_session
+        put 'update', {:id => demande_eg.id, :demande_eg => valid_attributes}
         expect(response).to redirect_to(demande_eg)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns the demande_eg as @demande_eg" do
-        demande_eg = DemandeEg.create! valid_attributes
-        put :update, params: {id: demande_eg.to_param, demande_eg: invalid_attributes}, session: valid_session
-        expect(assigns(:demande_eg)).to eq(demande_eg)
-      end
-
-      it "re-renders the 'edit' template" do
-        demande_eg = DemandeEg.create! valid_attributes
-        put :update, params: {id: demande_eg.to_param, demande_eg: invalid_attributes}, session: valid_session
-        expect(response).to render_template("edit")
       end
     end
   end
@@ -145,13 +127,13 @@ RSpec.describe DemandeEgsController, type: :controller do
     it "destroys the requested demande_eg" do
       demande_eg = DemandeEg.create! valid_attributes
       expect {
-        delete :destroy, params: {id: demande_eg.to_param}, session: valid_session
+        delete 'destroy', :id => demande_eg.id
       }.to change(DemandeEg, :count).by(-1)
     end
 
     it "redirects to the demande_egs list" do
       demande_eg = DemandeEg.create! valid_attributes
-      delete :destroy, params: {id: demande_eg.to_param}, session: valid_session
+      delete 'destroy', :id => demande_eg.id
       expect(response).to redirect_to(demande_egs_url)
     end
   end

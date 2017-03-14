@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "demande_egs/show", type: :view do
+  let(:user) { FactoryGirl.create(:user) }
   before(:each) do
+    allow(view).to receive(:current_user) { user }
     @demande_eg = assign(:demande_eg, DemandeEg.create!(
       :motif => "Motif",
       :conditions => "Conditions",

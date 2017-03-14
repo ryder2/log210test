@@ -29,9 +29,6 @@ RSpec.describe NotesController, type: :controller do
     {texte: "texte", dateCreation: "2011-01-01", famille_id: 1, users_id: 1}
   }
 
-  let(:invalid_attributes) {
-    skip("No invalid attributes.")
-  }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in

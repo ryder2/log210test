@@ -29,9 +29,6 @@ RSpec.describe RolesController, type: :controller do
 	{name: "MyString"}
   }
 
-  let(:invalid_attributes) {
-    skip("No invalid attributes.")
-  }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in

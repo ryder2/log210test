@@ -57,6 +57,12 @@ RSpec.describe EnfantsController, type: :controller do
     end
   end
 
+  describe "GET #new" do
+    it "assigns a new enfant as @enfant" do
+      get :new, {demande_id: 1}, session: valid_session
+    end
+  end
+
   describe "GET #edit" do
     it "assigns the requested enfant as @enfant" do
       enfant = Enfant.create! valid_attributes

@@ -26,18 +26,32 @@ RSpec.describe ParentsController, type: :controller do
   before { controller.stub(:authenticate_user!).and_return true }
   
   let(:valid_attributes) {
-    skip("WIP - Decomment below.")
-    #{statut: "gardien", date_naissance: "2010-01-01", nom: "nom", demande_id: 1, no_permis_conduire: "100ABC",
-	# no_RAMQ: "89595", avocat: "avocat", avocatTelephone: "444000444", tarification: "10"
-	# , parentinfos_attributes: [courriel: 'sdfsdf',
-	# telephone_res: '234234', nocivique: '43534', rue: 'dsfdsf', appartement: '54', ville: 'sdfsdf',
-	# code_postal: '34534', province: 'sdfsdf', nom_urgence: 'fsdfs', numero_urgence: '525', note: 'dsfsdf',
-	# parent_id: 2, telephone_travail: '4535', telephone_cell: '23434']
-	#}
+    {statut: "gardien", date_naissance: "2010-01-01", nom: "nom", demande_id: 1, no_permis_conduire: "100ABC",
+	 no_RAMQ: "89595", avocat: "avocat", avocatTelephone: "444000444", tarification: "10", parentinfos_attributes: [courriel: 'sdfsdf',
+	 telephone_res: '234234', nocivique: '43534', rue: 'dsfdsf', appartement: '54', ville: 'sdfsdf',
+	 code_postal: '34534', province: 'sdfsdf', nom_urgence: 'fsdfs', numero_urgence: '525', note: 'dsfsdf',
+	 parent_id: 2, telephone_travail: '4535', telephone_cell: '23434']}
   }
-
-  let(:invalid_attributes) {
-    skip("No invalid attributes.")
+  let(:valid_attributes0) {
+    {statut: "visiteur", date_naissance: "2010-01-01", nom: "nom", demande_id: 1, no_permis_conduire: "100ABC",
+   no_RAMQ: "89595", avocat: "avocat", avocatTelephone: "444000444", tarification: "10", parentinfos_attributes: [courriel: 'sdfsdf',
+   telephone_res: '234234', nocivique: '43534', rue: 'dsfdsf', appartement: '54', ville: 'sdfsdf',
+   code_postal: '34534', province: 'sdfsdf', nom_urgence: 'fsdfs', numero_urgence: '525', note: 'dsfsdf',
+   parent_id: 2, telephone_travail: '4535', telephone_cell: '23434']}
+  }
+  let(:valid_attributes1) {
+    {statut: "tuteur", date_naissance: "2010-01-01", nom: "nom", demande_id: 1, no_permis_conduire: "100ABC",
+   no_RAMQ: "89595", avocat: "avocat", avocatTelephone: "444000444", tarification: "10", parentinfos_attributes: [courriel: 'sdfsdf',
+   telephone_res: '234234', nocivique: '43534', rue: 'dsfdsf', appartement: '54', ville: 'sdfsdf',
+   code_postal: '34534', province: 'sdfsdf', nom_urgence: 'fsdfs', numero_urgence: '525', note: 'dsfsdf',
+   parent_id: 2, telephone_travail: '4535', telephone_cell: '23434']}
+  }
+  let(:valid_attributes2) {
+    {statut: "acceuil", date_naissance: "2010-01-01", nom: "nom", demande_id: 1, no_permis_conduire: "100ABC",
+   no_RAMQ: "89595", avocat: "avocat", avocatTelephone: "444000444", tarification: "10", parentinfos_attributes: [courriel: 'sdfsdf',
+   telephone_res: '234234', nocivique: '43534', rue: 'dsfdsf', appartement: '54', ville: 'sdfsdf',
+   code_postal: '34534', province: 'sdfsdf', nom_urgence: 'fsdfs', numero_urgence: '525', note: 'dsfsdf',
+   parent_id: 2, telephone_travail: '4535', telephone_cell: '23434']}
   }
 
   # This should return the minimal set of values that should be in the session
@@ -85,7 +99,19 @@ RSpec.describe ParentsController, type: :controller do
       end
 
       it "assigns a newly created parent as @parent" do
-        post 'create', :parent => valid_attributes
+        post 'create', :parent => valid_attributes2
+        expect(assigns(:parent)).to be_a(Parent)
+        expect(assigns(:parent)).to be_persisted
+      end
+
+      it "assigns a newly created parent as @parent" do
+        post 'create', :parent => valid_attributes1
+        expect(assigns(:parent)).to be_a(Parent)
+        expect(assigns(:parent)).to be_persisted
+      end
+
+      it "assigns a newly created parent as @parent" do
+        post 'create', :parent => valid_attributes0
         expect(assigns(:parent)).to be_a(Parent)
         expect(assigns(:parent)).to be_persisted
       end
@@ -100,19 +126,30 @@ RSpec.describe ParentsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        {statut: "visiteur", date_naissance: "2012-01-01", nom: "nom2", demande_id: 2, no_permis_conduire: "100ABC2",
-		 no_RAMQ: "8959522", avocat: "avocat2", avocatTelephone: "44400044422", tarification: "102"}
+        {statut: "gardien", date_naissance: "2010-01-01", nom: "nom1", demande_id: 1, no_permis_conduire: "100ABC",
+   no_RAMQ: "89595", avocat: "avocat", avocatTelephone: "444000444", tarification: "10", parentinfos_attributes: [courriel: 'sdfsdf',
+   telephone_res: '234234', nocivique: '43534', rue: 'dsfdsf', appartement: '54', ville: 'sdfsdf',
+   code_postal: '34534', province: 'sdfsdf', nom_urgence: 'fsdfs', numero_urgence: '525', note: 'dsfsdf',
+   parent_id: 2, telephone_travail: '4535', telephone_cell: '23434']}
       }
 
       it "updates the requested parent" do
         parent = Parent.create! valid_attributes
         put 'update', {:id => parent.id, :parent => new_attributes}
         parent.reload
-		expect(parent.nom).not_to eq("nom")
+		    expect(parent.nom).not_to eq("nom")
       end
 
       it "assigns the requested parent as @parent" do
         parent = Parent.create! valid_attributes
+        parent_infos_attributes =
+          { 
+            courriel: 'sdfsdf',
+            telephone_res: '234234', nocivique: '43534', rue: 'dsfdsf', appartement: '54', ville: 'sdfsdf',
+            code_postal: '34534', province: 'sdfsdf', nom_urgence: 'fsdfs', numero_urgence: '525', note: 'dsfsdf',
+            parent_id: parent.id, telephone_travail: '4535', telephone_cell: '23434'
+          }
+        Parentinfo.create! parent_infos_attributes
         put 'update', {:id => parent.id, :parent => valid_attributes}
         expect(assigns(:parent)).to eq(parent)
       end
