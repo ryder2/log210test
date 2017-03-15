@@ -3,7 +3,9 @@ require 'rails_helper'
 RSpec.describe "notes/edit", type: :view do
   before(:each) do
     @note = assign(:note, Note.create!(
-      :texte => "MyString"
+      :texte => "MyString",
+      :famille_id => 1,
+      :users_id   => 1
     ))
   end
 

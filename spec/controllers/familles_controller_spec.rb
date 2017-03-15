@@ -28,7 +28,10 @@ RSpec.describe FamillesController, type: :controller do
   let(:valid_attributes) {
     {nom: "MyNom", dossier_id: "MyDossier", statut: "MyStatut"}
   }
-
+  
+  let(:invalid_attributes) {
+    {nom: nil, dossier_id: nil, statut: nil}
+  }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -97,6 +100,12 @@ RSpec.describe FamillesController, type: :controller do
         expect(response).to redirect_to(Famille.last)
       end
     end
+    context "with invalid params" do
+      it "re-renders new" do
+        post 'create', :famille => invalid_attributes
+        expect(response).to render_template :new
+      end
+    end
   end
 
   describe "PUT #update" do
@@ -122,6 +131,13 @@ RSpec.describe FamillesController, type: :controller do
         famille = Famille.create! valid_attributes
         put 'update', {:id => famille.id, :famille => valid_attributes}
         expect(response).to redirect_to(famille)
+      end
+    end
+    context "with invalid params" do
+      it "re-renders edit" do
+        famille = Famille.create! valid_attributes
+        put 'update', {:id => famille.id, :famille => invalid_attributes}
+        expect(response).to render_template :edit
       end
     end
   end
