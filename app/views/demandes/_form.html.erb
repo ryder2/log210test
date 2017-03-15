@@ -88,118 +88,57 @@
 		<% @compteur = (@compteur.to_i + 1).to_s %>
 
 		<%= simple_form_for Parent.new, :namespace => @compteur do |g| %>
-
 		  <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
 
 		  <%= g.hidden_field :demande_id, :value => demande.id %>
-
-		  <div class="field">
-			<%= g.label :nom %>
-			<%= g.text_field :nom %>
-		  </div>
+		  
+		  <%= g.input :nom, :label => "Nom" %>
 
 		  <%= g.input :statut %>
-
-		  <div class="field">
-			<%= g.label :date_naissance, "Date de naissance" %>
-			<%= g.date_select :date_naissance %>
-		  </div>
 		  
-		    <div class="field">
-			<%= g.label :tarification %>
-			<%= g.number_field :tarification, step: :any %>
-		  </div>
+		  <%= g.input :date_naissance, :label => "Date de naissance" %>
 		  
-		  <div class="field">
-			<%= g.label :no_permis_conduire, "No permis de conduire" %>
-			<%= g.text_field :no_permis_conduire %>
-		  </div>
+		  <%= g.input :tarification, :label => "Tarification" %>
 		  
-		  <div class="field">
-			<%= g.label :no_RAMQ, "No RAMQ" %>
-			<%= g.text_field :no_RAMQ %>
-		  </div>
+		  <%= g.input :no_permis_conduire, :label => "No permis de conduire" %>
 		  
-		  <div class="field">
-			<%= g.label :avocat %>
-			<%= g.text_field :avocat %>
-		  </div>
+		  <%= g.input :no_RAMQ, :label => "No RAMQ" %>
 		  
-		  <div class="field">
-			<%= g.label :avocatTelephone, "No téléphone de l'avocat" %>
-			<%= g.text_field :avocatTelephone %>
-		  </div>
+		  <%= g.input :avocat, :label => "Avocat" %>
 		  
-    				<%= g.simple_fields_for :parentinfos, Parentinfo.new do |f| %>
-					  <div class="field">
-						<%= f.label :courriel %>
-						<%= f.text_field :courriel %>
-					  </div>
+		  <%= g.input :avocatTelephone, :label => "No téléphone de l'avocat" %>
+		  
+		  <%= g.simple_fields_for :parentinfos, Parentinfo.new do |f| %>
+			  <%= f.input :courriel, :label => "Courriel" %>
 
-					  <div class="field">
-						<%= f.label :telephone_res, "No téléphone résidentiel" %>
-						<%= f.text_field :telephone_res %>
-					  </div>
-					  
-					  <div class="field">
-						<%= f.label :telephone_travail, "No téléphone travail" %>
-						<%= f.text_field :telephone_travail %>
-					  </div>
-					  
-					  <div class="field">
-						<%= f.label :telephone_cell, "No téléphone cellulaire" %>
-						<%= f.text_field :telephone_cell %>
-					  </div>
+			  <%= f.input :telephone_res, :label => "No téléphone résidentiel" %>
+			  
+			  <%= f.input :telephone_travail, :label => "No téléphone travail" %>
+			  
+			  <%= f.input :telephone_cell, :label => "No téléphone cellulaire" %>
 
-					  <div class="field">
-						<%= f.label :nocivique, "No civique" %>
-						<%= f.text_field :nocivique %>
-					  </div>
+			  <%= f.input :nocivique, :label => "No civique" %>
 
-					  <div class="field">
-						<%= f.label :rue %>
-						<%= f.text_field :rue %>
-					  </div>
+			  <%= f.input :rue, :label => "Rue" %>
 
-					  <div class="field">
-						<%= f.label :appartement %>
-						<%= f.text_field :appartement %>
-					  </div>
+			  <%= f.input :appartement, :label => "Appartement" %>
 
-					  <div class="field">
-						<%= f.label :ville %>
-						<%= f.text_field :ville %>
-					  </div>
+			  <%= f.input :ville, :label => "Ville" %>
 
-					  <div class="field">
-						<%= f.label :code_postal, "Code postal" %>
-						<%= f.text_field :code_postal %>
-					  </div>
+			  <%= f.input :code_postal, :label => "Code postal" %>
 
-					  <div class="field">
-					  	<input type="button" name="show" value="Rechercher l'adresse" id=<%= @compteur %> />
-					  </div>
+			  <div class="field">
+				<input type="button" name="show" value="Rechercher l'adresse" id=<%= @compteur %> />
+			  </div>
 
-					  <div class="field">
-						<%= f.label :province %>
-						<%= f.text_field :province %>
-					  </div>
+			  <%= f.input :province, :label => "Province" %>
 
-					  <div class="field">
-						<%= f.label :nom_urgence, "Nom de la personne en cas d'urgence" %>
-						<%= f.text_field :nom_urgence %>
-					  </div>
+			  <%= f.input :nom_urgence, :label => "Nom de la personne en cas d'urgence" %>
 
-					  <div class="field">
-						<%= f.label :numero_urgence, "No téléphone de la personne en cas d'urgence" %>
-						<%= f.text_field :numero_urgence %>
-					  </div>
+			  <%= f.input :numero_urgence, :label => "No téléphone de la personne en cas d'urgence" %>
 
-					  <div class="field">
-						<%= f.label :note %>
-						<%= f.text_field :note %>
-					  </div>
-		  			<% end %>
+			  <%= f.input :note, :label => "Note" %>
+		  <% end %>
 
 		  <div class="actions">
 			<%= g.submit "Créer" %>
@@ -212,116 +151,56 @@
 			<% @compteur = (@compteur.to_i + 1).to_s %>
 			<%= simple_form_for parent, :namespace => @compteur do |g| %>
 			  <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
-			  <%= g.hidden_field :demande_id, :value => @demande.id %>
-			  <div class="field">
-				<%= g.label :nom %>
-				<%= g.text_field :nom %>
-			  </div>
 
+			  <%= g.hidden_field :demande_id, :value => demande.id %>
+			  
+			  <%= g.input :nom, :label => "Nom" %>
 
 			  <%= g.input :statut %>
-
-			  <div class="field">
-				<%= g.label :date_naissance, "Date de naissance" %>
-				<%= g.date_select :date_naissance %>
-			  </div>
 			  
-			  		    <div class="field">
-			<%= g.label :tarification %>
-			<%= g.number_field :tarification, step: :any %>
-		  </div>
-		  
-		  <div class="field">
-			<%= g.label :no_permis_conduire, "No permis de conduire" %>
-			<%= g.text_field :no_permis_conduire %>
-		  </div>
-		  
-		  <div class="field">
-			<%= g.label :no_RAMQ, "No RAMQ" %>
-			<%= g.text_field :no_RAMQ %>
-		  </div>
-		  
-		  <div class="field">
-			<%= g.label :avocat %>
-			<%= g.text_field :avocat %>
-		  </div>
-		  
-		  <div class="field">
-			<%= g.label :avocatTelephone, "No téléphone de l'avocat" %>
-			<%= g.text_field :avocatTelephone %>
-		  </div>
+			  <%= g.input :date_naissance, :label => "Date de naissance" %>
+			  
+			  <%= g.input :tarification, :label => "Tarification" %>
+			  
+			  <%= g.input :no_permis_conduire, :label => "No permis de conduire" %>
+			  
+			  <%= g.input :no_RAMQ, :label => "No RAMQ" %>
+			  
+			  <%= g.input :avocat, :label => "Avocat" %>
+			  
+			  <%= g.input :avocatTelephone, :label => "No téléphone de l'avocat" %>
 
-			     <%= g.simple_fields_for :parentinfos, parent.parentinfos.where("created_at = (SELECT MAX(created_at) FROM parentinfos WHERE parent_id = ?)", parent.id) do |f| %>
-					  <div class="field">
-						<%= f.label :courriel %>
-						<%= f.text_field :courriel %>
-					  </div>
+			  <%= g.simple_fields_for :parentinfos, parent.parentinfos.where("created_at = (SELECT MAX(created_at) FROM parentinfos WHERE parent_id = ?)", parent.id) do |f| %>
+				  <%= f.input :courriel, :label => "Courriel" %>
 
-					  <div class="field">
-						<%= f.label :telephone_res, "No téléphone résidentiel" %>
-						<%= f.text_field :telephone_res %>
-					  </div>
-					  
-					  <div class="field">
-						<%= f.label :telephone_travail, "No téléphone travail" %>
-						<%= f.text_field :telephone_travail %>
-					  </div>
-					  
-					  <div class="field">
-						<%= f.label :telephone_cell, "No téléphone cellulaire" %>
-						<%= f.text_field :telephone_cell %>
-					  </div>
+				  <%= f.input :telephone_res, :label => "No téléphone résidentiel" %>
+				  
+				  <%= f.input :telephone_travail, :label => "No téléphone travail" %>
+				  
+				  <%= f.input :telephone_cell, :label => "No téléphone cellulaire" %>
 
-					  <div class="field">
-						<%= f.label :nocivique, "No civique" %>
-						<%= f.text_field :nocivique %>
-					  </div>
+				  <%= f.input :nocivique, :label => "No civique" %>
 
-					  <div class="field">
-						<%= f.label :rue %>
-						<%= f.text_field :rue %>
-					  </div>
+				  <%= f.input :rue, :label => "Rue" %>
 
-					  <div class="field">
-						<%= f.label :appartement %>
-						<%= f.text_field :appartement %>
-					  </div>
+				  <%= f.input :appartement, :label => "Appartement" %>
 
-					  <div class="field">
-						<%= f.label :ville %>
-						<%= f.text_field :ville %>
-					  </div>
- 
-					  <div class="field">
-						<%= f.label :code_postal, "Code postal" %>
-						<%= f.text_field :code_postal %>
-					  </div>
+				  <%= f.input :ville, :label => "Ville" %>
 
-					   <div class="field">
-					  	<input type="button" name="show" value="Rechercher l'adresse" id=<%= @compteur %>  />
-					  </div>
+				  <%= f.input :code_postal, :label => "Code postal" %>
 
-					  <div class="field">
-						<%= f.label :province %>
-						<%= f.text_field :province %>
-					  </div>
+				  <div class="field">
+					<input type="button" name="show" value="Rechercher l'adresse" id=<%= @compteur %> />
+				  </div>
 
-					  <div class="field">
-						<%= f.label :nom_urgence, "Nom de la personne en cas d'urgence" %>
-						<%= f.text_field :nom_urgence %>
-					  </div>
+				  <%= f.input :province, :label => "Province" %>
 
-					  <div class="field">
-						<%= f.label :numero_urgence, "No téléphone de la personne en cas d'urgence" %>
-						<%= f.text_field :numero_urgence %>
-					  </div>
+				  <%= f.input :nom_urgence, :label => "Nom de la personne en cas d'urgence" %>
 
-					  <div class="field">
-						<%= f.label :note %>
-						<%= f.text_field :note %>
-					  </div>
-		  			<% end %>
+				  <%= f.input :numero_urgence, :label => "No téléphone de la personne en cas d'urgence" %>
 
+				  <%= f.input :note, :label => "Note" %>
+			  <% end %>
 
 			  <div class="actions">
 				<%= g.submit "Créer" %>

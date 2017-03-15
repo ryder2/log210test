@@ -16,7 +16,8 @@ RSpec.describe "demandes/edit", type: :view do
       :motif_id => 1,
       :transport => "Marche",
       :refere_par => "Bob",
-      :user_id => 1
+      :user_id => 1,
+	  :service => "EG"
     ))
   end
 

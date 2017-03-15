@@ -27,10 +27,7 @@ RSpec.describe ParentinfosController, type: :controller do
   before { controller.stub(:authenticate_user!).and_return true }
 
   let(:valid_attributes) {
-    { 
-      "courriel"       => "courriel",
-      "parent_id"      => nil,
-    }
+    {courriel: "courriel", parent_id: 2}
   }
 
   # This should return the minimal set of values that should be in the session

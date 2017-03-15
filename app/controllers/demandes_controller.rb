@@ -75,6 +75,8 @@ def ouverture
       if @demande.save
         format.html { redirect_to @demande, notice: 'Demande was successfully updated.' }
         format.json { render json: @demande, status: :created, location: @demande , :layout => false}
+	  else
+	    format.html { render :new }
       end
     end
   end
@@ -86,6 +88,8 @@ def ouverture
       if @demande.update(demande_params)
         format.html { redirect_to @demande, notice: 'Demande was successfully updated.' }
         format.json { render :show, status: :ok, location: @demande }
+	  else
+	    format.html { render :edit }
       end
     end
   end

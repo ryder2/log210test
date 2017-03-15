@@ -34,12 +34,19 @@ RSpec.describe DemandesController, type: :controller do
       payee_par: "Bob", refere_par: "BB", 
       transport: "Autobus", motif_id: 2, user_id: 1}
   }
+  
+  let(:invalid_attributes) {
+    {demande_id: "texte", service: "", famille_id: "", 
+      frequence: "", statut:"Non complété", demandeur: "", 
+      created_at: "2001-01-01", updated_at: "2001-01-01", 
+      payee_par: "", refere_par: "BB", 
+      transport: "Autobus", motif_id: nil, user_id: 1}
+  }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # DemandesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
-
 
   describe "GET #index" do
     it "assigns all demandes as @demandes" do
@@ -50,7 +57,7 @@ RSpec.describe DemandesController, type: :controller do
        no_RAMQ: "89595", avocat: "avocat", avocatTelephone: "444000444", tarification: "10", parentinfos_attributes: [courriel: 'sdfsdf',
        telephone_res: '234234', nocivique: '43534', rue: 'dsfdsf', appartement: '54', ville: 'sdfsdf',
        code_postal: '34534', province: 'sdfsdf', nom_urgence: 'fsdfs', numero_urgence: '525', note: 'dsfsdf',
-       parent_id: 2, telephone_travail: '4535', telephone_cell: '23434']
+       parent_id: 32, telephone_travail: '4535', telephone_cell: '23434']
         }
       parent1 = Parent.create! parent_valid_attributes
       parent2 = Parent.create! parent_valid_attributes
@@ -136,6 +143,18 @@ RSpec.describe DemandesController, type: :controller do
         expect(response).to redirect_to(Demande.last)
       end
     end
+	context "with invalid attributes" do
+	  it "does not save the new contact" do
+        expect{
+          post 'create', :demande => invalid_attributes
+        }.to_not change(Demande,:count)
+      end
+
+      it "re-renders the new method" do
+        post 'create', :demande => invalid_attributes
+        response.should render_template :new
+      end
+	end
   end
 
   describe "PUT #update" do
@@ -166,6 +185,13 @@ RSpec.describe DemandesController, type: :controller do
         expect(response).to redirect_to(demande)
       end
     end
+	context "with invalid attributes" do
+      it "re-renders the update method" do
+        demande = Demande.create! valid_attributes
+        put 'update', {:id => demande.id, :demande => invalid_attributes}
+        response.should render_template :edit
+      end
+    end 
   end
 
   describe "DELETE #destroy" do

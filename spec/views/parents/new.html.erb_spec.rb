@@ -3,8 +3,10 @@ require 'rails_helper'
 RSpec.describe "parents/new", type: :view do
   before(:each) do
     assign(:parent, Parent.new(
-      :statut => 1,
-      :nom => "MyString"
+		:statut => 1,
+		:nom => "MyString",
+		:date_naissance => "2000-01-01",
+		:demande_id => 1
     ))
   end
 

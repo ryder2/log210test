@@ -32,6 +32,8 @@ class ParentsController < ApplicationController
       if @parent.save
         format.html { redirect_to @parent, notice: 'Parent was successfully created.' }
         format.json { render @parent, status: :created, location: @parent }
+	  else
+	    format.html { render :new }
       end
     end
   end
@@ -43,6 +45,8 @@ class ParentsController < ApplicationController
       if @parent.update(parent_params)
         format.html { redirect_to @parent, notice: 'Parent was successfully updated.' }
         format.json { render :show, status: :ok, location: @parent }
+	  else
+	    format.html { render :edit }
       end
     end
   end
