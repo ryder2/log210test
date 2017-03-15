@@ -9,6 +9,7 @@ RSpec.describe "demande_egs/show", type: :view do
       :conditions => "Conditions",
       :echange_garde => false,
       :reactions_eg => "Reactions Eg",
+      :date_separation => "2012-01-01",
       :description_enfant => "Description Enfant",
       :contact_pg => false,
       :forme_contact_pg => "Forme Contact Pg",

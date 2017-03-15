@@ -31,6 +31,8 @@ class MotifsController < ApplicationController
       if @motif.save
         format.html { redirect_to @motif, notice: 'Motif was successfully created.' }
         format.json { render :show, status: :created, location: @motif }
+      else
+        format.html { render :"new" }
       end
     end
   end

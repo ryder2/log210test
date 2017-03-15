@@ -15,8 +15,6 @@ RSpec.describe "enfants/new", type: :view do
 
     assert_select "form[action=?][method=?]", enfants_path, "post" do
 
-      assert_select "input#enfant_date_naissance[name=?]", "enfant[date_naissance]"
-
       assert_select "input#enfant_residence[name=?]", "enfant[residence]"
 
       assert_select "input#enfant_nom[name=?]", "enfant[nom]"

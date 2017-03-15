@@ -34,6 +34,8 @@ class DemandeEgsController < ApplicationController
       if @demande_eg.save
         format.html { redirect_to @demande_eg, notice: 'Demande eg was successfully created.' }
         format.json { render :show, status: :created, location: @demande_eg }
+      else
+        format.html { render :"new" }
       end
     end
   end
@@ -45,6 +47,8 @@ class DemandeEgsController < ApplicationController
       if @demande_eg.update(demande_eg_params)
         format.html { redirect_to @demande_eg, notice: 'Demande eg was successfully updated.' }
         format.json { render :show, status: :ok, location: @demande_eg }
+      else
+        format.html { render :"edit" }
       end
     end
   end

@@ -34,6 +34,9 @@ class EnfantsController < ApplicationController
       if @enfant.save
         format.html { redirect_to @enfant, notice: 'Enfant was successfully created.' }
         format.json { render :show, status: :created, location: @enfant }
+      else
+        @enfant.demande_id = params[:enfant][:demande_id]
+        format.html {render :action => "new"}
       end
     end
   end
@@ -45,6 +48,8 @@ class EnfantsController < ApplicationController
       if @enfant.update(enfant_params)
         format.html { redirect_to @enfant, notice: 'Enfant was successfully updated.' }
         format.json { render :show, status: :ok, location: @enfant }
+      else
+        format.html { render :"edit" }
       end
     end
   end

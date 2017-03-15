@@ -26,7 +26,7 @@ RSpec.describe EnfantsController, type: :controller do
   before { controller.stub(:authenticate_user!).and_return true }
 
   let(:valid_attributes) {
-    {nom: "nom"}
+    {nom: "nom", residence:"kasjd", date_naissance: "2001-01-01"}
   }
 
   # This should return the minimal set of values that should be in the session
