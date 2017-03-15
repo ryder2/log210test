@@ -104,10 +104,6 @@ RSpec.describe NotesController, type: :controller do
         {texte: "texte2", dateCreation: "2012-01-01", famille_id: 2, users_id: 2}
       }
 
-      let(:invalid_new_attributes) {
-        {texte: nil, dateCreation: "2012-01-01", famille_id: nil, users_id: nil}
-      }
-
       it "updates the requested note" do
         note = Note.create! valid_attributes
         put 'update', {:id => note.id, :note => new_attributes}
@@ -128,12 +124,9 @@ RSpec.describe NotesController, type: :controller do
       end
     end
     context "with invalid params" do
-      let(:invalid_new_attributes) {
-        {texte: nil, dateCreation: "2012-01-01", famille_id: nil, users_id: nil}
-      }
         it "re-renders edit" do
           note = Note.create! valid_attributes
-          put 'update', {:id => note.id, :note => invalid_new_attributes}
+          put 'update', {:id => note.id, :note => invalid_attributes}
           expect(response).to render_template :edit
         end
     end
