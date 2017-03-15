@@ -27,39 +27,39 @@ RSpec.describe ParentsController, type: :controller do
   
   let(:valid_attributes) {
     {id: 23, statut: "gardien", date_naissance: "2010-01-01", nom: "nom", demande_id: 1, no_permis_conduire: "100ABC",
-	 no_RAMQ: "89595", avocat: "avocat", avocatTelephone: "444000444", tarification: "10", parentinfos_attributes: [courriel: 'sdfsdf',
+	 no_RAMQ: "89595", avocat: "avocat", avocatTelephone: "444000444", tarification: "10", parentinfos_attributes: { "0" => {courriel: 'sdfsdf',
 	 telephone_res: '234234', nocivique: '43534', rue: 'dsfdsf', appartement: '54', ville: 'sdfsdf',
 	 code_postal: '34534', province: 'sdfsdf', nom_urgence: 'fsdfs', numero_urgence: '525', note: 'dsfsdf',
-	 parent_id: 23, telephone_travail: '4535', telephone_cell: '23434']}
+	 parent_id: 23, telephone_travail: '4535', telephone_cell: '23434'}}}
   }
   let(:valid_attributes0) {
     {id: 23, statut: "visiteur", date_naissance: "2010-01-01", nom: "nom", demande_id: 1, no_permis_conduire: "100ABC",
-   no_RAMQ: "89595", avocat: "avocat", avocatTelephone: "444000444", tarification: "10", parentinfos_attributes: [courriel: 'sdfsdf',
+   no_RAMQ: "89595", avocat: "avocat", avocatTelephone: "444000444", tarification: "10", parentinfos_attributes: { "0" => {courriel: 'sdfsdf',
    telephone_res: '234234', nocivique: '43534', rue: 'dsfdsf', appartement: '54', ville: 'sdfsdf',
    code_postal: '34534', province: 'sdfsdf', nom_urgence: 'fsdfs', numero_urgence: '525', note: 'dsfsdf',
-   parent_id: 23, telephone_travail: '4535', telephone_cell: '23434']}
+   parent_id: 23, telephone_travail: '4535', telephone_cell: '23434'}}}
   }
   let(:valid_attributes1) {
     {id: 23, statut: "tuteur", date_naissance: "2010-01-01", nom: "nom", demande_id: 1, no_permis_conduire: "100ABC",
-   no_RAMQ: "89595", avocat: "avocat", avocatTelephone: "444000444", tarification: "10", parentinfos_attributes: [courriel: 'sdfsdf',
+   no_RAMQ: "89595", avocat: "avocat", avocatTelephone: "444000444", tarification: "10", parentinfos_attributes: { "0" => {courriel: 'sdfsdf',
    telephone_res: '234234', nocivique: '43534', rue: 'dsfdsf', appartement: '54', ville: 'sdfsdf',
    code_postal: '34534', province: 'sdfsdf', nom_urgence: 'fsdfs', numero_urgence: '525', note: 'dsfsdf',
-   parent_id: 23, telephone_travail: '4535', telephone_cell: '23434']}
+   parent_id: 23, telephone_travail: '4535', telephone_cell: '23434'}}}
   }
   let(:valid_attributes2) {
     {id: 23, statut: "acceuil", date_naissance: "2010-01-01", nom: "nom", demande_id: 1, no_permis_conduire: "100ABC",
-   no_RAMQ: "89595", avocat: "avocat", avocatTelephone: "444000444", tarification: "10", parentinfos_attributes: [courriel: 'sdfsdf',
+   no_RAMQ: "89595", avocat: "avocat", avocatTelephone: "444000444", tarification: "10", parentinfos_attributes: { "0" => {courriel: 'sdfsdf',
    telephone_res: '234234', nocivique: '43534', rue: 'dsfdsf', appartement: '54', ville: 'sdfsdf',
    code_postal: '34534', province: 'sdfsdf', nom_urgence: 'fsdfs', numero_urgence: '525', note: 'dsfsdf',
-   parent_id: 23, telephone_travail: '4535', telephone_cell: '23434']}
+   parent_id: 23, telephone_travail: '4535', telephone_cell: '23434'}}}
   }
   
   let(:invalid_attributes) {
     {id: 23, statut: "", date_naissance: "", nom: "", demande_id: nil, no_permis_conduire: "100ABC",
-	 no_RAMQ: "89595", avocat: "avocat", avocatTelephone: "444000444", tarification: "10", parentinfos_attributes: [courriel: 'sdfsdf',
+	 no_RAMQ: "89595", avocat: "avocat", avocatTelephone: "444000444", tarification: "10", parentinfos_attributes: { "0" => {courriel: 'sdfsdf',
 	 telephone_res: '234234', nocivique: '43534', rue: 'dsfdsf', appartement: '54', ville: 'sdfsdf',
 	 code_postal: '34534', province: 'sdfsdf', nom_urgence: 'fsdfs', numero_urgence: '525', note: 'dsfsdf',
-	 parent_id: 23, telephone_travail: '4535', telephone_cell: '23434']}
+	 parent_id: 23, telephone_travail: '4535', telephone_cell: '23434'}}}
   }
 
   # This should return the minimal set of values that should be in the session
@@ -147,10 +147,10 @@ RSpec.describe ParentsController, type: :controller do
     context "with valid params" do
       let(:new_attributes) {
         {id: 23, statut: "gardien", date_naissance: "2010-01-01", nom: "nom1", demande_id: 1, no_permis_conduire: "100ABC",
-   no_RAMQ: "89595", avocat: "avocat", avocatTelephone: "444000444", tarification: "10", parentinfos_attributes: [courriel: 'sdfsdf',
+   no_RAMQ: "89595", avocat: "avocat", avocatTelephone: "444000444", tarification: "10", parentinfos_attributes: { "0" => {courriel: 'sdfsdf',
    telephone_res: '234234', nocivique: '43534', rue: 'dsfdsf', appartement: '54', ville: 'sdfsdf',
    code_postal: '34534', province: 'sdfsdf', nom_urgence: 'fsdfs', numero_urgence: '525', note: 'dsfsdf',
-   parent_id: 23, telephone_travail: '4535', telephone_cell: '23434']}
+   parent_id: 23, telephone_travail: '4535', telephone_cell: '23434'}}}
       }
 
       it "updates the requested parent" do

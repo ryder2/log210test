@@ -28,7 +28,9 @@ RSpec.describe EnfantsController, type: :controller do
   let(:valid_attributes) {
     {nom: "nom", residence:"kasjd", date_naissance: "2001-01-01"}
   }
-
+  let(:invalid_attributes) {
+    {nom: "", residence:"kasjd", date_naissance: "2001-01-01"}
+  }
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # EnfantsController. Be sure to keep this updated too.
@@ -90,6 +92,12 @@ RSpec.describe EnfantsController, type: :controller do
         expect(response).to redirect_to(Enfant.last)
       end
     end
+    context "with invalid params" do
+      it "re-renders new" do
+        post 'create', :enfant => invalid_attributes
+        expect(response).to render_template :new
+      end
+    end
   end
 
   describe "PUT #update" do
@@ -115,6 +123,13 @@ RSpec.describe EnfantsController, type: :controller do
         enfant = Enfant.create! valid_attributes
         put :update, {id: enfant.to_param, enfant: valid_attributes}, session: valid_session
         expect(response).to redirect_to(enfant)
+      end
+    end
+    context "with invalid params" do
+      it "re-renders edit" do
+        enfant = Enfant.create! valid_attributes
+        put 'update', {:id => enfant.id, :enfant => invalid_attributes}
+        expect(response).to render_template :edit
       end
     end
   end
