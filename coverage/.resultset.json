@@ -3199,6 +3199,8 @@
         6,
         3,
         null,
+        0,
+        null,
         null,
         null,
         null,
@@ -3209,6 +3211,8 @@
         3,
         6,
         3,
+        null,
+        0,
         null,
         null,
         null,
@@ -5299,9 +5303,21 @@
       "C:/Sites/log210test/app/models/vs_demande.rb": [
         1,
         1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
         null
       ]
     },
-    "timestamp": 1489552677
+    "timestamp": 1489597983
   }
 }

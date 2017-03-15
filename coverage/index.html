@@ -14,27 +14,27 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2017-03-15T00:37:58-04:00">2017-03-15T00:37:58-04:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2017-03-15T13:13:04-04:00">2017-03-15T13:13:04-04:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">99.3%</span></span>
+    (<span class="covered_percent"><span class="green">99.21%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.48
+         1.47
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>130</b> files in total.
-    <b>2013</b> relevant lines. 
-    <span class="green"><b>1999</b> lines covered</span> and
-    <span class="red"><b>14</b> lines missed </span>
+    <b>2025</b> relevant lines. 
+    <span class="green"><b>2009</b> lines covered</span> and
+    <span class="red"><b>16</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -152,12 +152,12 @@
       
       <tr>
         <td class="strong"><a href="#9f1e25c076fe872cc6268ab53fc707cbd6c5cc57" class="src_link" title="app/controllers/vs_demandes_controller.rb">app/controllers/vs_demandes_controller.rb</a></td>
-        <td class="green strong">100.0 %</td>
-        <td>72</td>
+        <td class="green strong">94.12 %</td>
+        <td>76</td>
+        <td>34</td>
         <td>32</td>
-        <td>32</td>
-        <td>0</td>
-        <td>2.3</td>
+        <td>2</td>
+        <td>2.2</td>
       </tr>
       
       <tr>
@@ -373,9 +373,9 @@
       <tr>
         <td class="strong"><a href="#eeed7d2d6523fe289d96a3705043ba898756c1e7" class="src_link" title="app/models/vs_demande.rb">app/models/vs_demande.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>3</td>
-        <td>2</td>
-        <td>2</td>
+        <td>15</td>
+        <td>12</td>
+        <td>12</td>
         <td>0</td>
         <td>1.0</td>
       </tr>
@@ -6415,11 +6415,11 @@
         <div class="source_table" id="9f1e25c076fe872cc6268ab53fc707cbd6c5cc57">
   <div class="header">
     <h3>app/controllers/vs_demandes_controller.rb</h3>
-    <h4><span class="green">100.0 %</span> covered</h4>
+    <h4><span class="green">94.12 %</span> covered</h4>
     <div>
-      <b>32</b> relevant lines. 
+      <b>34</b> relevant lines. 
       <span class="green"><b>32</b> lines covered</span> and
-      <span class="red"><b>0</b> lines missed.</span>
+      <span class="red"><b>2</b> lines missed.</span>
     </div>
   </div>
   
@@ -6645,214 +6645,238 @@
         <li class="never" data-hits="" data-linenumber="37">
           
           
-          <code class="ruby">      end</code>
+          <code class="ruby">        else</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="38">
+        <li class="missed" data-hits="0" data-linenumber="38">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">        format.html { render :&quot;new&quot; }</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="39">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="40">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="41">
           
           
-          <code class="ruby">  # PATCH/PUT /vs_demandes/1</code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="42">
           
           
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="43">
+          
+          
+          <code class="ruby">  # PATCH/PUT /vs_demandes/1</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="44">
+          
+          
           <code class="ruby">  # PATCH/PUT /vs_demandes/1.json</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="43">
+        <li class="covered" data-hits="1" data-linenumber="45">
           <span class="hits">1</span>
           
           <code class="ruby">  def update</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="44">
+        <li class="covered" data-hits="3" data-linenumber="46">
           <span class="hits">3</span>
           
           <code class="ruby">    respond_to do |format|</code>
-        </li>
-      
-        <li class="covered" data-hits="3" data-linenumber="45">
-          <span class="hits">3</span>
-          
-          <code class="ruby">      if @vs_demande.update(vs_demande_params)</code>
-        </li>
-      
-        <li class="covered" data-hits="6" data-linenumber="46">
-          <span class="hits">6</span>
-          
-          <code class="ruby">        format.html { redirect_to @vs_demande, notice: &#39;Vs demande was successfully updated.&#39; }</code>
         </li>
       
         <li class="covered" data-hits="3" data-linenumber="47">
           <span class="hits">3</span>
           
+          <code class="ruby">      if @vs_demande.update(vs_demande_params)</code>
+        </li>
+      
+        <li class="covered" data-hits="6" data-linenumber="48">
+          <span class="hits">6</span>
+          
+          <code class="ruby">        format.html { redirect_to @vs_demande, notice: &#39;Vs demande was successfully updated.&#39; }</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="49">
+          <span class="hits">3</span>
+          
           <code class="ruby">        format.json { render :show, status: :ok, location: @vs_demande }</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="48">
-          
-          
-          <code class="ruby">      end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="49">
-          
-          
-          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="50">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">      else</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="51">
+        <li class="missed" data-hits="0" data-linenumber="51">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">        format.html { render :&quot;edit&quot; }</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="52">
           
           
-          <code class="ruby">  # DELETE /vs_demandes/1</code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="53">
           
           
-          <code class="ruby">  # DELETE /vs_demandes/1.json</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="54">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def destroy</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="55">
-          <span class="hits">2</span>
-          
-          <code class="ruby">    @vs_demande.destroy</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="56">
-          <span class="hits">2</span>
-          
-          <code class="ruby">    respond_to do |format|</code>
-        </li>
-      
-        <li class="covered" data-hits="4" data-linenumber="57">
-          <span class="hits">4</span>
-          
-          <code class="ruby">      format.html { redirect_to vs_demandes_url, notice: &#39;Vs demande was successfully destroyed.&#39; }</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="58">
-          <span class="hits">2</span>
-          
-          <code class="ruby">      format.json { head :no_content }</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="59">
-          
-          
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="60">
+        <li class="never" data-hits="" data-linenumber="54">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="61">
+        <li class="never" data-hits="" data-linenumber="55">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="62">
+        <li class="never" data-hits="" data-linenumber="56">
+          
+          
+          <code class="ruby">  # DELETE /vs_demandes/1</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="57">
+          
+          
+          <code class="ruby">  # DELETE /vs_demandes/1.json</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="58">
           <span class="hits">1</span>
           
-          <code class="ruby">  private</code>
+          <code class="ruby">  def destroy</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="59">
+          <span class="hits">2</span>
+          
+          <code class="ruby">    @vs_demande.destroy</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="60">
+          <span class="hits">2</span>
+          
+          <code class="ruby">    respond_to do |format|</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="61">
+          <span class="hits">4</span>
+          
+          <code class="ruby">      format.html { redirect_to vs_demandes_url, notice: &#39;Vs demande was successfully destroyed.&#39; }</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="62">
+          <span class="hits">2</span>
+          
+          <code class="ruby">      format.json { head :no_content }</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="63">
           
           
-          <code class="ruby">    # Use callbacks to share common setup or constraints between actions.</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="64">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    def set_vs_demande</code>
-        </li>
-      
-        <li class="covered" data-hits="7" data-linenumber="65">
-          <span class="hits">7</span>
-          
-          <code class="ruby">      @vs_demande = VsDemande.find(params[:id])</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="66">
-          
-          
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="67">
+        <li class="never" data-hits="" data-linenumber="64">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="65">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="68">
-          
-          
-          <code class="ruby">    # Never trust parameters from the scary internet, only allow the white list through.</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="69">
+        <li class="covered" data-hits="1" data-linenumber="66">
           <span class="hits">1</span>
           
-          <code class="ruby">    def vs_demande_params</code>
+          <code class="ruby">  private</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="70">
-          <span class="hits">6</span>
+        <li class="never" data-hits="" data-linenumber="67">
           
-          <code class="ruby">      params.require(:vs_demande).permit(:motif_pv, :motivations_pv, :interdit_contact_pv, :date_separation_pv, :contact_enfant_pv, :contact_telephone_enfant_pv, :attitude_parent_pv, :demande_id, :motif_pg, :date_separation_pg, :date_dernier_contact_pg, :dernier_contact_deroulement_pg, :contact_telephone_enfant_pg, :autorisation_accompagnement_pg, :personnes_autorisees_pg, :attitude_parent_pg, :jeux_favoris_pg, :gout_alimentaire_pg, :enfant_sait_visite_pg, :reaction_visite_pg, :attitude_enfant_pg, :autre_pg)</code>
+          
+          <code class="ruby">    # Use callbacks to share common setup or constraints between actions.</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="71">
+        <li class="covered" data-hits="1" data-linenumber="68">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    def set_vs_demande</code>
+        </li>
+      
+        <li class="covered" data-hits="7" data-linenumber="69">
+          <span class="hits">7</span>
+          
+          <code class="ruby">      @vs_demande = VsDemande.find(params[:id])</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="70">
           
           
           <code class="ruby">    end</code>
         </li>
       
+        <li class="never" data-hits="" data-linenumber="71">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
         <li class="never" data-hits="" data-linenumber="72">
+          
+          
+          <code class="ruby">    # Never trust parameters from the scary internet, only allow the white list through.</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="73">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    def vs_demande_params</code>
+        </li>
+      
+        <li class="covered" data-hits="6" data-linenumber="74">
+          <span class="hits">6</span>
+          
+          <code class="ruby">      params.require(:vs_demande).permit(:motif_pv, :motivations_pv, :interdit_contact_pv, :date_separation_pv, :contact_enfant_pv, :contact_telephone_enfant_pv, :attitude_parent_pv, :demande_id, :motif_pg, :date_separation_pg, :date_dernier_contact_pg, :dernier_contact_deroulement_pg, :contact_telephone_enfant_pg, :autorisation_accompagnement_pg, :personnes_autorisees_pg, :attitude_parent_pg, :jeux_favoris_pg, :gout_alimentaire_pg, :enfant_sait_visite_pg, :reaction_visite_pg, :attitude_enfant_pg, :autre_pg)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="75">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="76">
           
           
           <code class="ruby">end</code>
@@ -7737,8 +7761,8 @@
     <h3>app/models/vs_demande.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>2</b> relevant lines. 
-      <span class="green"><b>2</b> lines covered</span> and
+      <b>12</b> relevant lines. 
+      <span class="green"><b>12</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -7759,6 +7783,78 @@
         </li>
       
         <li class="never" data-hits="" data-linenumber="3">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">	validates :motif_pv, :presence =&gt; {:message =&gt; &quot;*Veuillez spécifier un motif&quot;}</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="5">
+          <span class="hits">1</span>
+          
+          <code class="ruby">	validates :motivations_pv, :presence =&gt; {:message =&gt; &quot;*Veuillez spécifier une motivation.&quot;}</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="6">
+          <span class="hits">1</span>
+          
+          <code class="ruby">	validates :attitude_parent_pv, :presence =&gt; {:message =&gt; &quot;*Veuillez spécifier une attitude.&quot;}</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="7">
+          <span class="hits">1</span>
+          
+          <code class="ruby">	validates :motif_pg, :presence =&gt; {:message =&gt; &quot;*Veuillez spécifier le motif.&quot;}</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="8">
+          <span class="hits">1</span>
+          
+          <code class="ruby">	validates :personnes_autorisees_pg, :presence =&gt; {:message =&gt; &quot;*Veuillez spécifier les personnes autorisées&quot;}</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
+          
+          <code class="ruby">	validates :attitude_parent_pg, :presence =&gt; {:message =&gt; &quot;*Veuillez spécifier une attitude&quot;}</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="10">
+          <span class="hits">1</span>
+          
+          <code class="ruby">	validates :jeux_favoris_pg, :presence =&gt; {:message =&gt; &quot;*Veuillez spécifier les jeux favoris.&quot;}</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="11">
+          <span class="hits">1</span>
+          
+          <code class="ruby">	validates :gout_alimentaire_pg, :presence =&gt; {:message =&gt; &quot;*Veuillez spécifier les gouts alimentaires.&quot;}</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="12">
+          <span class="hits">1</span>
+          
+          <code class="ruby">	validates :reaction_visite_pg, :presence =&gt; {:message =&gt; &quot;*Veuillez spécifier la réaction.&quot;}</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="13">
+          <span class="hits">1</span>
+          
+          <code class="ruby">	validates :attitude_enfant_pg, :presence =&gt; {:message =&gt; &quot;*Veuillez spécifier l&#39;attitude.&quot;}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="14">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
           
           
           <code class="ruby">end</code>
