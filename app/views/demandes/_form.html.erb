@@ -21,49 +21,22 @@
 	  <%= f.hidden_field :statut, :value => "Non complété" %>
 
 	  <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
-	  <div class="field">
-		<%= f.label :demande_id, "Identifiant" %>
-		<%= f.text_field :demande_id %>
-	  </div>
+
+	  <%= f.input :demande_id, :label => "Identifiant" %>
+
+	  <%= f.input :famille_id, :label => "Identifiant de la famille" %>
 	  
-	  <div class="field">
-		<%= f.label :famille_id, "Identifiant de la famille" %>
-		<%= f.text_field :famille_id %>
-	  </div>
-
-	  <div class="field">
-		<%= f.label :created_at, "Date de création" %>
-		<%= f.date_select :created_at %>
-	  </div>
-
-	  <div class="field">
-		<%= f.label :frequence, "Fréquence" %>
-		<%= f.text_field :frequence %>
-	  </div>
-
-	  <div class="field">
-		<%= f.input :service %>
-	  </div>
-
-	  <div class="field">
-		<%= f.label :demandeur %>
-		<%= f.text_field :demandeur %>
-	  </div>
-
-	  <div class="field">
-		<%= f.label :payee_par, "Payée par" %>
-		<%= f.text_field :payee_par %>
-	  </div>
+	  <%= f.input :frequence, :label => "Fréquence" %>
 	  
-	  <div class="field">
-		<%= f.label :transport %>
-		<%= f.text_field :transport %>
-	  </div>
+	  <%= f.input :service, :label => "Service" %>
 	  
-	  <div class="field">
-		<%= f.label :refere_par, "Référé par" %>
-		<%= f.text_field :refere_par %>
-	  </div>
+	  <%= f.input :demandeur, :label => "Demandeur" %>
+	  
+	  <%= f.input :payee_par, :label => "Payée par" %>
+	  
+	  <%= f.input :transport, :label => "Transport" %>
+	  
+	  <%= f.input :refere_par, :label => "Référé par" %>
 	  
 	  <div class="field">
 		<%= f.label :motif_id %>

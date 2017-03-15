@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Familles</h1>
-<form id="rechercheFamille" action="familles/recherche">
+<form id="rechercheFamille" action="recherche">
   <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
   <select id="typeDeRecherche">
     <option value="1">Numéro de dossier</option>
