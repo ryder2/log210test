@@ -1,4 +1,4 @@
-class NotesController < ApplicationController
+class NotesController < ApplicationController 
   before_filter :authenticate_user!
   before_action :set_note, only: [:show, :edit, :update, :destroy]
 
@@ -29,6 +29,8 @@ class NotesController < ApplicationController
     @note.dateCreation = Time.now
       if @note.save
         redirect_to famille_path(@note.famille_id)
+      else
+        render :new 
       end
   end
 
@@ -37,6 +39,8 @@ class NotesController < ApplicationController
   def update
       if @note.update(note_params)
         redirect_to famille_path(@note.famille_id)
+      else
+        render :edit
       end
   end
 

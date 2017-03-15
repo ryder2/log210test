@@ -29,6 +29,10 @@ RSpec.describe NotesController, type: :controller do
     {texte: "texte", dateCreation: "2011-01-01", famille_id: 1, users_id: 1}
   }
 
+  let(:invalid_attributes) {
+    {texte: "texte", dateCreation: nil, famille_id: nil, users_id: nil}
+  }
+
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -85,6 +89,13 @@ RSpec.describe NotesController, type: :controller do
         expect(response).to redirect_to(famille_path(1))
       end
     end
+
+    context "with invalid params " do
+      it "re-renders new" do
+        post 'create', :note => invalid_attributes
+        expect(response).to render_template :new
+      end
+    end
   end
 
   describe "PUT #update" do
@@ -93,11 +104,15 @@ RSpec.describe NotesController, type: :controller do
         {texte: "texte2", dateCreation: "2012-01-01", famille_id: 2, users_id: 2}
       }
 
+      let(:invalid_new_attributes) {
+        {texte: nil, dateCreation: "2012-01-01", famille_id: nil, users_id: nil}
+      }
+
       it "updates the requested note" do
         note = Note.create! valid_attributes
         put 'update', {:id => note.id, :note => new_attributes}
         note.reload
-		expect(note.texte).not_to eq("texte")
+		    expect(note.texte).not_to eq("texte")
       end
 
       it "assigns the requested note as @note" do
@@ -111,6 +126,16 @@ RSpec.describe NotesController, type: :controller do
         put 'update', {:id => note.id, :note => valid_attributes}
         expect(response).to redirect_to(famille_path(1))
       end
+    end
+    context "with invalid params" do
+      let(:invalid_new_attributes) {
+        {texte: nil, dateCreation: "2012-01-01", famille_id: nil, users_id: nil}
+      }
+        it "re-renders edit" do
+          note = Note.create! valid_attributes
+          put 'update', {:id => note.id, :note => invalid_new_attributes}
+          expect(response).to render_template :edit
+        end
     end
   end
 
