@@ -129,6 +129,18 @@ RSpec.describe ParentsController, type: :controller do
         expect(response).to redirect_to(Parent.last)
       end
     end
+	context "with invalid attributes" do
+	  it "does not save the new contact" do
+        expect{
+          post 'create', :parent => invalid_attributes
+        }.to_not change(Parent,:count)
+      end
+
+      it "re-renders the new method" do
+        post 'create', :parent => invalid_attributes
+        response.should render_template :new
+      end
+	end
   end
 
   describe "PUT #update" do
@@ -168,6 +180,13 @@ RSpec.describe ParentsController, type: :controller do
         expect(response).to redirect_to(parent)
       end
     end
+	context "with invalid attributes" do
+      it "re-renders the update method" do
+        parent = Parent.create! valid_attributes
+        put 'update', {:id => parent.id, :parent => invalid_attributes}
+        response.should render_template :edit
+      end
+    end 
   end
 
   describe "DELETE #destroy" do
