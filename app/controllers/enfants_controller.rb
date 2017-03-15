@@ -35,8 +35,7 @@ class EnfantsController < ApplicationController
         format.html { redirect_to @enfant, notice: 'Enfant was successfully created.' }
         format.json { render :show, status: :created, location: @enfant }
       else
-        @enfant.demande_id = params[:enfant][:demande_id]
-        format.html {render :action => "new"}
+        format.html { render :new }
       end
     end
   end
@@ -49,7 +48,7 @@ class EnfantsController < ApplicationController
         format.html { redirect_to @enfant, notice: 'Enfant was successfully updated.' }
         format.json { render :show, status: :ok, location: @enfant }
       else
-        format.html { render :"edit" }
+        format.html { render :edit }
       end
     end
   end

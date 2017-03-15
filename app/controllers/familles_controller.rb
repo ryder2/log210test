@@ -32,6 +32,8 @@ class FamillesController < ApplicationController
       if @famille.save
         format.html { redirect_to @famille, notice: 'Famille was successfully created.' }
         format.json { render :show, status: :created, location: @famille }
+	  else
+        format.html { render :new }
       end
     end
   end
@@ -43,6 +45,8 @@ class FamillesController < ApplicationController
       if @famille.update(famille_params)
         format.html { redirect_to @famille, notice: 'Famille was successfully updated.' }
         format.json { render :show, status: :ok, location: @famille }
+	  else
+        format.html { render :edit }
       end
     end
   end

@@ -4,10 +4,12 @@ RSpec.describe "familles/index", type: :view do
   before(:each) do
     assign(:familles, [
       Famille.create!(
-        :nom => "Nom"
+        :nom => "Nom",
+		:dossier_id => "MyId"
       ),
       Famille.create!(
-        :nom => "Nom"
+        :nom => "Nom",
+		:dossier_id => "MyId"
       )
     ])
   end

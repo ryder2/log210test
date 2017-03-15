@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe "familles/edit", type: :view do
   before(:each) do
     @famille = assign(:famille, Famille.create!(
-      :nom => "MyString"
+      :nom => "MyString",
+	  :dossier_id => "MyId"
     ))
   end
 
