@@ -34,6 +34,16 @@ RSpec.describe VsDemandesController, type: :controller do
       autre_pg: "2012-01-01"}
   }
 
+  let(:invalid_attributes) {
+    {motif_pv: "", motivations_pv: "nom2", interdit_contact_pv: true, date_separation_pv: "2001-01-01", 
+      contact_enfant_pv: true, contact_telephone_enfant_pv: true, attitude_parent_pv: "avocat2", 
+      demande_id: 1, motif_pg: "102", date_separation_pg: "2012-01-01", dernier_contact_deroulement_pg: "100ABC2", 
+      date_dernier_contact_pg: "2012-01-01", contact_telephone_enfant_pg: true, autorisation_accompagnement_pg: true, 
+      personnes_autorisees_pg: "true", attitude_parent_pg: "true", jeux_favoris_pg: "avocat2", 
+      gout_alimentaire_pg: "1", enfant_sait_visite_pg: true, reaction_visite_pg: "2012-01-01", attitude_enfant_pg: "100ABC2", 
+      autre_pg: "2012-01-01"}
+  }
+
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # VsDemandesController. Be sure to keep this updated too.
@@ -93,6 +103,18 @@ RSpec.describe VsDemandesController, type: :controller do
         expect(response).to redirect_to(VsDemande.last)
       end
     end
+    context "with invalid attributes" do
+      it "does not save the new contact" do
+        expect{
+          post 'create', :vs_demande => invalid_attributes
+        }.to_not change(VsDemande,:count)
+      end
+
+      it "re-renders the new method" do
+        post 'create', :vs_demande => invalid_attributes
+        response.should render_template :new
+      end
+    end 
   end
 
   describe "PUT #update" do
@@ -126,6 +148,13 @@ RSpec.describe VsDemandesController, type: :controller do
         expect(response).to redirect_to(vs_demande)
       end
     end
+    context "with invalid attributes" do
+      it "re-renders the update method" do
+        vs_demande = VsDemande.create! valid_attributes
+        put 'update', {:id => vs_demande.id, :vs_demande => invalid_attributes}
+        response.should render_template :edit
+      end
+    end 
   end
 
   describe "DELETE #destroy" do

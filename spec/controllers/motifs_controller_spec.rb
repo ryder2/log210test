@@ -28,6 +28,9 @@ RSpec.describe MotifsController, type: :controller do
   let(:valid_attributes) {
 	{nom: "MyString"}
   }
+  let(:invalid_attributes) {
+  {nom: ""}
+  }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -82,6 +85,18 @@ RSpec.describe MotifsController, type: :controller do
       it "redirects to the created motif" do
         post 'create', :motif => valid_attributes
         expect(response).to redirect_to(Motif.last)
+      end
+    end
+    context "with invalid attributes" do
+      it "does not save the new contact" do
+        expect{
+          post 'create', :motif => invalid_attributes
+        }.to_not change(Motif,:count)
+      end
+
+      it "re-renders the new method" do
+        post 'create', :motif => invalid_attributes
+        response.should render_template :new
       end
     end
   end

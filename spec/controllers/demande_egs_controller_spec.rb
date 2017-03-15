@@ -31,6 +31,13 @@ RSpec.describe DemandeEgsController, type: :controller do
       a_suivre: "2012-01-01", demande_id: 1, deroulement_dernier_contact: "true"}
   }
 
+  let(:invalid_attributes) {
+    {motif: "", conditions: "nom2", date_separation: "2012-01-01", echange_garde: true, reactions_eg: "100ABC2",
+     date_dernier_contact: "2012-01-01", description_enfant: "avocat2", contact_pg: true, forme_contact_pg: "102",
+      attitude_parent: "true", attitude_enfant: "100ABC2", 
+      a_suivre: "2012-01-01", demande_id: 1, deroulement_dernier_contact: "true"}
+  }
+
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -91,6 +98,18 @@ RSpec.describe DemandeEgsController, type: :controller do
         expect(response).to redirect_to(DemandeEg.last)
       end
     end
+    context "with invalid attributes" do
+      it "does not save the new contact" do
+        expect{
+          post 'create', :demande_eg => invalid_attributes
+        }.to_not change(DemandeEg,:count)
+      end
+
+      it "re-renders the new method" do
+        post 'create', :demande_eg => invalid_attributes
+        response.should render_template :new
+      end
+    end 
   end
 
   describe "PUT #update" do
@@ -121,6 +140,13 @@ RSpec.describe DemandeEgsController, type: :controller do
         expect(response).to redirect_to(demande_eg)
       end
     end
+    context "with invalid attributes" do
+      it "re-renders the update method" do
+        demande_eg = DemandeEg.create! valid_attributes
+        put 'update', {:id => demande_eg.id, :demande_eg => invalid_attributes}
+        response.should render_template :edit
+      end
+    end 
   end
 
   describe "DELETE #destroy" do
