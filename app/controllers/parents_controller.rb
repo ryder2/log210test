@@ -1,4 +1,6 @@
 class ParentsController < ApplicationController
+  require 'net/http'
+require 'uri'
   before_filter :authenticate_user!
   before_action :set_parent, only: [:show, :edit, :update, :destroy]
 

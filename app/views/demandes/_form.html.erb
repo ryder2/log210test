@@ -118,7 +118,7 @@
 		  </div>
 		<% end %>
 	<% end %>
-
+	<br><br>
 	<% if (!@gardiens.nil?) || (!@visiteurs.nil?) %>
 		<% @parents.each do |parent| %>
 			<% @compteur = (@compteur.to_i + 1).to_s %>
@@ -245,7 +245,7 @@
             $('.buttonEnfant').show();
             $('.new_parent').hide();
             $('.edit_parent').hide();
-			
+			location.href = "https://log210-02groupe2.herokuapp.com/users/5/disponibilites"
 			
           });
           requete.fail(function(json){
