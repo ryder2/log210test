@@ -61,7 +61,7 @@ class UserManagementController < ApplicationController
 
   private
   def usager_params
-	params[:user][:role_id] = params[:user][:role_id].to_f - 1
+	params[:user][:role_id] = params[:user][:role_id].to_f
 	if params[:user][:password].blank?
 		params.require(:user).permit(:name, :role_id, :email)
 	else
@@ -71,7 +71,7 @@ class UserManagementController < ApplicationController
   
   private
   def new_usager_params
-	params[:user][:role_id] = params[:user][:role_id].to_f - 1
+	params[:user][:role_id] = params[:user][:role_id].to_f
     params.require(:user).permit(:name, :role_id, :email, :password, :password_confirmation)
   end
  
