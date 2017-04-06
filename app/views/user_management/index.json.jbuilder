@@ -1,0 +1,1 @@
+json.array! @users, partial: 'user_management/user_management', as: :user
